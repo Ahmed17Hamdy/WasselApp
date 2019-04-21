@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodel="clr-namespace:WasselApp.ViewModels"
+             xmlns:i18="clr-namespace:WasselApp.Helpers"
+             xmlns:customcontrols="clr-namespace:WasselApp.CustomControls"
+             x:Class="WasselApp.Views.Panels.DriverPanel">
+    <ContentPage.BindingContext>
+        <viewmodel:UserViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <Grid Margin="10,10,10,10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Image Grid.Row="0" VerticalOptions="Center" HorizontalOptions="Center" 
+                   HeightRequest="100" WidthRequest="250" Aspect="AspectFit" Source="WasselLogo.PNG" />
+            <StackLayout Padding="5" Orientation="Horizontal" Grid.Row="1" HorizontalOptions="CenterAndExpand"
+                         VerticalOptions="CenterAndExpand">
+                <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="registerdriver_Tapped"/>
+                    </StackLayout.GestureRecognizers>
+                    <Label x:Name="rgslbl" TextColor="Blue" Text="{i18:Translate NewAccount}" />
+                    <Image WidthRequest="40" HeightRequest="20" x:Name="rgstimg" Source="Arch.png" IsVisible="True" />
+                </StackLayout>
+                <StackLayout Padding="10,0,10,0"  Orientation="Horizontal" VerticalOptions="Center" HorizontalOptions="Center">
+                    <BoxView  Color="Gray" WidthRequest="1" />
+                </StackLayout >
+                <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="login_Tapped" />
+                    </StackLayout.GestureRecognizers>
+                    <Label x:Name="lgnlbl" Text="{i18:Translate LogIn}"/>
+                    <Image WidthRequest="40" HeightRequest="20" x:Name="lgnimg" Source="Arch.png" IsVisible="False" />
+                </StackLayout>
+            </StackLayout>
+            <ScrollView x:Name="RegisterPanel" Grid.Row="2">
+                <StackLayout   Grid.Row="2" IsVisible="True" >
+                    <customcontrols:ImageEntry  x:Name="NameEntry"   Image="username" 
+                                                HorizontalTextAlignment="Center" Placeholder="{i18:Translate Name}" />
+                    <customcontrols:ImageEntry x:Name="EmailEntry"  Image="email" HorizontalTextAlignment="Center"
+                                               Placeholder="{i18:Translate Email}" />
+                    <customcontrols:ImageEntry x:Name="CarNumberEntry"   Image="driverlicense" 
+                                               HorizontalTextAlignment="Center" Placeholder="{i18:Translate Carid}"/>
+                    <Picker x:Name="CarTypePicker" ItemsSource="{Binding CarsType}"    
+                            SelectedIndexChanged="CarTypeList_SelectedIndexChanged" Title="{i18:Translate CarType}"  />
+                    <Picker x:Name="CarModelPicker"  
+                            Title="{i18:Translate CarModel}" SelectedIndexChanged="CarmodelList_SelectedIndexChanged"/>
+                    <customcontrols:ImageEntry x:Name="CountryEntry"  Image="arrow"
+                                               HorizontalTextAlignment="Center" Placeholder="{i18:Translate Country}"/>
+                    <customcontrols:ImageEntry x:Name="CityEntry"  Image="arrow" HorizontalTextAlignment="Center"
+                                               Placeholder="{i18:Translate City}"/>
+                    <customcontrols:ImageEntry x:Name="PhoneEntry"    Image="arrow" HorizontalTextAlignment="Center"
+                                               Placeholder="{i18:Translate PhoneNumber}"/>
+                    <customcontrols:ImageEntry x:Name="NatoionalEntry"  Image="arrow" HorizontalTextAlignment="Center"
+                                               Placeholder="{i18:Translate Residence}"/>
+                    <customcontrols:ImageEntry x:Name="AgeEntry"   Image="arrow" HorizontalTextAlignment="Center" 
+                                               Placeholder="{i18:Translate Age}"/>
+                    <customcontrols:ImageEntry x:Name="IdNumberEntry"  Image="arrow" HorizontalTextAlignment="Center"
+                                               Placeholder="{ i18:Translate IdNumber}"/>
+                    <StackLayout Orientation="Horizontal">
+                        <Image Aspect="AspectFit" x:Name="denominationnumberEntry" HeightRequest="60" WidthRequest="60" 
+                               Source="camera.png"/>
+                        <Label Text="{i18:Translate AddLiecnceImg}" HorizontalOptions="Center"/>
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="DenominationnumberEntry_Clicked"/>
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+                    <customcontrols:ImageEntry x:Name="passportnumberEntry"  Image="arrow" HorizontalTextAlignment="Center"
+                                               Placeholder="{i18:Translate PassPortNum}"/>
+                    <customcontrols:ImageEntry x:Name="nationalityEntry"  Image="arrow" HorizontalTextAlignment="Center" 
+                                               Placeholder="{i18:Translate Nationality}"/>
+                    <customcontrols:ImageEntry x:Name="typeEntry"   Image="arrow" HorizontalTextAlignment="Center"
+                                               Placeholder="النوعية"/>
+                    <customcontrols:ImageEntry x:Name="passwordEntry"  Image="lock"  IsPassword="True" 
+                                               HorizontalTextAlignment="Center" Placeholder="{i18:Translate PassWord}"/>
+                    <customcontrols:ImageEntry x:Name="confirmpassEntry" 
+                                               Image="lock" IsPassword="True" HorizontalTextAlignment="Center" 
+                                               Placeholder="{i18:Translate ConfirmPass}"/>
+                    <Button  Clicked="DriverRegisterCommand" BackgroundColor="Blue" BorderColor="Blue"
+                             Text="{ i18:Translate Register}" TextColor="White"
+                        BorderRadius="20"/>
+                </StackLayout>
+
+            </ScrollView>
+            <ScrollView x:Name="LoginPanel" IsVisible="False"  Grid.Row="2">
+                <StackLayout  Grid.Row="2" >
+                    <customcontrols:ImageEntry  Text="{Binding name}"   Image="username"
+                                                HorizontalTextAlignment="Center" Placeholder="{i18:Translate Name}" />
+                    <customcontrols:ImageEntry Text="{Binding email}" Image="email"
+                                               HorizontalTextAlignment="Center" Placeholder="{i18:Translate Email}" />
+                    <customcontrols:ImageEntry Text="{Binding password}" Image="lock" IsPassword="True"
+                                                HorizontalTextAlignment="Center" Placeholder="{i18:Translate PassWord}"/>
+                    <Button  Command="{Binding LoginCommand}" BackgroundColor="Blue" BorderColor="Blue"
+                             Text="{i18:Translate LogIn}"
+                             TextColor="White"
+                        BorderRadius="20"/>
+                </StackLayout>
+            </ScrollView>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

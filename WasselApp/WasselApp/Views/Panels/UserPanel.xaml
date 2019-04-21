@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:customcontrols="clr-namespace:WasselApp.CustomControls"
+             xmlns:i81="clr-namespace:WasselApp.Helpers"
+             xmlns:viewmodels="clr-namespace:WasselApp.ViewModels"
+             x:Class="WasselApp.Views.Panels.UserPanel">
+    <ContentPage.BindingContext>
+        <viewmodels:UserViewModel/>
+    </ContentPage.BindingContext>
+        <ContentPage.Content>
+            <Grid Margin="10,10,10,10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="60"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Image Grid.Row="0" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="100" WidthRequest="250" Aspect="AspectFit" Source="WasselLogo.PNG" />
+                <StackLayout Padding="5" Orientation="Horizontal" Grid.Row="1" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                    <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Register_Tapped"/>
+                            <ClickGestureRecognizer Clicked="Register_Tapped"/>
+                        </StackLayout.GestureRecognizers>
+                        <Label x:Name="rgslbl" TextColor="Blue" Text="{i81:Translate NewAccount}" />
+                    <Image WidthRequest="40" HeightRequest="20" x:Name="rgstimg" Source="Arch.png" IsVisible="True" />
+                    </StackLayout>
+                    <StackLayout Padding="10,0,10,0"  Orientation="Horizontal" VerticalOptions="Center" HorizontalOptions="Center">
+                        <BoxView  Color="Gray" WidthRequest="1" />
+                    </StackLayout >
+                    <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Login_Tapped"/>
+                            <ClickGestureRecognizer Clicked="Login_Tapped"/>
+                        </StackLayout.GestureRecognizers>
+                        <Label x:Name="lgnlbl" Text="{i81:Translate LogIn}"/>
+                    <Image WidthRequest="40" HeightRequest="20" x:Name="lgnimg" Source="Arch.png" IsVisible="False" />
+                    </StackLayout>
+                </StackLayout>
+                <ScrollView x:Name="RegisterPanel" IsVisible="True"  Grid.Row="2">
+                    <StackLayout   >
+                        <customcontrols:ImageEntry  Text="{Binding name}" 
+                                                    Image="username" HorizontalTextAlignment="Center" 
+                                                    Placeholder="{i81:Translate Name}" />
+                        <customcontrols:ImageEntry Text="{Binding email}" Image="email"
+                                                   HorizontalTextAlignment="Center"
+                                                   Placeholder="{i81:Translate Email}" />
+                        <customcontrols:ImageEntry Text="{Binding password}" Image="lock"  
+                                                   IsPassword="True" HorizontalTextAlignment="Center"
+                                                   Placeholder="{i81:Translate PassWord}"/>
+                        <customcontrols:ImageEntry Text="{Binding confirmpass}" Image="lock" 
+                                                   IsPassword="True" HorizontalTextAlignment="Center" 
+                                                   Placeholder="{i81:Translate ConfirmPass}"/>
+                        <Button  Command="{Binding UserRegisterCommand}" BackgroundColor="Blue"
+                                 BorderColor="Blue" Text="{i81:Translate Register}" TextColor="White"
+                            BorderRadius="20"/>
+                        </StackLayout>
+
+                </ScrollView>
+                <ScrollView x:Name="LoginPanel" IsVisible="False"  Grid.Row="2">
+                    <StackLayout  Grid.Row="2" >
+                    <customcontrols:ImageEntry  Text="{Binding name}"   Image="username"
+                                                    HorizontalTextAlignment="Center" Placeholder="{i81:Translate Name}" />
+                        <customcontrols:ImageEntry Text="{Binding email}" Image="email"
+                                                   HorizontalTextAlignment="Center" Placeholder="{i81:Translate Email}" />
+                        <customcontrols:ImageEntry Text="{Binding password}" Image="lock"  
+                                                   IsPassword="True" HorizontalTextAlignment="Center"
+                                                   Placeholder="{i81:Translate PassWord}"/>
+                        <Button  Command="{Binding LoginCommand}" BackgroundColor="Blue"
+                                 BorderColor="Blue" Text="{i81:Translate LogIn}" TextColor="White"
+                        BorderRadius="20"/>
+                    </StackLayout>
+                </ScrollView>
+            </Grid>
+        </ContentPage.Content>
+   
+</ContentPage>
