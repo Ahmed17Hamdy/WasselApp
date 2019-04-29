@@ -11,5 +11,6 @@ namespace WasselApp.Models
         public string icon { get; set; }
         public int parent { get; set; }
         public List<Carmodal> carmodals { get; set; }
+        public List<Carmodal> brickcarmodals { get; set; }
     }
 }

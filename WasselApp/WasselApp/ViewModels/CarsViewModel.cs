@@ -16,6 +16,7 @@ namespace WasselApp.ViewModels
         public CarsViewModel()
         {
             CartypeGetter();
+            CartypebrickGetter();
              CarGetter();
         }
         private ObservableCollection<Car> _cars;
@@ -44,6 +45,19 @@ namespace WasselApp.ViewModels
                 OnPropertyChanged();
             }
         }
+        private ObservableCollection<Cartype> _cartypesbrick;
+        public ObservableCollection<Cartype> CarTypesBrick
+        {
+            get
+            {
+                return _cartypesbrick;
+            }
+            set
+            {
+                _cartypesbrick = value;
+                OnPropertyChanged();
+            }
+        }
         public async Task CartypeGetter()
         {
             CarServices serv = new CarServices();
@@ -55,6 +69,18 @@ namespace WasselApp.ViewModels
                 modelitem.icon = "http://waselksa.alsalil.net/users/images/" + baramIcon;
             }
             CarTypes = ResBack;
+        }
+        public async Task CartypebrickGetter()
+        {
+            CarServices serv = new CarServices();
+            var ResBack = await serv.GetCarsbricktype();
+            foreach (var modelitem in ResBack)
+            {
+
+                var baramIcon = modelitem.icon;
+                modelitem.icon = "http://waselksa.alsalil.net/users/images/" + baramIcon;
+            }
+            CarTypesBrick = ResBack;
         }
 
         public async Task CarGetter()

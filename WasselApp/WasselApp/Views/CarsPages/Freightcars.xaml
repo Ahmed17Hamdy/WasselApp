@@ -31,7 +31,8 @@
                     <BindableLayout.ItemTemplate>
                         <DataTemplate>
                                     <StackLayout x:Name="viewcellstk" HorizontalOptions="Center" VerticalOptions="Center" >
-                                        <Label x:Name="namelbl"  HorizontalTextAlignment="Center" VerticalOptions="Center" HorizontalOptions="Center"
+                                        <Label x:Name="namelbl"  HorizontalTextAlignment="Center" VerticalOptions="Center"
+                                               HorizontalOptions="Center"
                                        Text="{Binding name}">
                                             <Label.GestureRecognizers>
                                                 <TapGestureRecognizer Tapped="namelblTabbed"/>

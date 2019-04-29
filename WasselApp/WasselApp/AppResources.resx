@@ -219,4 +219,25 @@
   <data name="Yes" xml:space="preserve">
     <value>Yes !</value>
   </data>
+  <data name="AboutApp" xml:space="preserve">
+    <value>About Application</value>
+  </data>
+  <data name="Callus" xml:space="preserve">
+    <value>Call Us</value>
+  </data>
+  <data name="MainPage" xml:space="preserve">
+    <value>Main Page</value>
+  </data>
+  <data name="MyWay" xml:space="preserve">
+    <value>My Way</value>
+  </data>
+  <data name="OurGoals" xml:space="preserve">
+    <value>Our Goals</value>
+  </data>
+  <data name="Waselbrick" xml:space="preserve">
+    <value>Brick Cars</value>
+  </data>
+  <data name="WaselShahn" xml:space="preserve">
+    <value>Shipping Cars</value>
+  </data>
 </root>

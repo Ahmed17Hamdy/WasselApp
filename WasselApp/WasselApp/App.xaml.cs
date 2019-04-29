@@ -1,5 +1,6 @@
 ﻿
 using WasselApp.Views.CarsPages;
+using WasselApp.Views.HomeMaster;
 using WasselApp.Views.Intro;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -13,7 +14,7 @@ namespace WasselApp
         {
             InitializeComponent();
 
-            MainPage = new MainTabbedPage();
+            MainPage = new NavigationPage( new MainPage());
         }
 
         protected override void OnStart()

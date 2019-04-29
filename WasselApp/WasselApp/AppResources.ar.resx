@@ -219,4 +219,25 @@
   <data name="Yes" xml:space="preserve">
     <value>! نعم</value>
   </data>
+  <data name="AboutApp" xml:space="preserve">
+    <value>عن التطبيق</value>
+  </data>
+  <data name="Callus" xml:space="preserve">
+    <value>إتصل بنا</value>
+  </data>
+  <data name="MainPage" xml:space="preserve">
+    <value>الصفحة الرئيسية</value>
+  </data>
+  <data name="MyWay" xml:space="preserve">
+    <value>طريقي</value>
+  </data>
+  <data name="OurGoals" xml:space="preserve">
+    <value>أهدافنا</value>
+  </data>
+  <data name="Waselbrick" xml:space="preserve">
+    <value>سيارات أجرة</value>
+  </data>
+  <data name="WaselShahn" xml:space="preserve">
+    <value> سيارات شحن</value>
+  </data>
 </root>

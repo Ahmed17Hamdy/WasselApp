@@ -61,6 +61,15 @@ namespace WasselApp {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to About Application.
+        /// </summary>
+        internal static string AboutApp {
+            get {
+                return ResourceManager.GetString("AboutApp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add Liecence Image.
         /// </summary>
         internal static string AddLiecnceImg {
@@ -84,6 +93,15 @@ namespace WasselApp {
         internal static string AskLogOUt {
             get {
                 return ResourceManager.GetString("AskLogOUt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Call Us.
+        /// </summary>
+        internal static string Callus {
+            get {
+                return ResourceManager.GetString("Callus", resourceCulture);
             }
         }
         
@@ -223,6 +241,24 @@ namespace WasselApp {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Main Page.
+        /// </summary>
+        internal static string MainPage {
+            get {
+                return ResourceManager.GetString("MainPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to My Way.
+        /// </summary>
+        internal static string MyWay {
+            get {
+                return ResourceManager.GetString("MyWay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Name.
         /// </summary>
         internal static string Name {
@@ -282,6 +318,15 @@ namespace WasselApp {
         internal static string Or {
             get {
                 return ResourceManager.GetString("Or", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Our Goals.
+        /// </summary>
+        internal static string OurGoals {
+            get {
+                return ResourceManager.GetString("OurGoals", resourceCulture);
             }
         }
         
@@ -354,6 +399,24 @@ namespace WasselApp {
         internal static string UserUse {
             get {
                 return ResourceManager.GetString("UserUse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Brick Cars.
+        /// </summary>
+        internal static string Waselbrick {
+            get {
+                return ResourceManager.GetString("Waselbrick", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Shipping Cars.
+        /// </summary>
+        internal static string WaselShahn {
+            get {
+                return ResourceManager.GetString("WaselShahn", resourceCulture);
             }
         }
         

@@ -55,5 +55,25 @@ namespace WasselApp.Services
             }
             else return null;
         }
+        public async Task<ObservableCollection<Cartype>> GetCarsbricktype()
+        {
+            var client = new HttpClient();
+            if (CrossConnectivity.Current.IsConnected)
+            {
+                try
+                {
+                    var response = await client.GetAsync("https://waselksa.alsalil.net/api/settingbrick");
+                    var serverResponse = response.Content.ReadAsStringAsync().Result.ToString();
+                    var Req = JsonConvert.DeserializeObject<Response<string, MainResponseMessage>>(serverResponse);
+                    var Carstype = Req.message.cartype;
+                    return Carstype;
+                }
+                catch (Exception)
+                {
+                    return null;
+                }
+            }
+            else return null;
+        }
     }
 }
