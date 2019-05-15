@@ -90,44 +90,48 @@ namespace WasselApp.ViewModels
             Cars = ResBack;
             foreach (var item in Cars)
             {
-                item.Position = new Position(Convert.ToDouble(item.lat), Convert.ToDouble(item.lng));
-                if (item.cartype==2)
-                {
-                    item.cartypename = "دينا";                   
-                }
-                else if(item.cartype==1)
+                item.Position = new Position(Convert.ToDouble(item.Member.lat),
+                    Convert.ToDouble(item.Member.lng));
+                
+                 if(item.Member.cartype == "1")
                 {
                     item.cartypename = "صغيرة";                   
                 }
-                else if (item.cartype == 3)
+                 else if (item.Member.cartype == "2")
+                {
+                    item.cartypename = "دينا";
+                }
+                else if (item.Member.cartype == "3")
                 {
                     item.cartypename = "تريلة";
                 }
-                else if (item.cartype == 4)
+                else if (item.Member.cartype == "4")
                 {
                     item.cartypename = "سطحة";                   
                 }
                 
-                item.Title = item.name;                
+                item.Title = item.Member.name;                
                 item.ShowCallout = true;
-                if(item.cartypename == "دينا")
+                if (item.Member != null)
                 {
-                    item.Image = "dinaredcar.png";
-                }
-                else if(item.cartypename == "صغيرة")
-                {
-                    item.Image = "smallredcar.png";
-                }
-                else if(item.cartypename == "تريلة")
-                {
-                    item.Image = "trilared.png";
-                }
-                else
-                {
-                    item.Image = "satharedcar.png";
-                }
-
-
+                    if (item.weight != int.Parse(item.Member.load) && item.cartypename == "دينا")
+                    {
+                        item.Image = "dinaredcar.png";
+                    }
+                    else if (item.weight != int.Parse(item.Member.load) && item.cartypename == "صغيرة")
+                    {
+                        item.Image = "smallredcar.png";
+                    }
+                    else if (item.weight != int.Parse(item.Member.load) && item.cartypename == "تريلة")
+                    {
+                        item.Image = "trilared.png";
+                    }
+                    else
+                    {
+                        item.Image = "satharedcar.png";
+                    }
+                }              
+               
                 //  item.Subtitle = item.carmodalname;
             }
 

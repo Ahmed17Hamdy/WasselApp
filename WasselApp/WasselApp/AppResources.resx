@@ -127,7 +127,7 @@
     <value>Do You Want To Log Out ?</value>
   </data>
   <data name="Carid" xml:space="preserve">
-    <value>Car Id</value>
+    <value>Car Number</value>
   </data>
   <data name="CarModel" xml:space="preserve">
     <value>Car Model</value>
@@ -151,7 +151,7 @@
     <value>Country</value>
   </data>
   <data name="DriverUse" xml:space="preserve">
-    <value>Entering As Driver</value>
+    <value>Enter As Driver</value>
   </data>
   <data name="Email" xml:space="preserve">
     <value>Email Address</value>
@@ -193,7 +193,7 @@
     <value>OR</value>
   </data>
   <data name="PassPortNum" xml:space="preserve">
-    <value>PassPort Number</value>
+    <value>Add PassPort Image</value>
   </data>
   <data name="PassWord" xml:space="preserve">
     <value>Pass Word</value>
@@ -214,7 +214,7 @@
     <value>Changing PassWord</value>
   </data>
   <data name="UserUse" xml:space="preserve">
-    <value>Entering As User</value>
+    <value>Enter As User</value>
   </data>
   <data name="Yes" xml:space="preserve">
     <value>Yes !</value>
@@ -239,5 +239,68 @@
   </data>
   <data name="WaselShahn" xml:space="preserve">
     <value>Shipping Cars</value>
+  </data>
+  <data name="Ok" xml:space="preserve">
+    <value>Ok</value>
+  </data>
+  <data name="EmailTaken" xml:space="preserve">
+    <value>The email has already been taken.</value>
+  </data>
+  <data name="HaveAccount" xml:space="preserve">
+    <value>Have Account , Already ?</value>
+  </data>
+  <data name="UserRegistered" xml:space="preserve">
+    <value>You have Registered Successfully !</value>
+  </data>
+  <data name="FieldReq" xml:space="preserve">
+    <value>This Field Is Required </value>
+  </data>
+  <data name="InvalidMail" xml:space="preserve">
+    <value>Invalid Email Address Format</value>
+  </data>
+  <data name="PassWordMatch" xml:space="preserve">
+    <value>PassWord Doesn't Match</value>
+  </data>
+  <data name="PassWordValid" xml:space="preserve">
+    <value>PassWord consists of 6 lenght , contains at least one digit &amp; alphabet</value>
+  </data>
+  <data name="ChecEP" xml:space="preserve">
+    <value>Please, Check Your Email &amp; PassWord</value>
+  </data>
+  <data name="AllModels" xml:space="preserve">
+    <value>Please , Choose Car Model</value>
+  </data>
+  <data name="AllTypes" xml:space="preserve">
+    <value>Please , Choose The Type</value>
+  </data>
+  <data name="ChooseCarType" xml:space="preserve">
+    <value>Please , Choose Car Type</value>
+  </data>
+  <data name="LiecenceImages" xml:space="preserve">
+    <value>Add Liecence Image</value>
+  </data>
+  <data name="PermissionDetails" xml:space="preserve">
+    <value>Unable to take photos.</value>
+  </data>
+  <data name="PermissionLocationDetails" xml:space="preserve">
+    <value>Sorry, Can't Get Your Location</value>
+  </data>
+  <data name="PermissionsDenied" xml:space="preserve">
+    <value>Permissions Denied</value>
+  </data>
+  <data name="ProfileImages" xml:space="preserve">
+    <value>Add Profile Image</value>
+  </data>
+  <data name="AddImages" xml:space="preserve">
+    <value>Please , Add All Required Images First </value>
+  </data>
+  <data name="Load" xml:space="preserve">
+    <value>Load of the Car in kg</value>
+  </data>
+  <data name="Location" xml:space="preserve">
+    <value>Your Location is Required</value>
+  </data>
+  <data name="SelectCarType" xml:space="preserve">
+    <value>Select Car Type</value>
   </data>
 </root>

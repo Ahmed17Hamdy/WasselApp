@@ -20,5 +20,9 @@ namespace WasselApp.Models
         public string passportnumber { get; set; }
         public string nationality { get; set; }
         public string type { get; set; }
+        public string load { get; set; }
+        public int status { get; set; }
+        public int suspensed { get; set; }
+        public string debt { get; set; }
     }
 }

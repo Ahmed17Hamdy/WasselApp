@@ -13,7 +13,7 @@ using WasselApp.Views.CarsPages;
 using WasselApp.Views.Popups;
 using Xamarin.Essentials;
 using Xamarin.Forms;
-
+using WasselApp.Helpers;
 namespace WasselApp.ViewModels
 {
     public class UserViewModel : INotifyPropertyChanged
@@ -24,7 +24,18 @@ namespace WasselApp.ViewModels
         {
             //    AddToCarTypeList();
         }
-
+        private bool _isRunning;
+        public bool IsRunning
+        {
+            get { return _isRunning; }
+            set
+            {
+                if (_isRunning == value)
+                    return;
+                _isRunning = value;
+                OnPropertyChanged("IsRunning");
+            }
+        }
         UserService userService = new UserService();
         public int id { get; set; }
         public string name { get; set; }
@@ -51,9 +62,15 @@ namespace WasselApp.ViewModels
         public StreamImageSource Img { get; set; }
         public string lng { get; set; }
 
+        private void IdsAvailable(string userID, string pushToken)
+        {
+            Settings.LastSignalID = pushToken;
+            Settings.UserFirebaseToken = userID;
 
+        }
         public ICommand UserRegisterCommand => new Command(async () =>
         {
+            IsRunning = true;
             var location = await Geolocation.GetLocationAsync();
             var device = DeviceInfo.Model;
             User _userReg = new User
@@ -69,7 +86,7 @@ namespace WasselApp.ViewModels
 
             };
             var ResBack = await userService.RegisterAsync(_userReg);
-            bool checker = false;
+           
             if (ResBack == "false")
             {
                 await PopupNavigation.Instance.PushAsync(new ConnectionPopup());
@@ -79,19 +96,21 @@ namespace WasselApp.ViewModels
 
                 try
                 {
-
-                    var JsonResponse = JsonConvert.DeserializeObject<Response<string, User>>(ResBack);
-                    if (JsonResponse.success == true)
+                    try
                     {
-                       
-                       await  PopupNavigation.Instance.PushAsync(new RegisterPopup(JsonResponse.data));
-                        Device.BeginInvokeOnMainThread(() => App.Current.MainPage = new MainTabbedPage());
+                        var JsonResponse = JsonConvert.DeserializeObject<RegisterResponse>(ResBack);
+                        if (JsonResponse.success == false)
+                            IsRunning = false;
+                            await PopupNavigation.Instance.PushAsync(new RegisterPopup(JsonResponse.data));
                     }
-                    else
+                    catch
                     {
+                        var JsonResponse = JsonConvert.DeserializeObject<Response<string, User>>(ResBack);
+                        if (JsonResponse.success == true)
+                            IsRunning = false;
                         await PopupNavigation.Instance.PushAsync(new RegisterPopup(JsonResponse.data));
-                        
-                    }
+                        Device.BeginInvokeOnMainThread(() => App.Current.MainPage = new HomePage());
+                    }                  
                 }
                 catch (Exception)
                 {
@@ -104,41 +123,51 @@ namespace WasselApp.ViewModels
         });
         public ICommand LoginCommand => new Command(async () =>
         {
+         //   OneSignal.Current.IdsAvailable(IdsAvailable);
+
             User user = new User {
                 name = name,
             email = email,
             password = password,
             confirmpass = confirmpass,
-            firebase_token = "0",
+            firebase_token = "3333333" /*Settings.UserFirebaseToken*/,
             device_id = "0",
         };
             var ResBack = await userService.LoginCommandAsync(user);
-
-            // email = Settings.LastUsedEmail;
             if (ResBack == "false")
             {
                 await PopupNavigation.Instance.PushAsync(new ConnectionPopup());
             }
             else
             {
-                bool checker = false;
+
                 try
                 {
+                    try
+                    {
+                        var JsonResponse = JsonConvert.DeserializeObject<RegisterResponse>(ResBack);
+                        if (JsonResponse.success == false)
+                            IsRunning = false;
+                        await PopupNavigation.Instance.PushAsync(new LoginPopup(JsonResponse.data));
+                    }
+                    catch
+                    {
+                        var JsonResponse = JsonConvert.DeserializeObject<Response<string, User>>(ResBack);
+                        if (JsonResponse.success == true)
+                        {
+                            IsRunning = false;
+                            var _userID = JsonResponse.message.id;
 
-                    var JsonResponse = JsonConvert.DeserializeObject<Response<string, User>>(ResBack);
-                    if (JsonResponse.success == true)
-                    {
-                        var _userID = JsonResponse.message.id;
-                        checker = true;
-                        // Settings.LastUsedID = _userID;
-                        //  Settings.LastUsedEmail = EntryEmail.Text;
-                        await PopupNavigation.Instance.PushAsync(new LoginPopup(JsonResponse.data));
-                        Device.BeginInvokeOnMainThread(() => App.Current.MainPage = new MainTabbedPage());
-                    }
-                    else
-                    {
-                        await PopupNavigation.Instance.PushAsync(new LoginPopup(JsonResponse.data));
-                    }
+                            Settings.LastUsedID = _userID;
+                            Settings.LastUsedEmail = JsonResponse.message.email;
+                            await PopupNavigation.Instance.PushAsync(new LoginPopup(JsonResponse.data));
+                            Device.BeginInvokeOnMainThread(() => App.Current.MainPage = new HomePage());
+                        }
+                        else
+                        {
+                            await PopupNavigation.Instance.PushAsync(new LoginPopup(JsonResponse.data));
+                        }
+                    }         
                 }
                 catch (Exception)
                 {
@@ -147,6 +176,39 @@ namespace WasselApp.ViewModels
                     return;
                 }
             }
+            // email = Settings.LastUsedEmail;
+            //if (ResBack == "false")
+            //{
+            //    await PopupNavigation.Instance.PushAsync(new ConnectionPopup());
+            //}
+            //else
+            //{
+            //    bool checker = false;
+            //    try
+            //    {
+
+            //        //var JsonResponse = JsonConvert.DeserializeObject<Response<string, User>>(ResBack);
+            //        //if (JsonResponse.success == true)
+            //        //{
+            //        //    var _userID = JsonResponse.message.id;
+            //        //    checker = true;
+            //        //    // Settings.LastUsedID = _userID;
+            //        //    //  Settings.LastUsedEmail = EntryEmail.Text;
+            //        //    await PopupNavigation.Instance.PushAsync(new LoginPopup(JsonResponse.data));
+            //        //    Device.BeginInvokeOnMainThread(() => App.Current.MainPage = new HomePage());
+            //        //}
+            //        //else
+            //        //{
+            //        //    await PopupNavigation.Instance.PushAsync(new LoginPopup(JsonResponse.data));
+            //        //}
+            //    }
+            //    catch (Exception)
+            //    {
+
+            //        await PopupNavigation.Instance.PushAsync(new ConnectionPopup());
+            //        return;
+            //    }
+            //}
 
         });
         private ObservableCollection<Cartype> _carstypelist = new ObservableCollection<Cartype>();
@@ -185,11 +247,11 @@ namespace WasselApp.ViewModels
         }
 
 
-        private void PopAlert(bool x)
-        {
-            //    PopupNavigation.Instance.PushAsync(new TrueRegister());
-            return;
-        }
+        //private void PopAlert(bool x)
+        //{
+        //    //    PopupNavigation.Instance.PushAsync(new TrueRegister());
+        //    return;
+        //}
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {

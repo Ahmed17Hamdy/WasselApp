@@ -122,7 +122,7 @@ namespace WasselApp.Views.CarsPages
         {
           
             var ModelSelected = Modellist.SelectedItem as Carmodal;
-            var SelectedCars = Cars.Where(o => o.carmodal == ModelSelected.id).ToList();
+            var SelectedCars = Cars.Where(o => o.Member.carmodal == ModelSelected.id.ToString()).ToList();
             
             Activ.IsRunning = false;
 

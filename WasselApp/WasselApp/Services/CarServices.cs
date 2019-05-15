@@ -21,7 +21,8 @@ namespace WasselApp.Services
                 {
                     var response = await client.GetAsync("https://waselksa.alsalil.net/api/settingmember");
                     var serverResponse = response.Content.ReadAsStringAsync().Result.ToString();
-                    var Req = JsonConvert.DeserializeObject<Response<string, ObservableCollection<Car>>>(serverResponse);
+                    var Req = JsonConvert.DeserializeObject<Response<string, ObservableCollection<Car>>>
+                        (serverResponse);
                     var Cars = Req.message;
                     return Cars;
                 }

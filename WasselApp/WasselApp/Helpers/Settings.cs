@@ -29,6 +29,44 @@ namespace WasselApp.Helpers
                 AppSettings.AddOrUpdateValue(LascarmodelidKey, value);
 
         }
+        private const string cartypeKey = "cartype_key";
+        private static readonly int CartypeDefault = 0;
+        public static int cartype
+        {
+            get => AppSettings.GetValueOrDefault(cartypeKey, CartypeDefault);
+            set => AppSettings.AddOrUpdateValue(cartypeKey, value);
+
+        }
+
+        private const string LastcartypenameKey = "last_cartypename_key";
+        private static readonly string cartypenameKey = string.Empty;
+        public static string cartypename
+        {
+            get
+            =>
+                 AppSettings.GetValueOrDefault(cartypenameKey, LastcartypenameKey);
+
+
+            set
+            =>
+                AppSettings.AddOrUpdateValue(cartypenameKey, value);
+
+        }
+        private const string LastmodelenameKey = "last_cartypename_key";
+        private static readonly string carmodelnameKey = string.Empty;
+        public static string carmodelname
+        {
+            get
+            =>
+                 AppSettings.GetValueOrDefault(carmodelnameKey, LastmodelenameKey);
+
+
+            set
+            =>
+                AppSettings.AddOrUpdateValue(carmodelnameKey, value);
+
+        }
+
         private const string LastlattoKey = "last_latto_key";
         private static readonly string LattoKey = string.Empty;
         public static string Latto

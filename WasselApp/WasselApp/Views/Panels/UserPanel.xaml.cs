@@ -16,6 +16,16 @@ namespace WasselApp.Views.Panels
 		{
 			InitializeComponent ();
 		}
+        public UserPanel(object x)
+        {
+            InitializeComponent();
+            RegisterPanel.IsVisible = false;
+            rgstimg.IsVisible = false;
+            rgslbl.TextColor = Color.Black;
+            lgnlbl.TextColor = Color.Blue;
+            lgnimg.IsVisible = true;
+            LoginPanel.IsVisible = true;
+        }
         private void Login_Tapped(object sender, EventArgs e)
         {
             RegisterPanel.IsVisible = false;

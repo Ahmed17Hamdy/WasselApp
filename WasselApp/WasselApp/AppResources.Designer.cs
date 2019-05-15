@@ -70,6 +70,15 @@ namespace WasselApp {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please , Add All Required Images First .
+        /// </summary>
+        internal static string AddImages {
+            get {
+                return ResourceManager.GetString("AddImages", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add Liecence Image.
         /// </summary>
         internal static string AddLiecnceImg {
@@ -84,6 +93,24 @@ namespace WasselApp {
         internal static string Age {
             get {
                 return ResourceManager.GetString("Age", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please , Choose Car Model.
+        /// </summary>
+        internal static string AllModels {
+            get {
+                return ResourceManager.GetString("AllModels", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please , Choose The Type.
+        /// </summary>
+        internal static string AllTypes {
+            get {
+                return ResourceManager.GetString("AllTypes", resourceCulture);
             }
         }
         
@@ -106,7 +133,7 @@ namespace WasselApp {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Car Id.
+        ///   Looks up a localized string similar to Car Number.
         /// </summary>
         internal static string Carid {
             get {
@@ -129,6 +156,24 @@ namespace WasselApp {
         internal static string CarType {
             get {
                 return ResourceManager.GetString("CarType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please, Check Your Email &amp; PassWord.
+        /// </summary>
+        internal static string ChecEP {
+            get {
+                return ResourceManager.GetString("ChecEP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please , Choose Car Type.
+        /// </summary>
+        internal static string ChooseCarType {
+            get {
+                return ResourceManager.GetString("ChooseCarType", resourceCulture);
             }
         }
         
@@ -178,7 +223,7 @@ namespace WasselApp {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Entering As Driver.
+        ///   Looks up a localized string similar to Enter As Driver.
         /// </summary>
         internal static string DriverUse {
             get {
@@ -192,6 +237,15 @@ namespace WasselApp {
         internal static string Email {
             get {
                 return ResourceManager.GetString("Email", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The email has already been taken..
+        /// </summary>
+        internal static string EmailTaken {
+            get {
+                return ResourceManager.GetString("EmailTaken", resourceCulture);
             }
         }
         
@@ -214,11 +268,65 @@ namespace WasselApp {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This Field Is Required .
+        /// </summary>
+        internal static string FieldReq {
+            get {
+                return ResourceManager.GetString("FieldReq", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Have Account , Already ?.
+        /// </summary>
+        internal static string HaveAccount {
+            get {
+                return ResourceManager.GetString("HaveAccount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Id Number.
         /// </summary>
         internal static string IdNumber {
             get {
                 return ResourceManager.GetString("IdNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid Email Address Format.
+        /// </summary>
+        internal static string InvalidMail {
+            get {
+                return ResourceManager.GetString("InvalidMail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add Liecence Image.
+        /// </summary>
+        internal static string LiecenceImages {
+            get {
+                return ResourceManager.GetString("LiecenceImages", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Load of the Car in kg.
+        /// </summary>
+        internal static string Load {
+            get {
+                return ResourceManager.GetString("Load", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your Location is Required.
+        /// </summary>
+        internal static string Location {
+            get {
+                return ResourceManager.GetString("Location", resourceCulture);
             }
         }
         
@@ -304,6 +412,15 @@ namespace WasselApp {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ok.
+        /// </summary>
+        internal static string Ok {
+            get {
+                return ResourceManager.GetString("Ok", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Current PassWord.
         /// </summary>
         internal static string OldPass {
@@ -331,7 +448,7 @@ namespace WasselApp {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to PassPort Number.
+        ///   Looks up a localized string similar to Add PassPort Image.
         /// </summary>
         internal static string PassPortNum {
             get {
@@ -349,11 +466,65 @@ namespace WasselApp {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to PassWord Doesn&apos;t Match.
+        /// </summary>
+        internal static string PassWordMatch {
+            get {
+                return ResourceManager.GetString("PassWordMatch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PassWord consists of 6 lenght , contains at least one digit &amp; alphabet.
+        /// </summary>
+        internal static string PassWordValid {
+            get {
+                return ResourceManager.GetString("PassWordValid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unable to take photos..
+        /// </summary>
+        internal static string PermissionDetails {
+            get {
+                return ResourceManager.GetString("PermissionDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sorry, Can&apos;t Get Your Location.
+        /// </summary>
+        internal static string PermissionLocationDetails {
+            get {
+                return ResourceManager.GetString("PermissionLocationDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Permissions Denied.
+        /// </summary>
+        internal static string PermissionsDenied {
+            get {
+                return ResourceManager.GetString("PermissionsDenied", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Phone Number.
         /// </summary>
         internal static string PhoneNumber {
             get {
                 return ResourceManager.GetString("PhoneNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add Profile Image.
+        /// </summary>
+        internal static string ProfileImages {
+            get {
+                return ResourceManager.GetString("ProfileImages", resourceCulture);
             }
         }
         
@@ -376,6 +547,15 @@ namespace WasselApp {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select Car Type.
+        /// </summary>
+        internal static string SelectCarType {
+            get {
+                return ResourceManager.GetString("SelectCarType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select Language.
         /// </summary>
         internal static string SelectLanguage {
@@ -394,7 +574,16 @@ namespace WasselApp {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Entering As User.
+        ///   Looks up a localized string similar to You have Registered Successfully !.
+        /// </summary>
+        internal static string UserRegistered {
+            get {
+                return ResourceManager.GetString("UserRegistered", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter As User.
         /// </summary>
         internal static string UserUse {
             get {

@@ -3,13 +3,16 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewmodel="clr-namespace:WasselApp.ViewModels"
              xmlns:i18="clr-namespace:WasselApp.Helpers"
+             BackgroundColor="White"
              xmlns:customcontrols="clr-namespace:WasselApp.CustomControls"
+             xmlns:Validators="clr-namespace:WasselApp.Models.BModel"
+             xmlns:Behaviors="clr-namespace:WasselApp.Behaviors"
              x:Class="WasselApp.Views.Panels.DriverPanel">
     <ContentPage.BindingContext>
         <viewmodel:UserViewModel />
     </ContentPage.BindingContext>
     <ContentPage.Content>
-        <Grid Margin="10,10,10,10">
+        <Grid Margin="10">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="60"/>
@@ -39,42 +42,123 @@
             </StackLayout>
             <ScrollView x:Name="RegisterPanel" Grid.Row="2">
                 <StackLayout   Grid.Row="2" IsVisible="True" >
+                    <StackLayout.Behaviors>
+                        <Validators:ValidationGroupBehavior x:Name="Registerform"/>
+                    </StackLayout.Behaviors>
                     <customcontrols:ImageEntry  x:Name="NameEntry"   Image="username" 
                                                 HorizontalTextAlignment="Center" Placeholder="{i18:Translate Name}" />
                     <customcontrols:ImageEntry x:Name="EmailEntry"  Image="email" HorizontalTextAlignment="Center"
-                                               Placeholder="{i18:Translate Email}" />
+                                               Placeholder="{i18:Translate Email}" >
+                        <customcontrols:ImageEntry.Behaviors>
+                            <Behaviors:ValidationBehavior Group="{x:Reference Registerform}" PropertyName="Text">
+                                <Behaviors:ValidationBehavior.Validators>
+                                    <Validators:RequiredValidator />
+                                    <Behaviors:FormatValidator
+                            Message="{i18:Translate InvalidMail}" 
+                            Format="^[_a-z0-9-]*(.[a-z0-9-]+)@[a-z0-9-]+(.[a-z0-9-]+)*(.[a-z]{2,4})$" />
+                                </Behaviors:ValidationBehavior.Validators>
+                            </Behaviors:ValidationBehavior>
+                        </customcontrols:ImageEntry.Behaviors>
+                    </customcontrols:ImageEntry>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <customcontrols:ImageEntry Grid.Row="0" Grid.Column="0" 
+                                                   x:Name="CountryEntry"  Image="arrow"
+                                               HorizontalTextAlignment="Center"
+                                                   Placeholder="{i18:Translate Country}"/>
+                        <customcontrols:ImageEntry Grid.Row="0" Grid.Column="1"
+                                                   x:Name="CityEntry"  Image="arrow"
+                                                   HorizontalTextAlignment="Center"
+                                               Placeholder="{i18:Translate City}"/>
+                        <customcontrols:ImageEntry x:Name="PhoneEntry" Grid.Row="1" Grid.Column="0"
+                                                   Image="arrow" HorizontalTextAlignment="Center"
+                                               Placeholder="{i18:Translate PhoneNumber}"/>
+                        <customcontrols:ImageEntry x:Name="AgeEntry" Grid.Row="1" Grid.Column="1"  
+                                                   Image="arrow" HorizontalTextAlignment="Center" 
+                                               Placeholder="{i18:Translate Age}"/>
+
+                    </Grid>
+                    <Frame BorderColor="Blue" x:Name="ProfileImg"  CornerRadius="30">
+                        <Grid>
+                            <Label VerticalOptions="Start" HorizontalOptions="Center" TextColor="Blue"
+                                   FontSize="Large" 
+                                   Text="{i18:Translate ProfileImages}"/>
+                            <Image x:Name="ProfImgSource" 
+                                   HeightRequest="60" WidthRequest="60" Aspect="AspectFill"/>
+
+                            <Image HorizontalOptions="Center" VerticalOptions="Center"  Aspect="AspectFit"
+                                   HeightRequest="20" WidthRequest="20" Source="camera.png"/>
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="ProfileImg_Clicked"/>
+                            </Grid.GestureRecognizers>
+                        </Grid>
+                    </Frame>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Frame Grid.Column="1" BorderColor="Blue" x:Name="PassportImg"  CornerRadius="30">
+                            <Grid>
+                                <Label VerticalOptions="Start" HorizontalOptions="Center" TextColor="Blue"                                 
+                                   Text="{i18:Translate PassPortNum}"/>
+                                <Image x:Name="PassPortImgSource" 
+                                   HeightRequest="60" WidthRequest="60" Aspect="AspectFill"/>
+
+                                <Image HorizontalOptions="Center" VerticalOptions="Center"
+                                           Aspect="AspectFit" 
+                                   HeightRequest="20" WidthRequest="20" Source="camera.png"/>
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="PassPortImg_Clicked"/>
+                                </Grid.GestureRecognizers>
+                            </Grid>
+                        </Frame>
+                        <customcontrols:ImageEntry Grid.Column="0" x:Name="NatoionalEntry"  Image="arrow" 
+                                               HorizontalTextAlignment="Center"
+                                               Placeholder="{i18:Translate Residence}"/>
+                    </Grid>
+                    <customcontrols:ImageEntry x:Name="nationalityEntry"  Image="arrow" 
+                                               HorizontalTextAlignment="Center" 
+                                               Placeholder="{i18:Translate Nationality}"/>
+                    <customcontrols:ImageEntry x:Name="IdNumberEntry" 
+                                               Image="arrow" HorizontalTextAlignment="Center"
+                                               Placeholder="{ i18:Translate IdNumber}"/>
                     <customcontrols:ImageEntry x:Name="CarNumberEntry"   Image="driverlicense" 
                                                HorizontalTextAlignment="Center" Placeholder="{i18:Translate Carid}"/>
-                    <Picker x:Name="CarTypePicker" ItemsSource="{Binding CarsType}"    
+                    <Button x:Name="Cartypebtn" BackgroundColor="White" Text="{i18:Translate CarType}" CornerRadius="30"
+                       Clicked="Cartypebtn_Clicked"     HeightRequest="50" BorderWidth="1" BorderColor="Blue"  />
+                    <!--<Picker x:Name="CarTypePicker" ItemsSource="{Binding CarsType}"    
                             SelectedIndexChanged="CarTypeList_SelectedIndexChanged" Title="{i18:Translate CarType}"  />
                     <Picker x:Name="CarModelPicker"  
-                            Title="{i18:Translate CarModel}" SelectedIndexChanged="CarmodelList_SelectedIndexChanged"/>
-                    <customcontrols:ImageEntry x:Name="CountryEntry"  Image="arrow"
-                                               HorizontalTextAlignment="Center" Placeholder="{i18:Translate Country}"/>
-                    <customcontrols:ImageEntry x:Name="CityEntry"  Image="arrow" HorizontalTextAlignment="Center"
-                                               Placeholder="{i18:Translate City}"/>
-                    <customcontrols:ImageEntry x:Name="PhoneEntry"    Image="arrow" HorizontalTextAlignment="Center"
-                                               Placeholder="{i18:Translate PhoneNumber}"/>
-                    <customcontrols:ImageEntry x:Name="NatoionalEntry"  Image="arrow" HorizontalTextAlignment="Center"
-                                               Placeholder="{i18:Translate Residence}"/>
-                    <customcontrols:ImageEntry x:Name="AgeEntry"   Image="arrow" HorizontalTextAlignment="Center" 
-                                               Placeholder="{i18:Translate Age}"/>
-                    <customcontrols:ImageEntry x:Name="IdNumberEntry"  Image="arrow" HorizontalTextAlignment="Center"
-                                               Placeholder="{ i18:Translate IdNumber}"/>
-                    <StackLayout Orientation="Horizontal">
-                        <Image Aspect="AspectFit" x:Name="denominationnumberEntry" HeightRequest="60" WidthRequest="60" 
-                               Source="camera.png"/>
-                        <Label Text="{i18:Translate AddLiecnceImg}" HorizontalOptions="Center"/>
-                        <StackLayout.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="DenominationnumberEntry_Clicked"/>
-                        </StackLayout.GestureRecognizers>
-                    </StackLayout>
-                    <customcontrols:ImageEntry x:Name="passportnumberEntry"  Image="arrow" HorizontalTextAlignment="Center"
-                                               Placeholder="{i18:Translate PassPortNum}"/>
-                    <customcontrols:ImageEntry x:Name="nationalityEntry"  Image="arrow" HorizontalTextAlignment="Center" 
-                                               Placeholder="{i18:Translate Nationality}"/>
+                            Title="{i18:Translate CarModel}" SelectedIndexChanged="CarmodelList_SelectedIndexChanged"/>-->
+
+                    <Frame BorderColor="Blue" x:Name="LiecenceImg"  CornerRadius="30">
+                        <Grid>
+                            <Label VerticalOptions="Start" HorizontalOptions="Center" TextColor="Blue"
+                                   FontSize="Large" 
+                                   Text="{i18:Translate LiecenceImages}"/>
+                            <Image x:Name="LiecenceImgSource" 
+                                   HeightRequest="60" WidthRequest="60" Aspect="AspectFill"/>
+
+                            <Image HorizontalOptions="Center" VerticalOptions="Center"
+                                           Aspect="AspectFit" 
+                                   HeightRequest="20" WidthRequest="20" Source="camera.png"/>
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="LiecenceImg_Clicked"/>
+                            </Grid.GestureRecognizers>
+                        </Grid>
+                    </Frame>
                     <customcontrols:ImageEntry x:Name="typeEntry"   Image="arrow" HorizontalTextAlignment="Center"
                                                Placeholder="النوعية"/>
+                    <customcontrols:ImageEntry x:Name="loadEntry"   Image="arrow" HorizontalTextAlignment="Center"
+                                               Placeholder="{i18:Translate Load}"/>
                     <customcontrols:ImageEntry x:Name="passwordEntry"  Image="lock"  IsPassword="True" 
                                                HorizontalTextAlignment="Center" Placeholder="{i18:Translate PassWord}"/>
                     <customcontrols:ImageEntry x:Name="confirmpassEntry" 
@@ -88,18 +172,48 @@
             </ScrollView>
             <ScrollView x:Name="LoginPanel" IsVisible="False"  Grid.Row="2">
                 <StackLayout  Grid.Row="2" >
+                    <StackLayout.Behaviors>
+                        <Validators:ValidationGroupBehavior x:Name="Loginform"/>
+                    </StackLayout.Behaviors>
                     <customcontrols:ImageEntry  Text="{Binding name}"   Image="username"
                                                 HorizontalTextAlignment="Center" Placeholder="{i18:Translate Name}" />
                     <customcontrols:ImageEntry Text="{Binding email}" Image="email"
-                                               HorizontalTextAlignment="Center" Placeholder="{i18:Translate Email}" />
+                                               HorizontalTextAlignment="Center" Placeholder="{i18:Translate Email}" >
+                        <customcontrols:ImageEntry.Behaviors>
+                            <Behaviors:ValidationBehavior Group="{x:Reference Loginform}" PropertyName="Text">
+                                <Behaviors:ValidationBehavior.Validators>
+                                    <Validators:RequiredValidator />
+                                    <Behaviors:FormatValidator
+                            Message="{i18:Translate InvalidMail}" 
+                            Format="^[_a-z0-9-]*(.[a-z0-9-]+)@[a-z0-9-]+(.[a-z0-9-]+)*(.[a-z]{2,4})$" />
+                                </Behaviors:ValidationBehavior.Validators>
+                            </Behaviors:ValidationBehavior>
+                        </customcontrols:ImageEntry.Behaviors>
+                    </customcontrols:ImageEntry>
                     <customcontrols:ImageEntry Text="{Binding password}" Image="lock" IsPassword="True"
-                                                HorizontalTextAlignment="Center" Placeholder="{i18:Translate PassWord}"/>
-                    <Button  Command="{Binding LoginCommand}" BackgroundColor="Blue" BorderColor="Blue"
+                                                HorizontalTextAlignment="Center" Placeholder="{i18:Translate PassWord}">
+                        <customcontrols:ImageEntry.Behaviors>
+                            <Behaviors:ValidationBehavior Group="{x:Reference Loginform}" PropertyName="Text">
+                                <Behaviors:ValidationBehavior.Validators>
+                                    <Validators:RequiredValidator />
+                                    <Behaviors:FormatValidator
+                            Message="{i18:Translate PassWordValid}" 
+                            Format="(?=^[^\s]{6,}$)(?=.*\d)(?=.*[a-zA-Z])"/>
+                                </Behaviors:ValidationBehavior.Validators>
+                            </Behaviors:ValidationBehavior>
+                            <Behaviors:MaxLengthValidatorBehavior  MaxLength="15"/>
+                        </customcontrols:ImageEntry.Behaviors>
+                    </customcontrols:ImageEntry>
+                    <Button  IsEnabled="{Binding Source={x:Reference Loginform}, Path=IsValid}"  Command="{Binding LoginCommand}" BackgroundColor="Blue" BorderColor="Blue"
                              Text="{i18:Translate LogIn}"
                              TextColor="White"
                         BorderRadius="20"/>
                 </StackLayout>
             </ScrollView>
+            <ActivityIndicator x:Name="Active" Grid.Row="0" Grid.RowSpan="3" 
+                               VerticalOptions="Center" HorizontalOptions="Center"
+                               IsRunning="{Binding IsRunning}" Color="Blue" WidthRequest="100" HeightRequest="100" />
+
         </Grid>
     </ContentPage.Content>
 </ContentPage>

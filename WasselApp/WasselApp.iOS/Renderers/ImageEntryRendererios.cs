@@ -50,7 +50,7 @@ namespace WasselApp.iOS.Renderers
             };
             Control.Layer.CornerRadius = 20;
             Control.Layer.BorderWidth = 0.5f;
-            Control.Layer.BorderColor = Color.Blue.ToCGColor();
+            Control.Layer.BorderColor = Xamarin.Forms.Color.Blue.ToCGColor();
             //Control.LeftView = new UIView(new CGRect(0, 0, 10, 0));
 
             //Control.LeftViewMode = UITextFieldViewMode.Always;

@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage
+    xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    CloseWhenBackgroundIsClicked="False"  BackgroundColor="White"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+   xmlns:tr="clr-namespace:WasselApp.Helpers"
+    xmlns:viewmodels="clr-namespace:WasselApp.ViewModels"
+    x:Class="WasselApp.Views.Popups.CartypePage">
+    <pages:PopupPage.BindingContext>
+        <viewmodels:CarsViewModel/>
+    </pages:PopupPage.BindingContext>
+    <pages:PopupPage.Content>
+        <Grid VerticalOptions="Center" HorizontalOptions="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="60"/>
+            </Grid.RowDefinitions>
+            <Label Grid.Row="0" FontSize="Large" TextColor="Blue" HorizontalOptions="Center" 
+                   Text="{tr:Translate ChooseCarType}" />
+            <StackLayout Padding="5" Orientation="Horizontal" Grid.Row="1" HorizontalOptions="CenterAndExpand"
+                         VerticalOptions="CenterAndExpand">
+                <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="shahn_Tapped"/>
+                    </StackLayout.GestureRecognizers>
+                    <Label x:Name="shahnlbl" TextColor="Blue" Text="{tr:Translate WaselShahn}" />
+                    <Image WidthRequest="40" HeightRequest="20" x:Name="shahnimg" Source="Arch.png" IsVisible="True" />
+                </StackLayout>
+                <StackLayout Padding="10,0,10,0"  Orientation="Horizontal" VerticalOptions="Center" HorizontalOptions="Center">
+                    <BoxView  Color="Gray" WidthRequest="1" />
+                </StackLayout >
+                <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Waselbrick_Tapped" />
+                    </StackLayout.GestureRecognizers>
+                    <Label x:Name="bricklbl" Text="{tr:Translate Waselbrick}"/>
+                    <Image WidthRequest="40" HeightRequest="20" x:Name="brickimg" Source="Arch.png" IsVisible="False" />
+                </StackLayout>
+            </StackLayout>
+            <StackLayout x:Name="Cartypesstk" IsVisible="False" HorizontalOptions="Center" 
+                         VerticalOptions="Center" Grid.Row="2">
+                <Label HorizontalTextAlignment="Center" Text="{tr:Translate AllTypes}" />
+                <BoxView HeightRequest="1" Color="Gray" />
+                <ListView  x:Name="CartypeList" HasUnevenRows="True" 
+                              ItemsSource="{Binding CarTypes}" 
+                                     ItemTapped="CartypeList_ItemTapped">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout   Orientation="Horizontal">
+                                    <Image Source="{Binding icon}"  HeightRequest="20" WidthRequest="20"/>
+                                    <Label Text="{Binding name}" HorizontalTextAlignment="Center" />
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+            <StackLayout x:Name="Cartypesbrickstk" IsVisible="False" HorizontalOptions="Center" 
+                         VerticalOptions="Center" Grid.Row="2">
+                <Label HorizontalTextAlignment="Center" Text="{tr:Translate AllTypes}" />
+                <BoxView HeightRequest="1" Color="Gray" />
+                <ListView  x:Name="Cartypesbricklist" HasUnevenRows="True" 
+                              ItemsSource="{Binding  CarTypesBrick}" 
+                                     ItemTapped="Cartypesbricklist_ItemTapped">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout   Orientation="Horizontal">
+                                    <Image Source="{Binding icon}"  HeightRequest="20" WidthRequest="20"/>
+                                    <Label Text="{Binding name}" HorizontalTextAlignment="Center" />
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+
+            <StackLayout x:Name="Carmodelsstk" IsVisible="False"
+                         HorizontalOptions="Center" VerticalOptions="Center" Grid.Row="3">
+                <Label HorizontalTextAlignment="Center" Text="{tr:Translate AllModels}" />
+                <BoxView HeightRequest="1" Color="Gray" />
+                <ListView  x:Name="Modellist" HasUnevenRows="True" 
+                              ItemsSource="{Binding CarTypes.carmodals}" 
+                                     ItemTapped="Modellist_ItemTapped">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout FlowDirection="RightToLeft"  Orientation="Horizontal">
+                                    <Image Source="{Binding icon}"  HeightRequest="20" WidthRequest="20"/>
+                                    <Label Text="{Binding name}" HorizontalTextAlignment="Center" />
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+            <StackLayout x:Name="Carmodelsbrickstk" IsVisible="False"
+                         HorizontalOptions="Center" VerticalOptions="Center" Grid.Row="3">
+                <Label HorizontalTextAlignment="Center" Text="{tr:Translate AllModels}" />
+                <BoxView HeightRequest="1" Color="Gray" />
+                <ListView  x:Name="Modelbricklist" HasUnevenRows="True" 
+                              ItemsSource="{Binding CarTypesBrick.brickcarmodals}" 
+                                     ItemTapped="Modelbricklist_ItemTapped">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout FlowDirection="RightToLeft"  Orientation="Horizontal">
+                                    <Image Source="{Binding icon}"  HeightRequest="20" WidthRequest="20"/>
+                                    <Label Text="{Binding name}" HorizontalTextAlignment="Center" />
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+            <Button x:Name="Confirmbtn" Grid.Row="4" Text="{tr:Translate Confirm}" 
+                    HeightRequest="40" BackgroundColor="Blue" CornerRadius="20" TextColor="White"
+                    IsEnabled="False" Clicked="Confirmbtn_Clicked"/>
+        </Grid>
+    </pages:PopupPage.Content>
+</pages:PopupPage>

@@ -64,6 +64,7 @@ namespace WasselApp.Services
                         var response = await client.PostAsync("https://waselksa.alsalil.net/api/userregister", 
                             new StringContent(content, Encoding.UTF8, "text/json"));
                         var serverResponse = response.Content.ReadAsStringAsync().Result.ToString();
+                        
                         return serverResponse;
                     }
                     catch (Exception)

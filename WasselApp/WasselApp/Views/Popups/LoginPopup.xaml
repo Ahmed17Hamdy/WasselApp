@@ -1,17 +1,25 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <pages:PopupPage
     xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
-    xmlns="http://xamarin.com/schemas/2014/forms"
-    BackgroundColor="White"
+    xmlns="http://xamarin.com/schemas/2014/forms"    
+    xmlns:tr="clr-namespace:WasselApp.Helpers"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="WasselApp.Views.Popups.LoginPopup">
     <pages:PopupPage.Content>
-  <Frame   VerticalOptions="Center" HeightRequest="350"
-          HorizontalOptions="Center" WidthRequest="350"
-           CornerRadius="20" Padding="10" BackgroundColor="Blue" >
-    <StackLayout HorizontalOptions="Center" VerticalOptions="Center" BackgroundColor="White">
-      <Label x:Name="conditionlbl"   />
-    </StackLayout>
-  </Frame>
-</pages:PopupPage.Content>
+        <Frame x:Name="Loginframe"   Margin="20,100,20,100"
+                 CornerRadius="20"  BackgroundColor="White" >
+            <StackLayout VerticalOptions="Center" HorizontalOptions="Center"  BackgroundColor="White">
+                <Label BackgroundColor="White" FontSize="Large" x:Name="conditionlbl" IsVisible="False"  />
+                <Label BackgroundColor="White" FontSize="Large" x:Name="Emaillbl" IsVisible="False"  />
+                <StackLayout  BackgroundColor="White" x:Name="haveaccstk" IsVisible="False" Orientation="Horizontal">
+                    <Label BackgroundColor="White"  Text="{tr:Translate HaveAccount}"   />
+                    <Label BackgroundColor="White" TextColor="Blue" Text="{tr:Translate LogIn}">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Login_Tapped"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                </StackLayout>
+            </StackLayout>
+        </Frame>
+    </pages:PopupPage.Content>
 </pages:PopupPage>

@@ -28,7 +28,8 @@ namespace WasselApp.Views.CarsPages
 		{
 			InitializeComponent ();
             ser = new UserService();
-            FlowDirection = (Settings.LastUserGravity == "Arabic") ? FlowDirection.RightToLeft : FlowDirection.LeftToRight;
+            FlowDirection = (Settings.LastUserGravity == "Arabic") ? FlowDirection.RightToLeft :
+                FlowDirection.LeftToRight;
             Namelbl.Text = Settings.ProfileName;
         }
         private void EnglishSelected(object sender, EventArgs e)
@@ -83,7 +84,7 @@ namespace WasselApp.Views.CarsPages
                     CrossMultilingual.Current.NeutralCultureInfoList.ToList().First(element => element.EnglishName.Contains("Arabic"));
                 AppResources.Culture = CrossMultilingual.Current.CurrentCultureInfo;
                 Settings.LastUserGravity = "Arabic";
-                GravityClass.Grav();
+                //GravityClass.Grav();
                 if (Settings.LastUsedID == 0 || Settings.LastUserStatus == "0")
                 {
                     await Navigation.PushModalAsync(new IntroPage());

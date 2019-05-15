@@ -193,7 +193,7 @@
     <value>أو</value>
   </data>
   <data name="PassPortNum" xml:space="preserve">
-    <value>رقم جواز السفر</value>
+    <value>صورة رقم جواز السفر</value>
   </data>
   <data name="PassWord" xml:space="preserve">
     <value>كلمة المرور</value>
@@ -239,5 +239,65 @@
   </data>
   <data name="WaselShahn" xml:space="preserve">
     <value> سيارات شحن</value>
+  </data>
+  <data name="Ok" xml:space="preserve">
+    <value>حسناً</value>
+  </data>
+  <data name="EmailTaken" xml:space="preserve">
+    <value>هذا البريد الإلكتروني مسجل مسبقاً</value>
+  </data>
+  <data name="HaveAccount" xml:space="preserve">
+    <value>هل تمتلك حساب مسبقاً ؟</value>
+  </data>
+  <data name="UserRegistered" xml:space="preserve">
+    <value>! تم تسجيلك بنجاح </value>
+  </data>
+  <data name="FieldReq" xml:space="preserve">
+    <value>هذا الحقل مطلوب</value>
+  </data>
+  <data name="InvalidMail" xml:space="preserve">
+    <value>صيغة البريد الإلكتروني غير صحيحة</value>
+  </data>
+  <data name="PassWordMatch" xml:space="preserve">
+    <value>كلمة السر غير متطابقة</value>
+  </data>
+  <data name="PassWordValid" xml:space="preserve">
+    <value>لا تقل عن 6 رموز , ولا تحتوي على مسافات , وتحتوي حرف ورقم على الأقل</value>
+  </data>
+  <data name="ChecEP" xml:space="preserve">
+    <value>من فضلك تحقق من البريد الإلكتروني &amp; كلمة المرور</value>
+  </data>
+  <data name="AllModels" xml:space="preserve">
+    <value>من فضلك , أختر مودل السيارة</value>
+  </data>
+  <data name="AllTypes" xml:space="preserve">
+    <value>من فضلك , إختر النوع</value>
+  </data>
+  <data name="ChooseCarType" xml:space="preserve">
+    <value>من فضلك , أختر نوع السيارة </value>
+  </data>
+  <data name="LiecenceImages" xml:space="preserve">
+    <value>إضافة صور الرخصة</value>
+  </data>
+  <data name="PermissionDetails" xml:space="preserve">
+    <value>غير قادر على تحميل صور</value>
+  </data>
+  <data name="PermissionLocationDetails" xml:space="preserve">
+    <value>عفواً , لا يمكن تحديد موقعك </value>
+  </data>
+  <data name="PermissionsDenied" xml:space="preserve">
+    <value>مطلوب إذن</value>
+  </data>
+  <data name="ProfileImages" xml:space="preserve">
+    <value>إضافة الصور الشخصية</value>
+  </data>
+  <data name="AddImages" xml:space="preserve">
+    <value>من فضلك أضف الصور المطلوبة أولاً</value>
+  </data>
+  <data name="Load" xml:space="preserve">
+    <value>حمولة السيارة بالكيلو جرام</value>
+  </data>
+  <data name="Location" xml:space="preserve">
+    <value>لم يتم تحديد موقعك ,برجاء السماح لإستخدام الموقع</value>
   </data>
 </root>

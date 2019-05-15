@@ -4,19 +4,23 @@
              xmlns:customcontrols="clr-namespace:WasselApp.CustomControls"
              xmlns:i81="clr-namespace:WasselApp.Helpers"
              xmlns:viewmodels="clr-namespace:WasselApp.ViewModels"
+             xmlns:Behaviors="clr-namespace:WasselApp.Behaviors"
+             xmlns:Validators="clr-namespace:WasselApp.Models.BModel"
              x:Class="WasselApp.Views.Panels.UserPanel">
     <ContentPage.BindingContext>
         <viewmodels:UserViewModel/>
     </ContentPage.BindingContext>
         <ContentPage.Content>
-            <Grid Margin="10,10,10,10">
+            <Grid Margin="10">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="60"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                <Image Grid.Row="0" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="100" WidthRequest="250" Aspect="AspectFit" Source="WasselLogo.PNG" />
-                <StackLayout Padding="5" Orientation="Horizontal" Grid.Row="1" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                <Image Grid.Row="0" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="100"
+                       WidthRequest="250" Aspect="AspectFit" Source="WasselLogo.PNG" />
+                <StackLayout Padding="5" Orientation="Horizontal" Grid.Row="1" HorizontalOptions="CenterAndExpand"
+                             VerticalOptions="CenterAndExpand">
                     <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
                         <StackLayout.GestureRecognizers>
                             <TapGestureRecognizer Tapped="Register_Tapped"/>
@@ -38,20 +42,68 @@
                     </StackLayout>
                 </StackLayout>
                 <ScrollView x:Name="RegisterPanel" IsVisible="True"  Grid.Row="2">
-                    <StackLayout   >
-                        <customcontrols:ImageEntry  Text="{Binding name}" 
+                    <StackLayout>
+                    <StackLayout.Behaviors>
+                        <Validators:ValidationGroupBehavior x:Name="form"/>
+                    </StackLayout.Behaviors>
+                    <customcontrols:ImageEntry  Text="{Binding name}" 
                                                     Image="username" HorizontalTextAlignment="Center" 
-                                                    Placeholder="{i81:Translate Name}" />
-                        <customcontrols:ImageEntry Text="{Binding email}" Image="email"
+                                                    Placeholder="{i81:Translate Name}">
+                        <customcontrols:ImageEntry.Behaviors>
+                            <Behaviors:ValidationBehavior Group="{x:Reference form}" 
+                                              PropertyName="Text">
+                                <Behaviors:ValidationBehavior.Validators>
+                                    <Validators:RequiredValidator />
+                                </Behaviors:ValidationBehavior.Validators>
+                            </Behaviors:ValidationBehavior>
+                        </customcontrols:ImageEntry.Behaviors>
+                        </customcontrols:ImageEntry>
+                    <customcontrols:ImageEntry Text="{Binding email}" Image="email"
                                                    HorizontalTextAlignment="Center"
-                                                   Placeholder="{i81:Translate Email}" />
-                        <customcontrols:ImageEntry Text="{Binding password}" Image="lock"  
+                                                   Placeholder="{i81:Translate Email}" >
+                        <customcontrols:ImageEntry.Behaviors>
+                            <Behaviors:ValidationBehavior Group="{x:Reference form}" PropertyName="Text">
+                                <Behaviors:ValidationBehavior.Validators>
+                                    <Validators:RequiredValidator />
+                                    <Behaviors:FormatValidator
+                            Message="{i81:Translate InvalidMail}" 
+                            Format="^[_a-z0-9-]*(.[a-z0-9-]+)@[a-z0-9-]+(.[a-z0-9-]+)*(.[a-z]{2,4})$" />
+                                </Behaviors:ValidationBehavior.Validators>
+                            </Behaviors:ValidationBehavior>
+                        </customcontrols:ImageEntry.Behaviors>
+                    </customcontrols:ImageEntry>
+                    <customcontrols:ImageEntry x:Name="EntryPassword" Text="{Binding password}" Image="lock"  
                                                    IsPassword="True" HorizontalTextAlignment="Center"
-                                                   Placeholder="{i81:Translate PassWord}"/>
-                        <customcontrols:ImageEntry Text="{Binding confirmpass}" Image="lock" 
+                                                   Placeholder="{i81:Translate PassWord}">
+                        <customcontrols:ImageEntry.Behaviors>
+                            <Behaviors:ValidationBehavior Group="{x:Reference form}" PropertyName="Text">
+                                <Behaviors:ValidationBehavior.Validators>
+                                    <Validators:RequiredValidator />
+                                    <Behaviors:FormatValidator
+                            Message="{i81:Translate PassWordValid}" 
+                            Format="(?=^[^\s]{6,}$)(?=.*\d)(?=.*[a-zA-Z])"/>
+                                </Behaviors:ValidationBehavior.Validators>
+                            </Behaviors:ValidationBehavior>
+                            <Behaviors:MaxLengthValidatorBehavior  MaxLength="15"/>
+                        </customcontrols:ImageEntry.Behaviors>
+                    </customcontrols:ImageEntry>
+                    <customcontrols:ImageEntry Text="{Binding confirmpass}" Image="lock" 
                                                    IsPassword="True" HorizontalTextAlignment="Center" 
-                                                   Placeholder="{i81:Translate ConfirmPass}"/>
-                        <Button  Command="{Binding UserRegisterCommand}" BackgroundColor="Blue"
+                                                   Placeholder="{i81:Translate ConfirmPass}">
+                        <customcontrols:ImageEntry.Behaviors>
+                            <Behaviors:ValidationBehavior Group="{x:Reference form}" PropertyName="Text">
+                                <Behaviors:ValidationBehavior.Validators>
+                                    <Validators:RequiredValidator />
+                                    <Behaviors:FormatValidator
+                            Message="{i81:Translate PassWordMatch}" 
+                            Format="(?=^[^\s]{6,}$)(?=.*\d)(?=.*[a-zA-Z])" />
+                                </Behaviors:ValidationBehavior.Validators>
+                            </Behaviors:ValidationBehavior>
+                            <Behaviors:CompareValidationBehavior BindingContext="{x:Reference EntryPassword}" Text="
+                                                                     {Binding Text}"/>
+                        </customcontrols:ImageEntry.Behaviors>
+                    </customcontrols:ImageEntry>
+                    <Button  IsEnabled="{Binding Source={x:Reference form}, Path=IsValid}" Command="{Binding UserRegisterCommand}" BackgroundColor="Blue"
                                  BorderColor="Blue" Text="{i81:Translate Register}" TextColor="White"
                             BorderRadius="20"/>
                         </StackLayout>
@@ -59,19 +111,47 @@
                 </ScrollView>
                 <ScrollView x:Name="LoginPanel" IsVisible="False"  Grid.Row="2">
                     <StackLayout  Grid.Row="2" >
+                    <StackLayout.Behaviors>
+                        <Validators:ValidationGroupBehavior x:Name="Loginform"/>
+                    </StackLayout.Behaviors>
                     <customcontrols:ImageEntry  Text="{Binding name}"   Image="username"
                                                     HorizontalTextAlignment="Center" Placeholder="{i81:Translate Name}" />
-                        <customcontrols:ImageEntry Text="{Binding email}" Image="email"
-                                                   HorizontalTextAlignment="Center" Placeholder="{i81:Translate Email}" />
-                        <customcontrols:ImageEntry Text="{Binding password}" Image="lock"  
+                    <customcontrols:ImageEntry Text="{Binding email}" Image="email"
+                                                   HorizontalTextAlignment="Center" Placeholder="{i81:Translate Email}" >
+                        <customcontrols:ImageEntry.Behaviors>
+                            <Behaviors:ValidationBehavior Group="{x:Reference Loginform}" PropertyName="Text">
+                                <Behaviors:ValidationBehavior.Validators>
+                                    <Validators:RequiredValidator />
+                                    <Behaviors:FormatValidator
+                            Message="{i81:Translate InvalidMail}" 
+                            Format="^[_a-z0-9-]*(.[a-z0-9-]+)@[a-z0-9-]+(.[a-z0-9-]+)*(.[a-z]{2,4})$" />
+                                </Behaviors:ValidationBehavior.Validators>
+                            </Behaviors:ValidationBehavior>
+                        </customcontrols:ImageEntry.Behaviors>
+                    </customcontrols:ImageEntry>
+                    <customcontrols:ImageEntry Text="{Binding password}" Image="lock"  
                                                    IsPassword="True" HorizontalTextAlignment="Center"
-                                                   Placeholder="{i81:Translate PassWord}"/>
-                        <Button  Command="{Binding LoginCommand}" BackgroundColor="Blue"
+                                                   Placeholder="{i81:Translate PassWord}">
+                        <customcontrols:ImageEntry.Behaviors>
+                            <Behaviors:ValidationBehavior Group="{x:Reference Loginform}" PropertyName="Text">
+                                <Behaviors:ValidationBehavior.Validators>
+                                    <Validators:RequiredValidator />
+                                    <Behaviors:FormatValidator
+                            Message="{i81:Translate PassWordValid}" 
+                            Format="(?=^[^\s]{6,}$)(?=.*\d)(?=.*[a-zA-Z])"/>
+                                </Behaviors:ValidationBehavior.Validators>
+                            </Behaviors:ValidationBehavior>
+                            <Behaviors:MaxLengthValidatorBehavior  MaxLength="15"/>
+                        </customcontrols:ImageEntry.Behaviors>
+                    </customcontrols:ImageEntry>
+                    <Button  IsEnabled="{Binding Source={x:Reference Loginform}, Path=IsValid}" Command="{Binding LoginCommand}" BackgroundColor="Blue"
                                  BorderColor="Blue" Text="{i81:Translate LogIn}" TextColor="White"
                         BorderRadius="20"/>
                     </StackLayout>
                 </ScrollView>
-            </Grid>
+            <ActivityIndicator Grid.Row="0" Grid.RowSpan="3" VerticalOptions="Center" HorizontalOptions="Center"
+                               IsRunning="{Binding IsRunning}" Color="Blue" WidthRequest="100" HeightRequest="100" />
+        </Grid>
         </ContentPage.Content>
    
 </ContentPage>
