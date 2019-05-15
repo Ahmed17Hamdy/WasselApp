@@ -15,6 +15,20 @@ namespace WasselApp.Helpers
                 return CrossSettings.Current;
             }
         }
+        private const string LastType = "last_Type_key";
+        private static readonly string Typekey = string.Empty;
+        public static string Type
+        {
+            get
+            =>
+                 AppSettings.GetValueOrDefault(LastType, Typekey);
+
+
+            set
+            =>
+                AppSettings.AddOrUpdateValue(LastType, value);
+
+        }
         private const string LascarmodelidKey = "last_carmodelid_key";
         private static readonly string Carmodelkey = string.Empty;
         public static string CarModelID

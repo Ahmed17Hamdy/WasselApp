@@ -22,6 +22,7 @@ namespace WasselApp.ViewModels
 
         public UserViewModel()
         {
+            ResidentsList = GetResidents();
             //    AddToCarTypeList();
         }
         private bool _isRunning;
@@ -35,6 +36,36 @@ namespace WasselApp.ViewModels
                 _isRunning = value;
                 OnPropertyChanged("IsRunning");
             }
+        }
+        public List<Resident> ResidentsList { get; set; }
+        private Resident _selectedresident;
+        public Resident SelectedResident
+        {
+            get { return _selectedresident; }
+            set
+            {
+                if (_selectedresident != value)
+                {
+                    SetProperty(ref _selectedresident, value);
+                }
+            }
+        }
+       
+        private void SetProperty(ref Resident selectedresident, Resident value)
+        {
+            throw new NotImplementedException();
+        }
+
+       
+        public List<Resident> GetResidents()
+        {
+            var residents = new List<Resident>()
+            {
+            new Resident(){id =0, name=AppResources.resident},
+            new Resident(){id=1,name=AppResources.Saudi}
+
+            };
+            return residents;
         }
         UserService userService = new UserService();
         public int id { get; set; }
@@ -86,7 +117,7 @@ namespace WasselApp.ViewModels
 
             };
             var ResBack = await userService.RegisterAsync(_userReg);
-           
+
             if (ResBack == "false")
             {
                 await PopupNavigation.Instance.PushAsync(new ConnectionPopup());
@@ -101,7 +132,7 @@ namespace WasselApp.ViewModels
                         var JsonResponse = JsonConvert.DeserializeObject<RegisterResponse>(ResBack);
                         if (JsonResponse.success == false)
                             IsRunning = false;
-                            await PopupNavigation.Instance.PushAsync(new RegisterPopup(JsonResponse.data));
+                        await PopupNavigation.Instance.PushAsync(new RegisterPopup(JsonResponse.data));
                     }
                     catch
                     {
@@ -110,7 +141,7 @@ namespace WasselApp.ViewModels
                             IsRunning = false;
                         await PopupNavigation.Instance.PushAsync(new RegisterPopup(JsonResponse.data));
                         Device.BeginInvokeOnMainThread(() => App.Current.MainPage = new HomePage());
-                    }                  
+                    }
                 }
                 catch (Exception)
                 {
@@ -123,16 +154,17 @@ namespace WasselApp.ViewModels
         });
         public ICommand LoginCommand => new Command(async () =>
         {
-         //   OneSignal.Current.IdsAvailable(IdsAvailable);
+            //   OneSignal.Current.IdsAvailable(IdsAvailable);
 
-            User user = new User {
+            User user = new User
+            {
                 name = name,
-            email = email,
-            password = password,
-            confirmpass = confirmpass,
-            firebase_token = "3333333" /*Settings.UserFirebaseToken*/,
-            device_id = "0",
-        };
+                email = email,
+                password = password,
+                confirmpass = confirmpass,
+                firebase_token = "3333333" /*Settings.UserFirebaseToken*/,
+                device_id = "0",
+            };
             var ResBack = await userService.LoginCommandAsync(user);
             if (ResBack == "false")
             {
@@ -167,7 +199,7 @@ namespace WasselApp.ViewModels
                         {
                             await PopupNavigation.Instance.PushAsync(new LoginPopup(JsonResponse.data));
                         }
-                    }         
+                    }
                 }
                 catch (Exception)
                 {
@@ -212,6 +244,8 @@ namespace WasselApp.ViewModels
 
         });
         private ObservableCollection<Cartype> _carstypelist = new ObservableCollection<Cartype>();
+        private Resident myProperty;
+
         public ObservableCollection<Cartype> CarsTypeList
         {
             get

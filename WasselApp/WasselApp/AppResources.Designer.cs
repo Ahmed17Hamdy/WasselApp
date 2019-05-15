@@ -19,7 +19,7 @@ namespace WasselApp {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class AppResources {
@@ -174,6 +174,15 @@ namespace WasselApp {
         internal static string ChooseCarType {
             get {
                 return ResourceManager.GetString("ChooseCarType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please, Choose Your Residence.
+        /// </summary>
+        internal static string ChooseResidence {
+            get {
+                return ResourceManager.GetString("ChooseResidence", resourceCulture);
             }
         }
         
@@ -543,6 +552,24 @@ namespace WasselApp {
         internal static string Residence {
             get {
                 return ResourceManager.GetString("Residence", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to resident.
+        /// </summary>
+        internal static string resident {
+            get {
+                return ResourceManager.GetString("resident", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Saudi Citizen.
+        /// </summary>
+        internal static string Saudi {
+            get {
+                return ResourceManager.GetString("Saudi", resourceCulture);
             }
         }
         

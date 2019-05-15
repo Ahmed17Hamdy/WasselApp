@@ -300,4 +300,13 @@
   <data name="Location" xml:space="preserve">
     <value>لم يتم تحديد موقعك ,برجاء السماح لإستخدام الموقع</value>
   </data>
+  <data name="ChooseResidence" xml:space="preserve">
+    <value>من فضلك , أختر نوع الإقامة</value>
+  </data>
+  <data name="resident" xml:space="preserve">
+    <value>مُقيم</value>
+  </data>
+  <data name="Saudi" xml:space="preserve">
+    <value>سعودي</value>
+  </data>
 </root>

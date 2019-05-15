@@ -303,4 +303,13 @@
   <data name="SelectCarType" xml:space="preserve">
     <value>Select Car Type</value>
   </data>
+  <data name="ChooseResidence" xml:space="preserve">
+    <value>Please, Choose Your Residence</value>
+  </data>
+  <data name="resident" xml:space="preserve">
+    <value>resident</value>
+  </data>
+  <data name="Saudi" xml:space="preserve">
+    <value>Saudi Citizen</value>
+  </data>
 </root>

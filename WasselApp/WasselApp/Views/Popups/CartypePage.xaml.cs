@@ -18,7 +18,8 @@ namespace WasselApp.Views.Popups
 		public CartypePage ()
 		{
 			InitializeComponent ();
-		}
+            Settings.Type = "1";
+        }
 
         private void shahn_Tapped(object sender, EventArgs e)
         {
@@ -28,7 +29,7 @@ namespace WasselApp.Views.Popups
             shahnimg.IsVisible = true; 
             Cartypesstk.IsVisible = true;
             Cartypesbrickstk.IsVisible = false;
-           
+            Settings.Type = "1";
         }
 
         private void Waselbrick_Tapped(object sender, EventArgs e)
@@ -39,6 +40,7 @@ namespace WasselApp.Views.Popups
             shahnimg.IsVisible = false;
             Cartypesstk.IsVisible = false;
             Cartypesbrickstk.IsVisible = true;
+            Settings.Type = "2";
         }
 
 

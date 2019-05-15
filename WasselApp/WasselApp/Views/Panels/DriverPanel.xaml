@@ -120,9 +120,12 @@
                                 </Grid.GestureRecognizers>
                             </Grid>
                         </Frame>
-                        <customcontrols:ImageEntry Grid.Column="0" x:Name="NatoionalEntry"  Image="arrow" 
-                                               HorizontalTextAlignment="Center"
-                                               Placeholder="{i18:Translate Residence}"/>
+                        <Button Grid.Column="0" x:Name="NatoionalEntry"  Image="arrow" BorderColor="Blue"
+                                   BorderWidth="1"  BackgroundColor="White"     TextColor="Blue"  HeightRequest="60" CornerRadius="30"
+                                 Clicked="NatoionalEntry_Clicked"              Text="{i18:Translate Residence}"/>
+                        <Picker x:Name="nationalpicker" IsVisible="False" ItemsSource="{Binding ResidentsList}"
+                                ItemDisplayBinding="{Binding name}" SelectedIndexChanged="Nationalpicker_SelectedIndexChanged" SelectedItem="{Binding ResidentsList,Mode=TwoWay}"/>
+
                     </Grid>
                     <customcontrols:ImageEntry x:Name="nationalityEntry"  Image="arrow" 
                                                HorizontalTextAlignment="Center" 
@@ -132,7 +135,8 @@
                                                Placeholder="{ i18:Translate IdNumber}"/>
                     <customcontrols:ImageEntry x:Name="CarNumberEntry"   Image="driverlicense" 
                                                HorizontalTextAlignment="Center" Placeholder="{i18:Translate Carid}"/>
-                    <Button x:Name="Cartypebtn" BackgroundColor="White" Text="{i18:Translate CarType}" CornerRadius="30"
+                    <Button x:Name="Cartypebtn" BackgroundColor="White" Text="{i18:Translate CarType}" 
+                            CornerRadius="30"
                        Clicked="Cartypebtn_Clicked"     HeightRequest="50" BorderWidth="1" BorderColor="Blue"  />
                     <!--<Picker x:Name="CarTypePicker" ItemsSource="{Binding CarsType}"    
                             SelectedIndexChanged="CarTypeList_SelectedIndexChanged" Title="{i18:Translate CarType}"  />
@@ -155,8 +159,6 @@
                             </Grid.GestureRecognizers>
                         </Grid>
                     </Frame>
-                    <customcontrols:ImageEntry x:Name="typeEntry"   Image="arrow" HorizontalTextAlignment="Center"
-                                               Placeholder="النوعية"/>
                     <customcontrols:ImageEntry x:Name="loadEntry"   Image="arrow" HorizontalTextAlignment="Center"
                                                Placeholder="{i18:Translate Load}"/>
                     <customcontrols:ImageEntry x:Name="passwordEntry"  Image="lock"  IsPassword="True" 

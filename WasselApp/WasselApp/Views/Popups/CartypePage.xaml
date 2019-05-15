@@ -2,7 +2,8 @@
 <pages:PopupPage
     xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
     xmlns="http://xamarin.com/schemas/2014/forms"
-    CloseWhenBackgroundIsClicked="False"  BackgroundColor="White"
+     BackgroundColor="White"
+    Padding="50"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
    xmlns:tr="clr-namespace:WasselApp.Helpers"
     xmlns:viewmodels="clr-namespace:WasselApp.ViewModels"
@@ -41,7 +42,7 @@
                     <Image WidthRequest="40" HeightRequest="20" x:Name="brickimg" Source="Arch.png" IsVisible="False" />
                 </StackLayout>
             </StackLayout>
-            <StackLayout x:Name="Cartypesstk" IsVisible="False" HorizontalOptions="Center" 
+            <StackLayout x:Name="Cartypesstk" IsVisible="True" HorizontalOptions="Center" 
                          VerticalOptions="Center" Grid.Row="2">
                 <Label HorizontalTextAlignment="Center" Text="{tr:Translate AllTypes}" />
                 <BoxView HeightRequest="1" Color="Gray" />

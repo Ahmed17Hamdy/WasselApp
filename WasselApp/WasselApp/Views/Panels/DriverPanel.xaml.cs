@@ -32,6 +32,8 @@ namespace WasselApp.Views.Panels
 
         ObservableCollection<Cartype> ResBack;
         private List<string> _carstype;
+        private int uid;
+
         public List<string> CarsType
         {
             get
@@ -53,19 +55,28 @@ namespace WasselApp.Views.Panels
         {
             if (Settings.LastLat == "" || Settings.LastLng == "")
             {
+                Active.IsRunning = false;
                 DisplayAlert(AppResources.Error, AppResources.Location, AppResources.Ok);
                 CrossPermissions.Current.OpenAppSettings();
                 return false;
             }
             else if (ProfilePic == null || LiecenceImg == null || passportnumber == null  )
             {
+                Active.IsRunning = false;
                 DisplayAlert(AppResources.Error, AppResources.AddImages, AppResources.Ok);
                 return false;
             }
-            else if (Settings.CarModelID == "")
+            else if (Settings.CarModelID == string.Empty || Settings.cartype.ToString()== string.Empty || Settings.Type== string.Empty)
             {
+                Active.IsRunning = false;
                 DisplayAlert(AppResources.Error, AppResources.ChooseCarType, AppResources.Ok);
                 PopupNavigation.Instance.PushAsync(new CartypePage());
+                return false;
+            }
+            else if(nationalpicker.SelectedItem==null)
+            {
+                Active.IsRunning = false;
+                DisplayAlert(AppResources.Error, AppResources.ChooseResidence, AppResources.Ok);               
                 return false;
             }
             return true;
@@ -135,7 +146,7 @@ namespace WasselApp.Views.Panels
                     city = CityEntry.Text,
                     firebase_token = "35",
                     nationality = nationalityEntry.Text,
-                    national = NatoionalEntry.Text,
+                    national = uid.ToString(),
                     device_id = "111.2225.555",
                     age = AgeEntry.Text,
                     carmodal = Settings.CarModelID,
@@ -144,7 +155,7 @@ namespace WasselApp.Views.Panels
                     //passportnumber = passportnumber.Text,
                     carnumber = CarNumberEntry.Text,
                     idnumber = IdNumberEntry.Text,
-                    type = typeEntry.Text,
+                    type = Settings.Type,
                     load = loadEntry.Text,
                     lat = Settings.LastLat,
                     lng = Settings.LastLng
@@ -245,11 +256,7 @@ namespace WasselApp.Views.Panels
                 }
                 
             }
-            else
-            {
-                Active.IsRunning = false;
-                await DisplayAlert(AppResources.Error, AppResources.ErrorMessage, AppResources.Ok);
-            }
+           
                
         }
 
@@ -285,6 +292,20 @@ namespace WasselApp.Views.Panels
                 CrossPermissions.Current.OpenAppSettings();
             }
         }
+
+        private void NatoionalEntry_Clicked(object sender, EventArgs e)
+        {
+            nationalpicker.Focus();
+        }
+
+        private void Nationalpicker_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var item = sender as Picker;
+            var selectedItem = item.SelectedItem as Resident;
+             uid = selectedItem.id;
+            NatoionalEntry.Text = selectedItem.name;
+        }
+
         private async void LiecenceImg_Clicked(object sender, EventArgs e)
         {
             var storageStatus = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Storage);
