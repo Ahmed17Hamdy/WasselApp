@@ -66,7 +66,7 @@ namespace WasselApp.Views.Panels
                 DisplayAlert(AppResources.Error, AppResources.AddImages, AppResources.Ok);
                 return false;
             }
-            else if (Settings.CarModelID == string.Empty || Settings.cartype.ToString()== string.Empty || Settings.Type== string.Empty)
+            else if (Settings.CarModelID == string.Empty || Settings.Cartype.ToString()== string.Empty || Settings.Type== string.Empty)
             {
                 Active.IsRunning = false;
                 DisplayAlert(AppResources.Error, AppResources.ChooseCarType, AppResources.Ok);
@@ -150,7 +150,7 @@ namespace WasselApp.Views.Panels
                     device_id = "111.2225.555",
                     age = AgeEntry.Text,
                     carmodal = Settings.CarModelID,
-                    cartype = Settings.cartype.ToString(),
+                    cartype = Settings.Cartype.ToString(),
                     //denominationnumber = denominationnumberimg,
                     //passportnumber = passportnumber.Text,
                     carnumber = CarNumberEntry.Text,

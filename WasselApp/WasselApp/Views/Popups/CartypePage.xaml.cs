@@ -12,13 +12,13 @@ using Rg.Plugins.Popup.Services;
 
 namespace WasselApp.Views.Popups
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class CartypePage : PopupPage
-	{
-		public CartypePage ()
-		{
-			InitializeComponent ();
-            Settings.Type = "1";
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class CartypePage : PopupPage
+    {
+        public CartypePage()
+        {
+            InitializeComponent();
+            Settings.Type = 1;
         }
 
         private void shahn_Tapped(object sender, EventArgs e)
@@ -26,10 +26,12 @@ namespace WasselApp.Views.Popups
             shahnlbl.TextColor = Color.Blue;
             bricklbl.TextColor = Color.Gray;
             brickimg.IsVisible = false;
-            shahnimg.IsVisible = true; 
+            shahnimg.IsVisible = true;
             Cartypesstk.IsVisible = true;
             Cartypesbrickstk.IsVisible = false;
-            Settings.Type = "1";
+            Carmodelsstk.IsVisible = false;
+            Carmodelsbrickstk.IsVisible = false;
+            Settings.Type = 1;
         }
 
         private void Waselbrick_Tapped(object sender, EventArgs e)
@@ -40,17 +42,20 @@ namespace WasselApp.Views.Popups
             shahnimg.IsVisible = false;
             Cartypesstk.IsVisible = false;
             Cartypesbrickstk.IsVisible = true;
-            Settings.Type = "2";
+            Carmodelsstk.IsVisible = false;
+            Carmodelsbrickstk.IsVisible = false;
+            Settings.Type = 3;
         }
 
 
         private void CartypeList_ItemTapped(object sender, ItemTappedEventArgs e)
         {
             var CartypeSelected = CartypeList.SelectedItem as Cartype;
-            Settings.cartypename = CartypeSelected.name;
-            Settings.cartype = CartypeSelected.id;
-           Carmodelsstk.IsVisible = true;
+            Settings.Cartypename = CartypeSelected.name;
+            Settings.Cartype = CartypeSelected.id;
+            Carmodelsstk.IsVisible = true;
             Carmodelsbrickstk.IsVisible = false;
+            Carmodelsstk.IsVisible = true;
             Modellist.ItemsSource = CartypeSelected.carmodals;
 
         }
@@ -58,8 +63,8 @@ namespace WasselApp.Views.Popups
         private void Cartypesbricklist_ItemTapped(object sender, ItemTappedEventArgs e)
         {
             var CartypebrickSelected = Cartypesbricklist.SelectedItem as Cartype;
-            Settings.cartypename = CartypebrickSelected.name;
-            Settings.cartype = CartypebrickSelected.id;
+            Settings.Cartypename = CartypebrickSelected.name;
+            Settings.Cartype = CartypebrickSelected.id;
             Carmodelsstk.IsVisible = false;
             Carmodelsbrickstk.IsVisible = true;
             Modelbricklist.ItemsSource = CartypebrickSelected.brickcarmodals;
@@ -69,7 +74,7 @@ namespace WasselApp.Views.Popups
         {
             var carmodelitem = Modellist.SelectedItem as Carmodal;
             Settings.CarModelID = carmodelitem.id.ToString();
-            Settings.carmodelname = carmodelitem.name;
+            Settings.Carmodelname = carmodelitem.name;
             Confirmbtn.IsEnabled = true;
         }
 
@@ -77,7 +82,7 @@ namespace WasselApp.Views.Popups
         {
             var carmodelitem = Modelbricklist.SelectedItem as Carmodal;
             Settings.CarModelID = carmodelitem.id.ToString();
-            Settings.carmodelname = carmodelitem.name;
+            Settings.Carmodelname = carmodelitem.name;
             Confirmbtn.IsEnabled = true;
         }
 
