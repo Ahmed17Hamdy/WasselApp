@@ -15,7 +15,7 @@ namespace WasselApp
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage( new DriverPanel());
+            MainPage = new NavigationPage( new Freightcars());
         }
 
         protected override void OnStart()

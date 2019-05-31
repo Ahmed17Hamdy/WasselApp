@@ -117,14 +117,29 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AboutApp" xml:space="preserve">
+    <value>About Application</value>
+  </data>
+  <data name="AddImages" xml:space="preserve">
+    <value>Please , Add All Required Images First </value>
+  </data>
   <data name="AddLiecnceImg" xml:space="preserve">
     <value>Add Liecence Image</value>
   </data>
   <data name="Age" xml:space="preserve">
     <value>Age</value>
   </data>
+  <data name="AllModels" xml:space="preserve">
+    <value>Please , Choose Car Model</value>
+  </data>
+  <data name="AllTypes" xml:space="preserve">
+    <value>Please , Choose The Type</value>
+  </data>
   <data name="AskLogOUt" xml:space="preserve">
     <value>Do You Want To Log Out ?</value>
+  </data>
+  <data name="Callus" xml:space="preserve">
+    <value>Call Us</value>
   </data>
   <data name="Carid" xml:space="preserve">
     <value>Car Number</value>
@@ -134,6 +149,15 @@
   </data>
   <data name="CarType" xml:space="preserve">
     <value>Car Type</value>
+  </data>
+  <data name="ChecEP" xml:space="preserve">
+    <value>Please, Check Your Email &amp; PassWord</value>
+  </data>
+  <data name="ChooseCarType" xml:space="preserve">
+    <value>Please , Choose Car Type</value>
+  </data>
+  <data name="ChooseResidence" xml:space="preserve">
+    <value>Please, Choose Your Residence</value>
   </data>
   <data name="City" xml:space="preserve">
     <value>City</value>
@@ -150,11 +174,20 @@
   <data name="Country" xml:space="preserve">
     <value>Country</value>
   </data>
+  <data name="DestinationFrom" xml:space="preserve">
+    <value>Destination From</value>
+  </data>
+  <data name="Destinationto" xml:space="preserve">
+    <value>To</value>
+  </data>
   <data name="DriverUse" xml:space="preserve">
     <value>Enter As Driver</value>
   </data>
   <data name="Email" xml:space="preserve">
     <value>Email Address</value>
+  </data>
+  <data name="EmailTaken" xml:space="preserve">
+    <value>The email has already been taken.</value>
   </data>
   <data name="Error" xml:space="preserve">
     <value>Error !</value>
@@ -162,14 +195,38 @@
   <data name="ErrorMessage" xml:space="preserve">
     <value>Please , Check Your Network Connection</value>
   </data>
+  <data name="FieldReq" xml:space="preserve">
+    <value>This Field Is Required </value>
+  </data>
+  <data name="HaveAccount" xml:space="preserve">
+    <value>Have Account , Already ?</value>
+  </data>
   <data name="IdNumber" xml:space="preserve">
     <value>Id Number</value>
+  </data>
+  <data name="InvalidMail" xml:space="preserve">
+    <value>Invalid Email Address Format</value>
+  </data>
+  <data name="LiecenceImages" xml:space="preserve">
+    <value>Add Liecence Image</value>
+  </data>
+  <data name="Load" xml:space="preserve">
+    <value>Load of the Car in kg</value>
+  </data>
+  <data name="Location" xml:space="preserve">
+    <value>Your Location is Required</value>
   </data>
   <data name="LogIn" xml:space="preserve">
     <value>Log In</value>
   </data>
   <data name="LogOUt" xml:space="preserve">
     <value>Log Out</value>
+  </data>
+  <data name="MainPage" xml:space="preserve">
+    <value>Main Page</value>
+  </data>
+  <data name="MyWay" xml:space="preserve">
+    <value>My Way</value>
   </data>
   <data name="Name" xml:space="preserve">
     <value>Name</value>
@@ -186,11 +243,20 @@
   <data name="No" xml:space="preserve">
     <value>No !</value>
   </data>
+  <data name="Ok" xml:space="preserve">
+    <value>Ok</value>
+  </data>
   <data name="OldPass" xml:space="preserve">
     <value>Current PassWord</value>
   </data>
   <data name="Or" xml:space="preserve">
     <value>OR</value>
+  </data>
+  <data name="Order" xml:space="preserve">
+    <value>Order Now</value>
+  </data>
+  <data name="OurGoals" xml:space="preserve">
+    <value>Our Goals</value>
   </data>
   <data name="PassPortNum" xml:space="preserve">
     <value>Add PassPort Image</value>
@@ -198,86 +264,11 @@
   <data name="PassWord" xml:space="preserve">
     <value>Pass Word</value>
   </data>
-  <data name="PhoneNumber" xml:space="preserve">
-    <value>Phone Number</value>
-  </data>
-  <data name="Register" xml:space="preserve">
-    <value>Register</value>
-  </data>
-  <data name="Residence" xml:space="preserve">
-    <value>Residence</value>
-  </data>
-  <data name="SelectLanguage" xml:space="preserve">
-    <value>Select Language</value>
-  </data>
-  <data name="SettingsPass" xml:space="preserve">
-    <value>Changing PassWord</value>
-  </data>
-  <data name="UserUse" xml:space="preserve">
-    <value>Enter As User</value>
-  </data>
-  <data name="Yes" xml:space="preserve">
-    <value>Yes !</value>
-  </data>
-  <data name="AboutApp" xml:space="preserve">
-    <value>About Application</value>
-  </data>
-  <data name="Callus" xml:space="preserve">
-    <value>Call Us</value>
-  </data>
-  <data name="MainPage" xml:space="preserve">
-    <value>Main Page</value>
-  </data>
-  <data name="MyWay" xml:space="preserve">
-    <value>My Way</value>
-  </data>
-  <data name="OurGoals" xml:space="preserve">
-    <value>Our Goals</value>
-  </data>
-  <data name="Waselbrick" xml:space="preserve">
-    <value>Brick Cars</value>
-  </data>
-  <data name="WaselShahn" xml:space="preserve">
-    <value>Shipping Cars</value>
-  </data>
-  <data name="Ok" xml:space="preserve">
-    <value>Ok</value>
-  </data>
-  <data name="EmailTaken" xml:space="preserve">
-    <value>The email has already been taken.</value>
-  </data>
-  <data name="HaveAccount" xml:space="preserve">
-    <value>Have Account , Already ?</value>
-  </data>
-  <data name="UserRegistered" xml:space="preserve">
-    <value>You have Registered Successfully !</value>
-  </data>
-  <data name="FieldReq" xml:space="preserve">
-    <value>This Field Is Required </value>
-  </data>
-  <data name="InvalidMail" xml:space="preserve">
-    <value>Invalid Email Address Format</value>
-  </data>
   <data name="PassWordMatch" xml:space="preserve">
     <value>PassWord Doesn't Match</value>
   </data>
   <data name="PassWordValid" xml:space="preserve">
     <value>PassWord consists of 6 lenght , contains at least one digit &amp; alphabet</value>
-  </data>
-  <data name="ChecEP" xml:space="preserve">
-    <value>Please, Check Your Email &amp; PassWord</value>
-  </data>
-  <data name="AllModels" xml:space="preserve">
-    <value>Please , Choose Car Model</value>
-  </data>
-  <data name="AllTypes" xml:space="preserve">
-    <value>Please , Choose The Type</value>
-  </data>
-  <data name="ChooseCarType" xml:space="preserve">
-    <value>Please , Choose Car Type</value>
-  </data>
-  <data name="LiecenceImages" xml:space="preserve">
-    <value>Add Liecence Image</value>
   </data>
   <data name="PermissionDetails" xml:space="preserve">
     <value>Unable to take photos.</value>
@@ -288,28 +279,52 @@
   <data name="PermissionsDenied" xml:space="preserve">
     <value>Permissions Denied</value>
   </data>
+  <data name="PhoneNumber" xml:space="preserve">
+    <value>Phone Number</value>
+  </data>
   <data name="ProfileImages" xml:space="preserve">
     <value>Add Profile Image</value>
   </data>
-  <data name="AddImages" xml:space="preserve">
-    <value>Please , Add All Required Images First </value>
+  <data name="Register" xml:space="preserve">
+    <value>Register</value>
   </data>
-  <data name="Load" xml:space="preserve">
-    <value>Load of the Car in kg</value>
-  </data>
-  <data name="Location" xml:space="preserve">
-    <value>Your Location is Required</value>
-  </data>
-  <data name="SelectCarType" xml:space="preserve">
-    <value>Select Car Type</value>
-  </data>
-  <data name="ChooseResidence" xml:space="preserve">
-    <value>Please, Choose Your Residence</value>
+  <data name="Residence" xml:space="preserve">
+    <value>Residence</value>
   </data>
   <data name="resident" xml:space="preserve">
     <value>resident</value>
   </data>
   <data name="Saudi" xml:space="preserve">
     <value>Saudi Citizen</value>
+  </data>
+  <data name="SelectCarType" xml:space="preserve">
+    <value>Select Car Type</value>
+  </data>
+  <data name="SelectLanguage" xml:space="preserve">
+    <value>Select Language</value>
+  </data>
+  <data name="SettingsPass" xml:space="preserve">
+    <value>Changing PassWord</value>
+  </data>
+  <data name="UserRegistered" xml:space="preserve">
+    <value>You have Registered Successfully !</value>
+  </data>
+  <data name="UserUse" xml:space="preserve">
+    <value>Enter As User</value>
+  </data>
+  <data name="Waselbrick" xml:space="preserve">
+    <value>Brick Cars</value>
+  </data>
+  <data name="WaselShahn" xml:space="preserve">
+    <value>Shipping Cars</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Yes !</value>
+  </data>
+  <data name="NoPlaceFrom" xml:space="preserve">
+    <value>No Place From As There is no Order</value>
+  </data>
+  <data name="NoPlaceTo" xml:space="preserve">
+    <value>No Place To As there is no Order</value>
   </data>
 </root>

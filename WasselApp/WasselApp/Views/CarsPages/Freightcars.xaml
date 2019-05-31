@@ -51,8 +51,8 @@
             </ScrollView>
             <AbsoluteLayout Padding="5" Grid.Row="1">
                 <tk:TKCustomMap  IsShowingUser="True"    AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" 
-                                 x:Name="MainMap" MapType="Street" Pins="{Binding Cars}"  IsClusteringEnabled="False"
-                                
+                                 x:Name="MainMap" MapType="Street" Pins="{Binding ShippingCars}"  IsClusteringEnabled="False"
+                                PinSelected="MainMap_PinSelected"
                                    HasScrollEnabled="True" HasZoomEnabled="True"   />
                 <Label x:Name="Addresslbl" AbsoluteLayout.LayoutBounds="0,0,1,50" 
                        AbsoluteLayout.LayoutFlags="PositionProportional, WidthProportional"

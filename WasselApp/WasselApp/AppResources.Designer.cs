@@ -232,6 +232,24 @@ namespace WasselApp {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Destination From.
+        /// </summary>
+        internal static string DestinationFrom {
+            get {
+                return ResourceManager.GetString("DestinationFrom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to To.
+        /// </summary>
+        internal static string Destinationto {
+            get {
+                return ResourceManager.GetString("Destinationto", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Enter As Driver.
         /// </summary>
         internal static string DriverUse {
@@ -421,6 +439,24 @@ namespace WasselApp {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No Place From As There is no Order.
+        /// </summary>
+        internal static string NoPlaceFrom {
+            get {
+                return ResourceManager.GetString("NoPlaceFrom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No Place To As there is no Order.
+        /// </summary>
+        internal static string NoPlaceTo {
+            get {
+                return ResourceManager.GetString("NoPlaceTo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ok.
         /// </summary>
         internal static string Ok {
@@ -444,6 +480,15 @@ namespace WasselApp {
         internal static string Or {
             get {
                 return ResourceManager.GetString("Or", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Order Now.
+        /// </summary>
+        internal static string Order {
+            get {
+                return ResourceManager.GetString("Order", resourceCulture);
             }
         }
         

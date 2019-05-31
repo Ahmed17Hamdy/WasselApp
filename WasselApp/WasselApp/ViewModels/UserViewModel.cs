@@ -124,25 +124,25 @@ namespace WasselApp.ViewModels
             }
             else
             {
-
-                try
-                {
                     try
                     {
                         var JsonResponse = JsonConvert.DeserializeObject<RegisterResponse>(ResBack);
                         if (JsonResponse.success == false)
+                        {
                             IsRunning = false;
-                        await PopupNavigation.Instance.PushAsync(new RegisterPopup(JsonResponse.data));
-                    }
-                    catch
-                    {
-                        var JsonResponse = JsonConvert.DeserializeObject<Response<string, User>>(ResBack);
-                        if (JsonResponse.success == true)
+                            await PopupNavigation.Instance.PushAsync(new RegisterPopup(JsonResponse.data));
+                        }
+                        else
+                        {
                             IsRunning = false;
-                        await PopupNavigation.Instance.PushAsync(new RegisterPopup(JsonResponse.data));
+                            await PopupNavigation.Instance.PushAsync(new RegisterPopup(JsonResponse.data));
+                        Settings.LastUsedID = JsonResponse.message.id;
+                        Settings.LastUsedEmail = JsonResponse.message.email;                        
+                        Settings.ProfileName = JsonResponse.message.name;
                         Device.BeginInvokeOnMainThread(() => App.Current.MainPage = new HomePage());
+                        }
                     }
-                }
+                    
                 catch (Exception)
                 {
 

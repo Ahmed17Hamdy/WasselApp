@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Rg.Plugins.Popup.Services;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -7,6 +8,7 @@ using System.Threading.Tasks;
 using TK.CustomMap;
 using WasselApp.Models;
 using WasselApp.ViewModels;
+using WasselApp.Views.Popups;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -95,7 +97,7 @@ namespace WasselApp.Views.CarsPages
                 cartypenamestring = emailLabel.Text;
                 CarsViewModel cars = new CarsViewModel();
                 await cars.CarGetter();
-                Cars = cars.Cars.Where(o => o.cartypename == cartypenamestring).ToList();
+                Cars = cars.ShippingCars.Where(o => o.cartypename == cartypenamestring).ToList();
                 MainMap.Pins = Cars;
                 CarsType= cars.CarTypes.Where(o => o.name == cartypenamestring).ToList();
                 foreach (var item in CarsType)
@@ -152,6 +154,12 @@ namespace WasselApp.Views.CarsPages
                 MainMap.Pins = Cars;
                 Activ.IsRunning = false;
             }
+        }
+
+        private async void MainMap_PinSelected(object sender, TKGenericEventArgs<TKCustomMapPin> e)
+        {
+            var _Carorder = MainMap.SelectedPin as Car;
+            await PopupNavigation.Instance.PushAsync(new CarDetailsPage(_Carorder));
         }
     }
 }

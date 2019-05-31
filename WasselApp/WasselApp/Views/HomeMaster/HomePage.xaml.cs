@@ -12,11 +12,15 @@ namespace WasselApp
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class HomePage : MasterDetailPage
     {
+       
+
         public HomePage()
         {
             InitializeComponent();
             //MasterPage.ListView.ItemSelected += ListView_ItemSelected;
         }
+
+       
 
         //private void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         //{

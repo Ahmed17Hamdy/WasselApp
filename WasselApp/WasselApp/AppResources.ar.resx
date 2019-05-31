@@ -117,14 +117,29 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AboutApp" xml:space="preserve">
+    <value>عن التطبيق</value>
+  </data>
+  <data name="AddImages" xml:space="preserve">
+    <value>من فضلك أضف الصور المطلوبة أولاً</value>
+  </data>
   <data name="AddLiecnceImg" xml:space="preserve">
     <value>أضف صورة رقم الرخصة</value>
   </data>
   <data name="Age" xml:space="preserve">
     <value>العمر</value>
   </data>
+  <data name="AllModels" xml:space="preserve">
+    <value>من فضلك , أختر مودل السيارة</value>
+  </data>
+  <data name="AllTypes" xml:space="preserve">
+    <value>من فضلك , إختر النوع</value>
+  </data>
   <data name="AskLogOUt" xml:space="preserve">
     <value>هل تريد تسجيل الخروج ؟</value>
+  </data>
+  <data name="Callus" xml:space="preserve">
+    <value>إتصل بنا</value>
   </data>
   <data name="Carid" xml:space="preserve">
     <value>رقم السيارة</value>
@@ -134,6 +149,15 @@
   </data>
   <data name="CarType" xml:space="preserve">
     <value>نوع السيارة</value>
+  </data>
+  <data name="ChecEP" xml:space="preserve">
+    <value>من فضلك تحقق من البريد الإلكتروني &amp; كلمة المرور</value>
+  </data>
+  <data name="ChooseCarType" xml:space="preserve">
+    <value>من فضلك , أختر نوع السيارة </value>
+  </data>
+  <data name="ChooseResidence" xml:space="preserve">
+    <value>من فضلك , أختر نوع الإقامة</value>
   </data>
   <data name="City" xml:space="preserve">
     <value>المدينة</value>
@@ -150,11 +174,20 @@
   <data name="Country" xml:space="preserve">
     <value>البلد</value>
   </data>
+  <data name="DestinationFrom" xml:space="preserve">
+    <value>سير السيارة من</value>
+  </data>
+  <data name="Destinationto" xml:space="preserve">
+    <value>إلى</value>
+  </data>
   <data name="DriverUse" xml:space="preserve">
     <value>الدخول كسائق</value>
   </data>
   <data name="Email" xml:space="preserve">
     <value>البريد الإلكتروني</value>
+  </data>
+  <data name="EmailTaken" xml:space="preserve">
+    <value>هذا البريد الإلكتروني مسجل مسبقاً</value>
   </data>
   <data name="Error" xml:space="preserve">
     <value>! خطأ</value>
@@ -162,14 +195,38 @@
   <data name="ErrorMessage" xml:space="preserve">
     <value>عفواً تحقق من الإتصال بالإنترنت</value>
   </data>
+  <data name="FieldReq" xml:space="preserve">
+    <value>هذا الحقل مطلوب</value>
+  </data>
+  <data name="HaveAccount" xml:space="preserve">
+    <value>هل تمتلك حساب مسبقاً ؟</value>
+  </data>
   <data name="IdNumber" xml:space="preserve">
     <value>رقم الهوية</value>
+  </data>
+  <data name="InvalidMail" xml:space="preserve">
+    <value>صيغة البريد الإلكتروني غير صحيحة</value>
+  </data>
+  <data name="LiecenceImages" xml:space="preserve">
+    <value>إضافة صور الرخصة</value>
+  </data>
+  <data name="Load" xml:space="preserve">
+    <value>حمولة السيارة بالكيلو جرام</value>
+  </data>
+  <data name="Location" xml:space="preserve">
+    <value>لم يتم تحديد موقعك ,برجاء السماح لإستخدام الموقع</value>
   </data>
   <data name="LogIn" xml:space="preserve">
     <value>تسجيل الدخول</value>
   </data>
   <data name="LogOUt" xml:space="preserve">
     <value>تسجيل الخروج</value>
+  </data>
+  <data name="MainPage" xml:space="preserve">
+    <value>الصفحة الرئيسية</value>
+  </data>
+  <data name="MyWay" xml:space="preserve">
+    <value>طريقي</value>
   </data>
   <data name="Name" xml:space="preserve">
     <value>الإسم</value>
@@ -186,11 +243,20 @@
   <data name="No" xml:space="preserve">
     <value>! لا</value>
   </data>
+  <data name="Ok" xml:space="preserve">
+    <value>حسناً</value>
+  </data>
   <data name="OldPass" xml:space="preserve">
     <value>كلمة المرور الحالية</value>
   </data>
   <data name="Or" xml:space="preserve">
     <value>أو</value>
+  </data>
+  <data name="Order" xml:space="preserve">
+    <value>إطلب الآن</value>
+  </data>
+  <data name="OurGoals" xml:space="preserve">
+    <value>أهدافنا</value>
   </data>
   <data name="PassPortNum" xml:space="preserve">
     <value>صورة رقم جواز السفر</value>
@@ -198,86 +264,11 @@
   <data name="PassWord" xml:space="preserve">
     <value>كلمة المرور</value>
   </data>
-  <data name="PhoneNumber" xml:space="preserve">
-    <value>رقم الهاتف</value>
-  </data>
-  <data name="Register" xml:space="preserve">
-    <value>تسجيل</value>
-  </data>
-  <data name="Residence" xml:space="preserve">
-    <value>الإقامة</value>
-  </data>
-  <data name="SelectLanguage" xml:space="preserve">
-    <value>إختر اللغة</value>
-  </data>
-  <data name="SettingsPass" xml:space="preserve">
-    <value>تغيير كلمة المرور</value>
-  </data>
-  <data name="UserUse" xml:space="preserve">
-    <value>الدخول كمستخدم</value>
-  </data>
-  <data name="Yes" xml:space="preserve">
-    <value>! نعم</value>
-  </data>
-  <data name="AboutApp" xml:space="preserve">
-    <value>عن التطبيق</value>
-  </data>
-  <data name="Callus" xml:space="preserve">
-    <value>إتصل بنا</value>
-  </data>
-  <data name="MainPage" xml:space="preserve">
-    <value>الصفحة الرئيسية</value>
-  </data>
-  <data name="MyWay" xml:space="preserve">
-    <value>طريقي</value>
-  </data>
-  <data name="OurGoals" xml:space="preserve">
-    <value>أهدافنا</value>
-  </data>
-  <data name="Waselbrick" xml:space="preserve">
-    <value>سيارات أجرة</value>
-  </data>
-  <data name="WaselShahn" xml:space="preserve">
-    <value> سيارات شحن</value>
-  </data>
-  <data name="Ok" xml:space="preserve">
-    <value>حسناً</value>
-  </data>
-  <data name="EmailTaken" xml:space="preserve">
-    <value>هذا البريد الإلكتروني مسجل مسبقاً</value>
-  </data>
-  <data name="HaveAccount" xml:space="preserve">
-    <value>هل تمتلك حساب مسبقاً ؟</value>
-  </data>
-  <data name="UserRegistered" xml:space="preserve">
-    <value>! تم تسجيلك بنجاح </value>
-  </data>
-  <data name="FieldReq" xml:space="preserve">
-    <value>هذا الحقل مطلوب</value>
-  </data>
-  <data name="InvalidMail" xml:space="preserve">
-    <value>صيغة البريد الإلكتروني غير صحيحة</value>
-  </data>
   <data name="PassWordMatch" xml:space="preserve">
     <value>كلمة السر غير متطابقة</value>
   </data>
   <data name="PassWordValid" xml:space="preserve">
     <value>لا تقل عن 6 رموز , ولا تحتوي على مسافات , وتحتوي حرف ورقم على الأقل</value>
-  </data>
-  <data name="ChecEP" xml:space="preserve">
-    <value>من فضلك تحقق من البريد الإلكتروني &amp; كلمة المرور</value>
-  </data>
-  <data name="AllModels" xml:space="preserve">
-    <value>من فضلك , أختر مودل السيارة</value>
-  </data>
-  <data name="AllTypes" xml:space="preserve">
-    <value>من فضلك , إختر النوع</value>
-  </data>
-  <data name="ChooseCarType" xml:space="preserve">
-    <value>من فضلك , أختر نوع السيارة </value>
-  </data>
-  <data name="LiecenceImages" xml:space="preserve">
-    <value>إضافة صور الرخصة</value>
   </data>
   <data name="PermissionDetails" xml:space="preserve">
     <value>غير قادر على تحميل صور</value>
@@ -288,25 +279,49 @@
   <data name="PermissionsDenied" xml:space="preserve">
     <value>مطلوب إذن</value>
   </data>
+  <data name="PhoneNumber" xml:space="preserve">
+    <value>رقم الهاتف</value>
+  </data>
   <data name="ProfileImages" xml:space="preserve">
     <value>إضافة الصور الشخصية</value>
   </data>
-  <data name="AddImages" xml:space="preserve">
-    <value>من فضلك أضف الصور المطلوبة أولاً</value>
+  <data name="Register" xml:space="preserve">
+    <value>تسجيل</value>
   </data>
-  <data name="Load" xml:space="preserve">
-    <value>حمولة السيارة بالكيلو جرام</value>
-  </data>
-  <data name="Location" xml:space="preserve">
-    <value>لم يتم تحديد موقعك ,برجاء السماح لإستخدام الموقع</value>
-  </data>
-  <data name="ChooseResidence" xml:space="preserve">
-    <value>من فضلك , أختر نوع الإقامة</value>
+  <data name="Residence" xml:space="preserve">
+    <value>الإقامة</value>
   </data>
   <data name="resident" xml:space="preserve">
     <value>مُقيم</value>
   </data>
   <data name="Saudi" xml:space="preserve">
     <value>سعودي</value>
+  </data>
+  <data name="SelectLanguage" xml:space="preserve">
+    <value>إختر اللغة</value>
+  </data>
+  <data name="SettingsPass" xml:space="preserve">
+    <value>تغيير كلمة المرور</value>
+  </data>
+  <data name="UserRegistered" xml:space="preserve">
+    <value>! تم تسجيلك بنجاح </value>
+  </data>
+  <data name="UserUse" xml:space="preserve">
+    <value>الدخول كمستخدم</value>
+  </data>
+  <data name="Waselbrick" xml:space="preserve">
+    <value>سيارات أجرة</value>
+  </data>
+  <data name="WaselShahn" xml:space="preserve">
+    <value> سيارات شحن</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>! نعم</value>
+  </data>
+  <data name="NoPlaceFrom" xml:space="preserve">
+    <value>لا يوجد وجهة , حيث أنه لا يوجد طلب</value>
+  </data>
+  <data name="NoPlaceTo" xml:space="preserve">
+    <value>لا يوجد وجهة , حيث أنه لا يوجد طلب</value>
   </data>
 </root>

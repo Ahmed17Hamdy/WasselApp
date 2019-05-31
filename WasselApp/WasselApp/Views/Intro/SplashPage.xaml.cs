@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿using WasselApp.Helpers;
+using WasselApp.Views.CarsPages;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -16,8 +12,27 @@ namespace WasselApp.Views.Intro
 
         public SplashPage()
         {
-            InitializeComponent(); 
+            InitializeComponent();
+            SetMainPage();
         }
+
+        private void SetMainPage()
+        {
+            if (Settings.LastUsedID==0 && Settings.LastUsedDriverID==0 || 
+                Settings.LastUsedID != 0 && Settings.LastUsedDriverID != 0)
+            {
+                Application.Current.MainPage = new NavigationPage(new IntroPage());
+            }
+            else if (Settings.LastUsedID != 0 && Settings.LastUsedDriverID == 0)
+            {
+                Application.Current.MainPage = new NavigationPage(new HomePage());
+            }
+            else if (Settings.LastUsedID == 0 && Settings.LastUsedDriverID != 0)
+            {
+                Application.Current.MainPage = new NavigationPage(new MainTabbedPage());
+            }            
+        }
+
         protected override async void OnAppearing()
         {
             base.OnAppearing();
@@ -25,7 +40,7 @@ namespace WasselApp.Views.Intro
            
             await splashImage.TranslateTo(0, 200,3000, Easing.BounceOut);
           //  await splashImage.ScaleTo(150, 1200, Easing.Linear);
-            Application.Current.MainPage = new NavigationPage(new IntroPage());    //After loading  MainPage it gets Navigated to our new Page
+              //After loading  MainPage it gets Navigated to our new Page
         }
     }
 }

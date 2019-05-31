@@ -22,12 +22,12 @@ using Plugin.Permissions.Abstractions;
 
 namespace WasselApp.Views.Panels
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
+    [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class DriverPanel : ContentPage
     {
         private MediaFile ProfilePic, passportnumber, DriverLicImg;
 
-       
+
         UserService userService = new UserService();
 
         ObservableCollection<Cartype> ResBack;
@@ -49,7 +49,7 @@ namespace WasselApp.Views.Panels
         public DriverPanel()
         {
             InitializeComponent();
-           // CarsTypedata();
+            // CarsTypedata();
         }
         private bool AllNeeded()
         {
@@ -60,23 +60,23 @@ namespace WasselApp.Views.Panels
                 CrossPermissions.Current.OpenAppSettings();
                 return false;
             }
-            else if (ProfilePic == null || LiecenceImg == null || passportnumber == null  )
+            else if (ProfilePic == null || LiecenceImg == null || passportnumber == null)
             {
                 Active.IsRunning = false;
                 DisplayAlert(AppResources.Error, AppResources.AddImages, AppResources.Ok);
                 return false;
             }
-            else if (Settings.CarModelID == string.Empty || Settings.Cartype.ToString()== string.Empty || Settings.Type== string.Empty)
+            else if (Settings.CarModelID == string.Empty || Settings.cartype.ToString() == string.Empty || Settings.Type == 0)
             {
                 Active.IsRunning = false;
                 DisplayAlert(AppResources.Error, AppResources.ChooseCarType, AppResources.Ok);
                 PopupNavigation.Instance.PushAsync(new CartypePage());
                 return false;
             }
-            else if(nationalpicker.SelectedItem==null)
+            else if (nationalpicker.SelectedItem == null)
             {
                 Active.IsRunning = false;
-                DisplayAlert(AppResources.Error, AppResources.ChooseResidence, AppResources.Ok);               
+                DisplayAlert(AppResources.Error, AppResources.ChooseResidence, AppResources.Ok);
                 return false;
             }
             return true;
@@ -109,7 +109,7 @@ namespace WasselApp.Views.Panels
             lgnimg.IsVisible = true;
         }
 
-        
+
 
         private void registerdriver_Tapped(object sender, EventArgs e)
         {
@@ -150,12 +150,12 @@ namespace WasselApp.Views.Panels
                     device_id = "111.2225.555",
                     age = AgeEntry.Text,
                     carmodal = Settings.CarModelID,
-                    cartype = Settings.Cartype.ToString(),
+                    cartype = Settings.cartype.ToString(),
                     //denominationnumber = denominationnumberimg,
                     //passportnumber = passportnumber.Text,
                     carnumber = CarNumberEntry.Text,
                     idnumber = IdNumberEntry.Text,
-                    type = Settings.Type,
+                    type = Settings.Type.ToString(),
                     load = loadEntry.Text,
                     lat = Settings.LastLat,
                     lng = Settings.LastLng
@@ -220,31 +220,31 @@ namespace WasselApp.Views.Panels
                     }
                     else
                     {
-                        // bool checker = false;
+                       
                         try
                         {
-                             Active.IsRunning = false;
+                            Active.IsRunning = false;
                             var JsonResponse = JsonConvert.DeserializeObject<Response<string, Models.DriverUser>>(serverResponse);
                             if (JsonResponse.success == true)
                             {
-                                //  checker = true;
-                                // PopAlert(checker);
+                                Settings.LastUsedDriverID = JsonResponse.message.id;
+                                Settings.LastUsedEmail = JsonResponse.message.email;
+                                Settings.LastUserStatus = "0";
+                                Settings.ProfileName = JsonResponse.message.name;
+                                await PopupNavigation.Instance.PushAsync(new RegisterPopup(JsonResponse.data));
                                 Device.BeginInvokeOnMainThread(() => App.Current.MainPage = new MainTabbedPage());
                             }
                             else
                             {
-                                //   Activ.IsRunning = false;
-                                //  PopAlert(checker);
-                                await DisplayAlert(AppResources.Error, JsonResponse.data, AppResources.Ok);
-
+                                await PopupNavigation.Instance.PushAsync(new RegisterPopup(JsonResponse.data));
+                                //  await DisplayAlert(AppResources.Error, JsonResponse.data, AppResources.Ok);
                                 return;
                             }
                         }
                         catch (Exception)
                         {
-                            //   Activ.IsRunning = false;
-                            var JsonResponse = JsonConvert.DeserializeObject<Response<object, string>>(serverResponse);
-                            //   PopAlert(checker);
+                               Active.IsRunning = false;
+                            await PopupNavigation.Instance.PushAsync(new ConnectionPopup());                           
                             return;
                         }
                     }
@@ -254,10 +254,10 @@ namespace WasselApp.Views.Panels
                 {
                     await DisplayAlert(AppResources.Error, AppResources.ErrorMessage, AppResources.Ok);
                 }
-                
+
             }
-           
-               
+
+
         }
 
         private async void Cartypebtn_Clicked(object sender, EventArgs e)
@@ -265,7 +265,7 @@ namespace WasselApp.Views.Panels
             await PopupNavigation.Instance.PushAsync(new CartypePage());
         }
 
-       
+
 
         private async void ProfileImg_Clicked(object sender, EventArgs e)
         {
@@ -302,7 +302,7 @@ namespace WasselApp.Views.Panels
         {
             var item = sender as Picker;
             var selectedItem = item.SelectedItem as Resident;
-             uid = selectedItem.id;
+            uid = selectedItem.id;
             NatoionalEntry.Text = selectedItem.name;
         }
 

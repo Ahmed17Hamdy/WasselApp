@@ -6,7 +6,9 @@ namespace WasselApp.Models
 {
    public class CarOrder
     {
-       
+
+        public int type { get; set; }
+
         public int id { get; set; }
         public string ordernumber { get; set; }
         public int owner_id { get; set; }

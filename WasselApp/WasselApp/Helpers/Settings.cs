@@ -45,7 +45,7 @@ namespace WasselApp.Helpers
         }
         private const string cartypeKey = "cartype_key";
         private static readonly int CartypeDefault = 0;
-        public static int Cartype
+        public static int cartype
         {
             get => AppSettings.GetValueOrDefault(cartypeKey, CartypeDefault);
             set => AppSettings.AddOrUpdateValue(cartypeKey, value);
@@ -54,7 +54,7 @@ namespace WasselApp.Helpers
 
         private const string LastcartypenameKey = "last_cartypename_key";
         private static readonly string cartypenameKey = string.Empty;
-        public static string Cartypename
+        public static string cartypename
         {
             get
             =>
@@ -68,7 +68,7 @@ namespace WasselApp.Helpers
         }
         private const string LastmodelenameKey = "last_cartypename_key";
         private static readonly string carmodelnameKey = string.Empty;
-        public static string Carmodelname
+        public static string carmodelname
         {
             get
             =>
