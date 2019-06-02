@@ -29,8 +29,8 @@ namespace WasselApp.Views.CarsPages
         private async void GetCars()
         {
             CarsViewModel carsViewModel = new CarsViewModel();
-            await carsViewModel.CarGetter();
-          Cars= carsViewModel.Cars.ToList();
+            await carsViewModel.ShippingCarGetter();
+          Cars= carsViewModel.ShippingCars.ToList();
            
         }
 
@@ -62,8 +62,8 @@ namespace WasselApp.Views.CarsPages
             Label Alllbl = (Label)sender;
                string citem = Alllbl.Text;
             CarsViewModel cars = new CarsViewModel();
-            await cars.CarGetter();
-            Cars = cars.Cars.ToList();
+            await cars.ShippingCarGetter();
+            Cars = cars.ShippingCars.ToList();
             MainMap.Pins = Cars ;
 
         }
@@ -74,8 +74,8 @@ namespace WasselApp.Views.CarsPages
             Label Alllbl = (Label)sender;
             string citem = Alllbl.Text;
             CarsViewModel cars = new CarsViewModel();
-            await  cars.CarGetter();
-            MainMap.Pins = cars.Cars.Where(o => o.cartypename == citem).ToList();
+            await cars.ShippingCarGetter();
+            MainMap.Pins = cars.ShippingCars.Where(o => o.cartypename == citem).ToList();
         }
 
         private async void StackTapped(object sender, EventArgs e)
@@ -96,7 +96,7 @@ namespace WasselApp.Views.CarsPages
                 Label emailLabel = (Label)reqLabel;
                 cartypenamestring = emailLabel.Text;
                 CarsViewModel cars = new CarsViewModel();
-                await cars.CarGetter();
+                await cars.ShippingCarGetter();
                 Cars = cars.ShippingCars.Where(o => o.cartypename == cartypenamestring).ToList();
                 MainMap.Pins = Cars;
                 CarsType= cars.CarTypes.Where(o => o.name == cartypenamestring).ToList();
@@ -149,8 +149,8 @@ namespace WasselApp.Views.CarsPages
                 Label emailLabel = (Label)reqLabel;
                 cartypenamestring = emailLabel.Text;
                 CarsViewModel cars = new CarsViewModel();
-                await cars.CarGetter();
-                Cars = cars.Cars.ToList();
+               await cars.ShippingCarGetter();
+                Cars = cars.ShippingCars.ToList();
                 MainMap.Pins = Cars;
                 Activ.IsRunning = false;
             }

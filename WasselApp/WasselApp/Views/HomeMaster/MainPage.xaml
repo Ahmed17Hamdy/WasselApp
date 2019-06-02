@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:tr="clr-namespace:WasselApp.Helpers" BackgroundColor="White"
              NavigationPage.HasNavigationBar="True"
+              Shell.TabBarIsVisible="false"
              x:Class="WasselApp.Views.HomeMaster.MainPage" Title="{tr:Translate MainPage}">
     <ContentPage.Content>
     <Grid>

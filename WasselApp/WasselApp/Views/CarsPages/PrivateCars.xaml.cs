@@ -22,8 +22,8 @@ namespace WasselApp.Views.CarsPages
         private async void GetCars()
         {
             CarsViewModel carsViewModel = new CarsViewModel();
-            await carsViewModel.CarGetter();
-            Cars = carsViewModel.Cars.ToList();
+          //  await carsViewModel.CarGetter();
+            Cars = carsViewModel.BrickCars.ToList();
 
         }
 
@@ -55,8 +55,8 @@ namespace WasselApp.Views.CarsPages
             Label Alllbl = (Label)sender;
             string citem = Alllbl.Text;
             CarsViewModel cars = new CarsViewModel();
-            await cars.CarGetter();
-            Cars = cars.Cars.ToList();
+            await cars.BrickCarGetter();
+            Cars = cars.BrickCars.ToList();
             MainMap.Pins = Cars;
 
         }
@@ -67,8 +67,8 @@ namespace WasselApp.Views.CarsPages
             Label Alllbl = (Label)sender;
             string citem = Alllbl.Text;
             CarsViewModel cars = new CarsViewModel();
-            await cars.CarGetter();
-            MainMap.Pins = cars.Cars.Where(o => o.cartypename == citem).ToList();
+           await cars.BrickCarGetter();
+            MainMap.Pins = cars.BrickCars.Where(o => o.cartypename == citem).ToList();
         }
 
         private async void StackTapped(object sender, EventArgs e)
@@ -89,8 +89,8 @@ namespace WasselApp.Views.CarsPages
                 Label emailLabel = (Label)reqLabel;
                 cartypenamestring = emailLabel.Text;
                 CarsViewModel cars = new CarsViewModel();
-                await cars.CarGetter();
-                Cars = cars.Cars.Where(o => o.cartypename == cartypenamestring).ToList();
+                await cars.BrickCarGetter();
+                Cars = cars.BrickCars.Where(o => o.cartypename == cartypenamestring).ToList();
                 MainMap.Pins = Cars;
                 CarsTypeBrick = cars.CarTypesBrick.Where(o => o.name == cartypenamestring).ToList();
                 foreach (var item in CarsTypeBrick)
@@ -142,8 +142,8 @@ namespace WasselApp.Views.CarsPages
                 Label emailLabel = (Label)reqLabel;
                 cartypenamestring = emailLabel.Text;
                 CarsViewModel cars = new CarsViewModel();
-                await cars.CarGetter();
-                Cars = cars.Cars.ToList();
+                await cars.BrickCarGetter();
+                Cars = cars.BrickCars.ToList();
                 MainMap.Pins = Cars;
                 Activ.IsRunning = false;
             }

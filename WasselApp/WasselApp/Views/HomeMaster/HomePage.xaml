@@ -1,17 +1,44 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms"
+<Shell xmlns="http://xamarin.com/schemas/2014/forms"
+       BackgroundColor='Blue'
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="WasselApp.HomePage"
+       xmlns:locals="clr-namespace:WasselApp.Views.CarsPages"
              xmlns:pages="clr-namespace:WasselApp"
-                  xmlns:carspages="clr-namespace:WasselApp.Views.CarsPages">
-  <MasterDetailPage.Master>
-    <pages:HomePageMaster x:Name="MasterPage" />
-  </MasterDetailPage.Master>
-  <MasterDetailPage.Detail>
-    <NavigationPage>
-      <x:Arguments>
-                <carspages:MainTabbedPage/>
-            </x:Arguments>
-    </NavigationPage>
-  </MasterDetailPage.Detail>
-</MasterDetailPage>
+      
+                  xmlns:carspages="clr-namespace:WasselApp.Views.CarsPages"
+       xmlns:locals1="clr-namespace:WasselApp.Views.HomeMaster">
+    <FlyoutItem Title="Cars" IsTabStop="False"
+                FlyoutDisplayOptions="AsMultipleItems">
+        <Tab Title="Domestic"
+             Icon="paw.png">
+            <ShellContent   Title="Main Page"
+                      Icon="Main.png">
+                <locals1:MainPage />
+            </ShellContent>
+            <ShellContent Title="Cats"
+                          Icon="cat.png">
+                <locals:Freightcars />
+            </ShellContent>
+            <ShellContent Title="Dogs"
+                          Icon="dog.png">
+                <locals:PrivateCars />
+            </ShellContent>
+        </Tab>
+
+        
+        <ShellContent   Title="About Application"
+                      Icon="abouus.PNG">
+            <locals1:AboutUsPage />
+        </ShellContent>
+        <ShellContent Title="Our Goals"
+                      Icon="goals.PNG">
+            <locals1:OurGoals />
+        </ShellContent>
+        <ShellContent Title="Call Us"
+                      Icon="callus.PNG">
+            <locals1:CallUsPage />
+        </ShellContent>
+
+    </FlyoutItem>
+</Shell>

@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace WasselApp
+namespace WasselApp.Views.HomeMaster
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class HomePageDetail : ContentPage
+    public partial class AboutUsPage : ContentPage
     {
-        public HomePageDetail()
+        public AboutUsPage()
         {
             InitializeComponent();
         }

@@ -34,4 +34,10 @@ namespace WasselApp.Models
         public ObservableCollection<Car> cars { get; set; }
         public ObservableCollection<Cartype> cartype { get; set; }
     }
+    public class RootObject
+    {
+        public bool success { get; set; }
+        public string data { get; set; }
+        public List<Car> message { get; set; }
+    }
 }

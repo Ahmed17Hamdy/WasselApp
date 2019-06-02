@@ -13,7 +13,7 @@ namespace WasselApp.Services
     public class CarServices
     {
 
-        public async Task<ObservableCollection<Car>> GetAllCars()
+        public async Task<List<Car>> GetAllShippingCars()
         {
             var client = new HttpClient();
             if (CrossConnectivity.Current.IsConnected)
@@ -22,7 +22,31 @@ namespace WasselApp.Services
                 {
                     var response = await client.GetAsync("https://waselksa.alsalil.net/api/settingmember");
                     var serverResponse = response.Content.ReadAsStringAsync().Result.ToString();
-                    var Req = JsonConvert.DeserializeObject<Response<string, ObservableCollection<Car>>>
+                    var Req = JsonConvert.DeserializeObject<RootObject>
+                        (serverResponse);
+                    var Cars = Req.message;
+                    return Cars;
+                }
+                catch (Exception)
+                {
+                    return null;
+                }
+            }
+            else
+            {
+                return null;
+            }
+        }
+        public async Task<List<Car>> GetAllBrickCars()
+        {
+            var client = new HttpClient();
+            if (CrossConnectivity.Current.IsConnected)
+            {
+                try
+                {
+                    var response = await client.GetAsync("https://waselksa.alsalil.net/api/ogra");
+                    var serverResponse = response.Content.ReadAsStringAsync().Result.ToString();
+                    var Req = JsonConvert.DeserializeObject<RootObject>
                         (serverResponse);
                     var Cars = Req.message;
                     return Cars;
