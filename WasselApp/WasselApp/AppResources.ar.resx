@@ -324,4 +324,43 @@
   <data name="NoPlaceTo" xml:space="preserve">
     <value>لا يوجد وجهة , حيث أنه لا يوجد طلب</value>
   </data>
+  <data name="FrieghtCars" xml:space="preserve">
+    <value>سيارات شحن</value>
+  </data>
+  <data name="AddDropOff" xml:space="preserve">
+    <value>إضافة وجهة  </value>
+  </data>
+  <data name="Alert" xml:space="preserve">
+    <value>تنبيه !</value>
+  </data>
+  <data name="ChoosePlace" xml:space="preserve">
+    <value>إختر مكانك عن طريق سحب الخريطة , أو إبحث عن المكان </value>
+  </data>
+  <data name="ConfirmBooking" xml:space="preserve">
+    <value>تأكيد الحجز</value>
+  </data>
+  <data name="Continue" xml:space="preserve">
+    <value>إستكمل الطلب</value>
+  </data>
+  <data name="Destination" xml:space="preserve">
+    <value>وجهتك</value>
+  </data>
+  <data name="LocationNotFound" xml:space="preserve">
+    <value>عفواً , عنوان هذا الموقع غير متوفر</value>
+  </data>
+  <data name="LocationTo" xml:space="preserve">
+    <value>عنوان الوجهة</value>
+  </data>
+  <data name="Note" xml:space="preserve">
+    <value>إضافة ملاحظات</value>
+  </data>
+  <data name="Now" xml:space="preserve">
+    <value>Now</value>
+  </data>
+  <data name="OrderRefused" xml:space="preserve">
+    <value>عفواً , تم رفض طلبك</value>
+  </data>
+  <data name="PickUpLocation" xml:space="preserve">
+    <value>إختر موقعاً</value>
+  </data>
 </root>

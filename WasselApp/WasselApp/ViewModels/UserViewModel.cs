@@ -14,6 +14,8 @@ using WasselApp.Views.Popups;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using WasselApp.Helpers;
+using Com.OneSignal;
+
 namespace WasselApp.ViewModels
 {
     public class UserViewModel : INotifyPropertyChanged
@@ -104,14 +106,15 @@ namespace WasselApp.ViewModels
             IsRunning = true;
             var location = await Geolocation.GetLocationAsync();
             var device = DeviceInfo.Model;
+            OneSignal.Current.IdsAvailable(IdsAvailable);
             User _userReg = new User
             {
                 email = email,
                 name = name,
                 password = password,
                 confirmpass = confirmpass,
-                firebase_token = "35",
-                device_id = "111.2225.555",
+                firebase_token = Settings.LastSignalID,
+                device_id = Settings.UserFirebaseToken,
                 lat = location.Latitude.ToString(),
                 lng = location.Longitude.ToString()
 

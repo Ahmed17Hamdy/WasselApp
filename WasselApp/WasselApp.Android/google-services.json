@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "114399975373",
+    "firebase_url": "https://wasselapp-5a6ea.firebaseio.com",
+    "project_id": "wasselapp-5a6ea",
+    "storage_bucket": "wasselapp-5a6ea.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:114399975373:android:18c586738ec8368a",
+        "android_client_info": {
+          "package_name": "com.alsalilweb.WasselApp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "114399975373-36sqmgtjmbiiik1152b7bn31ke721iu0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDqGx_9IhkyzthYxOIJ8dzgD0fnkDeyUdc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "114399975373-36sqmgtjmbiiik1152b7bn31ke721iu0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

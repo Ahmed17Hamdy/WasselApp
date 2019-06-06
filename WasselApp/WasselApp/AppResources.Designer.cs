@@ -70,6 +70,15 @@ namespace WasselApp {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add DropOff.
+        /// </summary>
+        internal static string AddDropOff {
+            get {
+                return ResourceManager.GetString("AddDropOff", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please , Add All Required Images First .
         /// </summary>
         internal static string AddImages {
@@ -93,6 +102,15 @@ namespace WasselApp {
         internal static string Age {
             get {
                 return ResourceManager.GetString("Age", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Alert !.
+        /// </summary>
+        internal static string Alert {
+            get {
+                return ResourceManager.GetString("Alert", resourceCulture);
             }
         }
         
@@ -178,6 +196,15 @@ namespace WasselApp {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Choose Your Place From Map , Or Use Search.
+        /// </summary>
+        internal static string ChoosePlace {
+            get {
+                return ResourceManager.GetString("ChoosePlace", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please, Choose Your Residence.
         /// </summary>
         internal static string ChooseResidence {
@@ -205,6 +232,15 @@ namespace WasselApp {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Confirm Booking.
+        /// </summary>
+        internal static string ConfirmBooking {
+            get {
+                return ResourceManager.GetString("ConfirmBooking", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Confirm Pass Word.
         /// </summary>
         internal static string ConfirmPass {
@@ -223,11 +259,29 @@ namespace WasselApp {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Continue.
+        /// </summary>
+        internal static string Continue {
+            get {
+                return ResourceManager.GetString("Continue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Country.
         /// </summary>
         internal static string Country {
             get {
                 return ResourceManager.GetString("Country", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Destination.
+        /// </summary>
+        internal static string Destination {
+            get {
+                return ResourceManager.GetString("Destination", resourceCulture);
             }
         }
         
@@ -304,6 +358,15 @@ namespace WasselApp {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Frieght Cars.
+        /// </summary>
+        internal static string FrieghtCars {
+            get {
+                return ResourceManager.GetString("FrieghtCars", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Have Account , Already ?.
         /// </summary>
         internal static string HaveAccount {
@@ -354,6 +417,24 @@ namespace WasselApp {
         internal static string Location {
             get {
                 return ResourceManager.GetString("Location", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sorry, This Location doesn&apos;t have Address .
+        /// </summary>
+        internal static string LocationNotFound {
+            get {
+                return ResourceManager.GetString("LocationNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Destination Place.
+        /// </summary>
+        internal static string LocationTo {
+            get {
+                return ResourceManager.GetString("LocationTo", resourceCulture);
             }
         }
         
@@ -457,6 +538,24 @@ namespace WasselApp {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add Notes.
+        /// </summary>
+        internal static string Note {
+            get {
+                return ResourceManager.GetString("Note", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Now.
+        /// </summary>
+        internal static string Now {
+            get {
+                return ResourceManager.GetString("Now", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ok.
         /// </summary>
         internal static string Ok {
@@ -489,6 +588,15 @@ namespace WasselApp {
         internal static string Order {
             get {
                 return ResourceManager.GetString("Order", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sorry , Your Order was Refused.
+        /// </summary>
+        internal static string OrderRefused {
+            get {
+                return ResourceManager.GetString("OrderRefused", resourceCulture);
             }
         }
         
@@ -570,6 +678,15 @@ namespace WasselApp {
         internal static string PhoneNumber {
             get {
                 return ResourceManager.GetString("PhoneNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PickUp Location.
+        /// </summary>
+        internal static string PickUpLocation {
+            get {
+                return ResourceManager.GetString("PickUpLocation", resourceCulture);
             }
         }
         

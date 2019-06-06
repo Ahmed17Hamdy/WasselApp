@@ -2,6 +2,9 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewmodels="clr-namespace:WasselApp.ViewModels"
+             xmlns:tr="clr-namespace:WasselApp.Helpers"
+             Shell.NavBarIsVisible="True" Shell.TabBarIsVisible="False"
+             Title="{tr:Translate FrieghtCars}"
              xmlns:tk="clr-namespace:TK.CustomMap;assembly=TK.CustomMap"
              x:Class="WasselApp.Views.CarsPages.Freightcars">
     <ContentPage.BindingContext>
@@ -50,8 +53,10 @@
             </StackLayout>
             </ScrollView>
             <AbsoluteLayout Padding="5" Grid.Row="1">
-                <tk:TKCustomMap  IsShowingUser="True"    AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" 
-                                 x:Name="MainMap" MapType="Street" Pins="{Binding ShippingCars}"  IsClusteringEnabled="False"
+                <tk:TKCustomMap  IsShowingUser="True"    AbsoluteLayout.LayoutBounds="0,0,1,1" 
+                                 AbsoluteLayout.LayoutFlags="All" 
+                                 x:Name="MainMap" MapType="Street" Pins="{Binding ShippingCars}" 
+                                 IsClusteringEnabled="False"
                                 PinSelected="MainMap_PinSelected"
                                    HasScrollEnabled="True" HasZoomEnabled="True"   />
                 <Label x:Name="Addresslbl" AbsoluteLayout.LayoutBounds="0,0,1,50" 

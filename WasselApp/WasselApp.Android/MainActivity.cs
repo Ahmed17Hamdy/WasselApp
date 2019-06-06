@@ -8,6 +8,7 @@ using Android.Widget;
 using Android.OS;
 using TK.CustomMap.Droid;
 using Plugin.CurrentActivity;
+using TK.CustomMap.Api;
 
 namespace WasselApp.Droid
 {
@@ -39,7 +40,8 @@ namespace WasselApp.Droid
             ChechSdk();
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             TKGoogleMaps.Init(this, savedInstanceState);
-           // CrossCurrentActivity.Current.Activity(this, savedInstanceState);
+          
+            // CrossCurrentActivity.Current.Activity(this, savedInstanceState);
 
             Rg.Plugins.Popup.Popup.Init(this, savedInstanceState);
             LoadApplication(new App());

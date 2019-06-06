@@ -327,4 +327,43 @@
   <data name="NoPlaceTo" xml:space="preserve">
     <value>No Place To As there is no Order</value>
   </data>
+  <data name="FrieghtCars" xml:space="preserve">
+    <value>Frieght Cars</value>
+  </data>
+  <data name="AddDropOff" xml:space="preserve">
+    <value>Add DropOff</value>
+  </data>
+  <data name="Alert" xml:space="preserve">
+    <value>Alert !</value>
+  </data>
+  <data name="ChoosePlace" xml:space="preserve">
+    <value>Choose Your Place From Map , Or Use Search</value>
+  </data>
+  <data name="ConfirmBooking" xml:space="preserve">
+    <value>Confirm Booking</value>
+  </data>
+  <data name="Continue" xml:space="preserve">
+    <value>Continue</value>
+  </data>
+  <data name="Destination" xml:space="preserve">
+    <value>Destination</value>
+  </data>
+  <data name="LocationNotFound" xml:space="preserve">
+    <value>Sorry, This Location doesn't have Address </value>
+  </data>
+  <data name="LocationTo" xml:space="preserve">
+    <value>Destination Place</value>
+  </data>
+  <data name="Note" xml:space="preserve">
+    <value>Add Notes</value>
+  </data>
+  <data name="Now" xml:space="preserve">
+    <value>Now</value>
+  </data>
+  <data name="OrderRefused" xml:space="preserve">
+    <value>Sorry , Your Order was Refused</value>
+  </data>
+  <data name="PickUpLocation" xml:space="preserve">
+    <value>PickUp Location</value>
+  </data>
 </root>

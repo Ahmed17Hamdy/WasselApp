@@ -34,6 +34,9 @@
                    VerticalOptions="Center" HorizontalOptions="Center"/>
                 <Label Text="{tr:Translate AboutApp}" />
                 <Image Source="twoarch.PNG" />
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="AboutUs_Tapped"/>
+                </StackLayout.GestureRecognizers>
             </StackLayout>
             <BoxView BackgroundColor="Blue" Grid.Row="3" Grid.ColumnSpan="3"/>
             <StackLayout Grid.Row="4" Grid.Column="0" VerticalOptions="Center" HorizontalOptions="Center">
@@ -41,6 +44,9 @@
                    VerticalOptions="Center" HorizontalOptions="Center"/>
                 <Label Text="{tr:Translate Callus}" HorizontalTextAlignment="Center" />
                 <Image Source="twoarch.PNG" />
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="CallUs_Tapped"/>
+                </StackLayout.GestureRecognizers>
             </StackLayout>
             <BoxView BackgroundColor="Blue" Grid.Column="1" Grid.RowSpan="5"/>
             <StackLayout Grid.Row="0" Grid.Column="2" VerticalOptions="Center" HorizontalOptions="Center">
@@ -57,12 +63,18 @@
                    VerticalOptions="Center" HorizontalOptions="Center"/>
                 <Label Text="{tr:Translate MyWay}" />
                 <Image Source="twoarch.PNG" />
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="MyWay_Tapped"/>
+                </StackLayout.GestureRecognizers>
             </StackLayout>
             <StackLayout Grid.Row="4" Grid.Column="2" VerticalOptions="Center" HorizontalOptions="Center">
                 <Image Source="goals.PNG" WidthRequest="50" HeightRequest="50" 
                    VerticalOptions="Center" HorizontalOptions="Center"/>
                 <Label Text="{tr:Translate OurGoals}" HorizontalTextAlignment="Center" />
                 <Image Source="twoarch.PNG" />
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OurGoals_Tapped"/>
+                </StackLayout.GestureRecognizers>
             </StackLayout>
 
         </Grid>

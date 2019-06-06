@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:customcontrols="clr-namespace:WasselApp.CustomControls"
+             xmlns:tr="clr-namespace:WasselApp.Helpers"
+             xmlns:custommap="clr-namespace:TK.CustomMap;assembly=TK.CustomMap"
+             xmlns:viewmodels="clr-namespace:WasselApp.ViewModels"
+             mc:Ignorable="d"
+             Shell.NavBarIsVisible="True" Shell.TabBarIsVisible="False" Shell.BackgroundColor="Blue"
+             Shell.TitleColor="Blue"
+             Title="{tr:Translate LocationTo}"
+             x:Class="WasselApp.Views.OrdersPage.PlaceToPage">
+   
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Label Grid.Row="0" HorizontalOptions="Center" Text="{tr:Translate ChoosePlace}" />
+            <customcontrols:PlacesAutoComplete   x:Name="Fromplacecc" Grid.Row="1"                                                
+                                               ApiToUse="Google" 
+                />
+            <AbsoluteLayout  Grid.Row="2">
+                <Grid AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
+                    <custommap:TKCustomMap x:Name="ToMap"  UserLocationChanged="MainMap_UserLocationChanged"
+                                           IsRegionChangeAnimated="True"  IsShowingUser="True" MapType="Street"/>
+                    <Image x:Name="ToPlaceimg" Source="ToPlace.png" HeightRequest="50" WidthRequest="50" 
+                           HorizontalOptions="Center"
+                       VerticalOptions="Center"/>
+                </Grid>
+                <StackLayout AbsoluteLayout.LayoutBounds=".5,0,200,100"
+                AbsoluteLayout.LayoutFlags="PositionProportional"
+                  Opacity="0.5" BackgroundColor="White" >
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                    </Grid>
+                    <Label Grid.Row="0" HorizontalOptions="Center"
+                           TextColor="OrangeRed" Text="{tr:Translate Destination}" FontSize="Large" />
+                    <Label Grid.Row="1" HorizontalTextAlignment="Center" FontSize="Medium"   x:Name="addlbl"/>
+                    <Label Grid.Row="1" HorizontalTextAlignment="Center" FontSize="Medium" IsVisible="False"  x:Name="adlbl"/>
+                </StackLayout>
+                <Button AbsoluteLayout.LayoutBounds="0,1,1,40"  AbsoluteLayout.LayoutFlags="PositionProportional,WidthProportional"
+                        x:Name="Orderbtn" IsVisible="False"
+                            BackgroundColor="Blue" TextColor="White"
+                            CornerRadius="10"
+                            Text="{tr:Translate Continue}"   />
+            </AbsoluteLayout>
+           
+            
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

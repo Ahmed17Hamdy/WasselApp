@@ -1,12 +1,67 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:i18="clr-namespace:WasselApp.CustomControls"
+             xmlns:tr="clr-namespace:WasselApp.Helpers"
+             BackgroundColor="White"
              x:Class="WasselApp.Views.OrdersPage.OrderDetailsPage">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <Grid>
+            <AbsoluteLayout x:Name="ShowPanel"  Padding="5">
+                <StackLayout  AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" >
+                    <Label Text="{tr:Translate PickUpLocation}"  VerticalOptions="Center"
+                       TextColor="Blue"  HorizontalOptions="Center"
+                       FontSize="Medium"/>
+                    <Label x:Name="AddressFrom" 
+                       TextColor="Gray"
+                       />
+                    <Button x:Name="LocationTobtn" Opacity="1" BackgroundColor="White"
+                        BorderColor="White" HorizontalOptions="CenterAndExpand"
+                        TextColor="Blue" VerticalOptions="Center" Clicked="LocationTobtn_Clicked"
+                        Text="{tr:Translate AddDropOff}" Image="addbutton.png"/>
+                    <Label  x:Name="AddressTo" TextColor="Blue"  />
+                    <Button Opacity="1" BackgroundColor="White" BorderColor="White"
+                        HorizontalOptions="CenterAndExpand"
+                        TextColor="OrangeRed" Clicked="Button_Clicked"
+                        Text="{tr:Translate Note}" Image="addbutton.png"/>
+                    <Editor   x:Name="NoteEditor" IsVisible="False" HeightRequest="200"
+                     />
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <!--<ColumnDefinition Width="*"/>-->
+                        </Grid.ColumnDefinitions>
+                        <!--<StackLayout HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="0">
+                            <Image Aspect="AspectFit" HorizontalOptions="Center" VerticalOptions="Center" BackgroundColor="White" 
+                                     Source="wallet.png"/>
+                            <Label Text="{i18:Translate Card}"/>
+                        </StackLayout>-->
+                        <StackLayout HorizontalOptions="Center" VerticalOptions="Center"  Grid.Column="0" >
+                            <Image x:Name="cartypeimg"  BackgroundColor="White" Aspect="AspectFit" 
+                                   HorizontalOptions="Center" VerticalOptions="Center"
+                                     />
+                            <Label Text="{tr:Translate CarType}"/>
+                        </StackLayout>
+                        <StackLayout HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="1" >
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="DatePickerShow"/>
+                            </StackLayout.GestureRecognizers>
+                            <Image Aspect="AspectFit" HorizontalOptions="Center" VerticalOptions="Center"
+                                   BackgroundColor="White" 
+                                     Source="calendar.png"/>
+                            <Label Text="{tr:Translate Now}"/>
+                            <i18:DatePickerCtrl x:Name="datepicker" IsVisible="False"  Placeholder="{tr:Translate Now}"/>
+                        </StackLayout>
+                    </Grid>
+                </StackLayout>
+                <Button x:Name="Confirmbtn" AbsoluteLayout.LayoutBounds="1,1,1,50" BackgroundColor="LightGreen" 
+                    AbsoluteLayout.LayoutFlags="PositionProportional,WidthProportional"
+                    Text="{tr:Translate ConfirmBooking}" CornerRadius="5" 
+                    TextColor="White"/>
+            </AbsoluteLayout>
+            <ActivityIndicator x:Name="Active"  HorizontalOptions="Center" VerticalOptions="Center"
+                             HeightRequest="100" WidthRequest="100"   Color="OrangeRed" />
+        </Grid>
     </ContentPage.Content>
 </ContentPage>
