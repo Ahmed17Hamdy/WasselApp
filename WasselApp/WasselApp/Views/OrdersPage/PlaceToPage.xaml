@@ -8,29 +8,42 @@
              xmlns:custommap="clr-namespace:TK.CustomMap;assembly=TK.CustomMap"
              xmlns:viewmodels="clr-namespace:WasselApp.ViewModels"
              mc:Ignorable="d"
+             Padding="5"
              Shell.NavBarIsVisible="True" Shell.TabBarIsVisible="False" Shell.BackgroundColor="Blue"
              Shell.TitleColor="Blue"
              Title="{tr:Translate LocationTo}"
              x:Class="WasselApp.Views.OrdersPage.PlaceToPage">
-   
     <ContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <Label Grid.Row="0" HorizontalOptions="Center" Text="{tr:Translate ChoosePlace}" />
-            <customcontrols:PlacesAutoComplete   x:Name="Fromplacecc" Grid.Row="1"                                                
+           
+                <Button x:Name="AddPinMap" Clicked="AddPinMap_Clicked" Margin="10" Grid.Row="0" ImageSource="69"
+                        TextColor="blue" BackgroundColor="White" BorderColor="Blue" CornerRadius="5"
+                        BorderWidth="1" Text="{tr:Translate ChoosePlace}" />
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <BoxView Grid.Column="0"  VerticalOptions="Center"  HeightRequest="1" BackgroundColor="blue" />
+                <Label Grid.Column="1"  VerticalOptions="Center" HorizontalOptions="Center"
+                   TextColor="Blue"    Text="{tr:Translate Or}" />
+                <BoxView Grid.Column="2"  VerticalOptions="Center" HeightRequest="1" BackgroundColor="blue" />
+            </Grid>
+            <customcontrols:PlacesAutoComplete   x:Name="Fromplacecc" Grid.Row="2"                                                
                                                ApiToUse="Google" 
                 />
-            <AbsoluteLayout  Grid.Row="2">
+            <AbsoluteLayout  Grid.Row="3">
                 <Grid AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
-                    <custommap:TKCustomMap x:Name="ToMap"  UserLocationChanged="MainMap_UserLocationChanged"
+                    <custommap:TKCustomMap x:Name="ToMap" HasZoomEnabled="False"
                                            IsRegionChangeAnimated="True"  IsShowingUser="True" MapType="Street"/>
-                    <Image x:Name="ToPlaceimg" Source="ToPlace.png" HeightRequest="50" WidthRequest="50" 
-                           HorizontalOptions="Center"
-                       VerticalOptions="Center"/>
+                    
                 </Grid>
                 <StackLayout AbsoluteLayout.LayoutBounds=".5,0,200,100"
                 AbsoluteLayout.LayoutFlags="PositionProportional"
@@ -42,12 +55,14 @@
                         </Grid.RowDefinitions>
                     </Grid>
                     <Label Grid.Row="0" HorizontalOptions="Center"
-                           TextColor="OrangeRed" Text="{tr:Translate Destination}" FontSize="Large" />
-                    <Label Grid.Row="1" HorizontalTextAlignment="Center" FontSize="Medium"   x:Name="addlbl"/>
-                    <Label Grid.Row="1" HorizontalTextAlignment="Center" FontSize="Medium" IsVisible="False"  x:Name="adlbl"/>
+                           TextColor="DarkBlue" Text="{tr:Translate Destination}" FontSize="Large" />
+                    <Label Grid.Row="1" HorizontalTextAlignment="Center" FontSize="Medium"  
+                           x:Name="addlbl"/>
                 </StackLayout>
-                <Button AbsoluteLayout.LayoutBounds="0,1,1,40"  AbsoluteLayout.LayoutFlags="PositionProportional,WidthProportional"
+                <Button AbsoluteLayout.LayoutBounds="0,1,1,40"  
+                        AbsoluteLayout.LayoutFlags="PositionProportional,WidthProportional"
                         x:Name="Orderbtn" IsVisible="False"
+                        Clicked="Orderbtn_Clicked"
                             BackgroundColor="Blue" TextColor="White"
                             CornerRadius="10"
                             Text="{tr:Translate Continue}"   />

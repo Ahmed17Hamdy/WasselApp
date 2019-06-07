@@ -337,7 +337,7 @@
     <value>Alert !</value>
   </data>
   <data name="ChoosePlace" xml:space="preserve">
-    <value>Choose Your Place From Map , Or Use Search</value>
+    <value>Choose Your Place From Pin On Map</value>
   </data>
   <data name="ConfirmBooking" xml:space="preserve">
     <value>Confirm Booking</value>

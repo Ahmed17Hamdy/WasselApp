@@ -11,7 +11,8 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Xamarin.Essentials;
 using WasselApp.Views.HomeMaster;
-
+using Plugin.Permissions;
+using Plugin.Permissions.Abstractions;
 namespace WasselApp.Views.OrdersPage
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
@@ -20,21 +21,64 @@ namespace WasselApp.Views.OrdersPage
         public OrderDetailsPage(Car carOrder)
         {
             InitializeComponent();
+            if (AddressTo.Text!= null || AddressFrom!=null)
+            {
+                Settings.Placeto = String.Empty;
+                AddressTo.Text = null;
+                AddressFrom.Text = null;
+            }
+
+            GetLocation();
         }
-        PlaceToPage toPage;
-        private string locationto;
+
+        private async void GetLocation()
+        {
+            var locationStatus = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Location);
+            if (locationStatus != PermissionStatus.Granted)
+            {
+                var request = new GeolocationRequest(GeolocationAccuracy.High);
+                var location = await Geolocation.GetLocationAsync(request);
+                var addresses = await Geocoding.GetPlacemarksAsync(location);
+                var placemark = addresses?.FirstOrDefault();
+                if (placemark != null)
+                {
+                    if (addresses.FirstOrDefault().Thoroughfare != null)
+                    {
+                        AddressFrom.Text = placemark.Thoroughfare + " , " + placemark.AdminArea + " , " + placemark.CountryName;
+                        Settings.PlaceFrom = AddressFrom.Text;
+                    }
+                    else
+                    {
+                        AddressFrom.Text = AppResources.LocationNotFound;
+
+                    }
+                }
+                else
+                {
+                    AddressFrom.Text = AppResources.LocationNotFound;
+                }
+                Settings.LastLat = Settings.Latfrom = location.Latitude.ToString();
+                Settings.LastLng = Settings.Lngfrom = location.Longitude.ToString();
+            }
+            else
+            {
+                await DisplayAlert(AppResources.PermissionsDenied, AppResources.PermissionLocationDetails, 
+                    AppResources.Ok);
+                //On iOS you may want to send your user to the settings screen.
+                CrossPermissions.Current.OpenAppSettings();
+            }
+
+        }
+
         private async void LocationTobtn_Clicked(object sender, EventArgs e)
         {
-            toPage = new PlaceToPage(locationto);
-            toPage.btn.Clicked += Btn_Clicked;
-            await Navigation.PushAsync(toPage,true);
+            await Navigation.PushAsync(new PlaceToPage(), true);
+           
         }
-        private async void Btn_Clicked(object sender, EventArgs e)
+        protected override void OnAppearing()
         {
-          //  Settings.Placeto = String.Empty;
-          //  Settings.Placeto = toPage.location;
             AddressTo.Text = Settings.Placeto;
-            await Navigation.PopAsync();
+            base.OnAppearing();
         }
         private async void OnNotificationOpened(OSNotificationOpenedResult result)
         {

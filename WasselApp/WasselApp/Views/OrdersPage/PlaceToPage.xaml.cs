@@ -13,6 +13,8 @@ using System.Collections.ObjectModel;
 using TK.CustomMap.Overlays;
 using TK.CustomMap.Api;
 using Xamarin.Essentials;
+using Plugin.Permissions;
+using Plugin.Permissions.Abstractions;
 
 namespace WasselApp.Views.OrdersPage
 {
@@ -23,72 +25,59 @@ namespace WasselApp.Views.OrdersPage
         ObservableCollection<TKCustomMapPin> Pins = new ObservableCollection<TKCustomMapPin>();
         ObservableCollection<TKCustomMapPin> pins;
         MapSpan bounds;
-        public PlaceToPage(string locationto)
+        public PlaceToPage()
         {
 
             InitializeComponent();
-            //BindingContext = new AddRouteViewModel( routes,
-            //pins,  bounds);
-            //Fromplacecc.Bounds = bounds;
             Fromplacecc._autoCompleteListView.ItemSelected += ItemSelected; 
-
             GmsPlace.Init("AIzaSyB7rB6s8fc317zCPz8HS_yqwi7HjMsAqks");
+            _ = GetUserLocationAsync();
         }
-        public Button btn { get { return Orderbtn; } }
-        public string latto;
-        public string lngto;
-        public string location;
-        private async void MainMap_UserLocationChanged(object sender, TK.CustomMap.TKGenericEventArgs<TK.CustomMap.Position> e)
+        private async Task GetUserLocationAsync()
         {
-
-            var x = ToMap.MapCenter.Latitude;
-            var y = ToMap.MapCenter.Longitude;            
-            var addresses = await Geocoding.GetPlacemarksAsync(x, y);
-            var placemark = addresses?.FirstOrDefault();
-            if (placemark != null)
+            var locationStatus = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Location);
+            if (locationStatus != PermissionStatus.Granted)
             {
-                if (addresses.FirstOrDefault().Thoroughfare != null )
+                var results = await CrossPermissions.Current.RequestPermissionsAsync(new[] { Permission.Location });
+                locationStatus = results[Permission.Location];
+            }
+            if (locationStatus == PermissionStatus.Granted)
+            {
+                var location = await Geolocation.GetLastKnownLocationAsync();
+                if (location != null)
                 {
-                    addlbl.Text = placemark.Thoroughfare + " , " + placemark.AdminArea + " , " + placemark.CountryName;
-                    Settings.Latto = latto = x.ToString();
-                    Settings.Lngto = lngto = y.ToString();
-                    Settings.Placeto = location = addlbl.Text;
-                    Orderbtn.IsVisible = true;
+                    ToMap.MoveToMapRegion(MapSpan.FromCenterAndRadius(
+                   new Position(location.Longitude, location.Longitude), Distance.FromKilometers(50)), true);
                 }
-                else
-                {
-                    addlbl.Text = AppResources.LocationNotFound;
-                    Orderbtn.IsVisible = false;
-                }
+                
             }
             else
             {
-                addlbl.Text = AppResources.LocationNotFound;
+                await DisplayAlert(AppResources.PermissionsDenied, AppResources.PermissionLocationDetails, 
+                    AppResources.Ok);
+                //On iOS you may want to send your user to the settings screen.
+                CrossPermissions.Current.OpenAppSettings();
             }
-
         }
-        
+
         async void ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             Settings.Placeto = String.Empty;
+            Settings.Latto = String.Empty;
+            Settings.Lngto = String.Empty;
             if (e.SelectedItem == null) return;
             var prediction = (IPlaceResult)e.SelectedItem;
             try
             {
                 var Address = prediction.Description;
-                Settings.Placeto = Address;
-                adlbl.IsVisible = true;
-                addlbl.IsVisible = false;
-                adlbl.Text = Settings.Placeto;
-                Settings.Placeto = addlbl.Text;
+                Settings.Placeto = addlbl.Text= Address;                        
                 Orderbtn.IsVisible = true;
                 var locations = await Geocoding.GetLocationsAsync(Address);
                 var location = locations?.FirstOrDefault();
                 if (location != null)
                 {
                     Settings.Latto = location.Latitude.ToString();
-                    Settings.Lngto = location.Longitude.ToString();
-                    ToPlaceimg.IsVisible = false;
+                    Settings.Lngto = location.Longitude.ToString();                   
                     var newPin = new TKCustomMapPin
                     {
                         Position = new Position(location.Latitude, location.Longitude),
@@ -109,6 +98,15 @@ namespace WasselApp.Views.OrdersPage
 
            // HandleItemSelected(prediction);
         }
-       
+
+        private async void AddPinMap_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new AddPinOnMapPage(), true);
+        }
+
+        private async void Orderbtn_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PopAsync();
+        }
     }
 }

@@ -334,7 +334,7 @@
     <value>تنبيه !</value>
   </data>
   <data name="ChoosePlace" xml:space="preserve">
-    <value>إختر مكانك عن طريق سحب الخريطة , أو إبحث عن المكان </value>
+    <value>إختر مكانك من على الخريطة  </value>
   </data>
   <data name="ConfirmBooking" xml:space="preserve">
     <value>تأكيد الحجز</value>

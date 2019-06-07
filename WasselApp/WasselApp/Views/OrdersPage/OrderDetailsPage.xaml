@@ -3,8 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:i18="clr-namespace:WasselApp.CustomControls"
              xmlns:tr="clr-namespace:WasselApp.Helpers"
-             BackgroundColor="White"
+             BackgroundColor="White"             
              x:Class="WasselApp.Views.OrdersPage.OrderDetailsPage">
+    
     <ContentPage.Content>
         <Grid>
             <AbsoluteLayout x:Name="ShowPanel"  Padding="5">
@@ -61,7 +62,7 @@
                     TextColor="White"/>
             </AbsoluteLayout>
             <ActivityIndicator x:Name="Active"  HorizontalOptions="Center" VerticalOptions="Center"
-                             HeightRequest="100" WidthRequest="100"   Color="OrangeRed" />
+                             HeightRequest="100" WidthRequest="100"   Color="Blue" />
         </Grid>
     </ContentPage.Content>
 </ContentPage>

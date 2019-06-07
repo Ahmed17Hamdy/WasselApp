@@ -196,7 +196,7 @@ namespace WasselApp {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Choose Your Place From Map , Or Use Search.
+        ///   Looks up a localized string similar to Choose Your Place From Pin On Map.
         /// </summary>
         internal static string ChoosePlace {
             get {
