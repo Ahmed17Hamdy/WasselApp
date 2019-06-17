@@ -3,24 +3,69 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:i18="clr-namespace:WasselApp.CustomControls"
              xmlns:tr="clr-namespace:WasselApp.Helpers"
-             BackgroundColor="White"             
+             BackgroundColor="White" 
+             Title="{tr:Translate OrderPage}"
              x:Class="WasselApp.Views.OrdersPage.OrderDetailsPage">
     
     <ContentPage.Content>
-        <Grid>
+        <Grid Padding="5">
             <AbsoluteLayout x:Name="ShowPanel"  Padding="5">
                 <StackLayout  AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" >
-                    <Label Text="{tr:Translate PickUpLocation}"  VerticalOptions="Center"
+                    <Frame Padding="3" CornerRadius="5" BorderColor="Blue" IsClippedToBounds="True">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="2*"/>
+                            </Grid.ColumnDefinitions>
+                            <StackLayout Grid.Column="0">
+                                <Label Text="{tr:Translate PickUpLocation}" HorizontalTextAlignment="Center" VerticalOptions="Center"
                        TextColor="Blue"  HorizontalOptions="Center"
                        FontSize="Medium"/>
-                    <Label x:Name="AddressFrom" 
+                                <Image HorizontalOptions="Center" Source="PlaceFrom.png"  VerticalOptions="Center"
+                                   HeightRequest="50" WidthRequest="50" />
+                            </StackLayout>
+                            <BoxView Grid.Column="1" WidthRequest="1" Color="Blue"/>
+                            <StackLayout Grid.Column="2">
+                                <Label  HorizontalOptions="Center"  VerticalOptions="Center"
+                       TextColor="Blue" Text="{tr:Translate UseCurrentPlace}"
+                       />
+                                <Label x:Name="AddressFrom"  VerticalOptions="Center" 
                        TextColor="Gray"
                        />
-                    <Button x:Name="LocationTobtn" Opacity="1" BackgroundColor="White"
-                        BorderColor="White" HorizontalOptions="CenterAndExpand"
-                        TextColor="Blue" VerticalOptions="Center" Clicked="LocationTobtn_Clicked"
-                        Text="{tr:Translate AddDropOff}" Image="addbutton.png"/>
-                    <Label  x:Name="AddressTo" TextColor="Blue"  />
+                                <Button  Margin="5" CornerRadius="5" BorderColor="Blue" BorderWidth="1"
+                                         Image="addbutton.png"
+                              Text="{tr:Translate UpdateLocation}" Clicked="UserPlacebtn_Clicked" BackgroundColor="White"
+                                    TextColor="Blue" x:Name="UserPlacebtn" />
+                            </StackLayout>
+                        </Grid>
+                    </Frame>
+                    <Frame  Padding="3" CornerRadius="5" BorderColor="Blue" IsClippedToBounds="True">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="2*"/>
+                            </Grid.ColumnDefinitions>
+                            <StackLayout Grid.Column="0">
+                                <Label Text="{tr:Translate Destination}" VerticalOptions="Center" HorizontalOptions="Center" TextColor="Blue" FontSize="Medium" />
+                                <Image HorizontalOptions="Center" Source="placetoHome.png"  VerticalOptions="Center"
+                                   HeightRequest="50" WidthRequest="50" />
+                            </StackLayout>
+                            <BoxView Grid.Column="1" WidthRequest="1" BackgroundColor="Blue"/>
+                            <StackLayout Grid.Column="2">
+                                
+                                <Label x:Name="AddressTo"  VerticalOptions="Center" 
+                       TextColor="Gray"
+                       />
+                                <Button  Margin="5" CornerRadius="5" BorderColor="Blue" BorderWidth="1"
+                                         Image="addbutton.png"
+                              Text="{tr:Translate AddDropOff}" Clicked="LocationTobtn_Clicked" BackgroundColor="White"
+                                    TextColor="Blue" x:Name="LocationTobtn" />
+                            </StackLayout>
+                        </Grid>
+                    </Frame>
+                   
                     <Button Opacity="1" BackgroundColor="White" BorderColor="White"
                         HorizontalOptions="CenterAndExpand"
                         TextColor="OrangeRed" Clicked="Button_Clicked"
@@ -31,34 +76,37 @@
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
-                            <!--<ColumnDefinition Width="*"/>-->
+                            <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <!--<StackLayout HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="0">
-                            <Image Aspect="AspectFit" HorizontalOptions="Center" VerticalOptions="Center" BackgroundColor="White" 
-                                     Source="wallet.png"/>
-                            <Label Text="{i18:Translate Card}"/>
-                        </StackLayout>-->
-                        <StackLayout HorizontalOptions="Center" VerticalOptions="Center"  Grid.Column="0" >
-                            <Image x:Name="cartypeimg"  BackgroundColor="White" Aspect="AspectFit" 
+                        <StackLayout Grid.Column="0">
+                            <Label TextColor="Blue" HorizontalOptions="Center" Text="{tr:Translate Distance}"/>
+                            <Image  WidthRequest="30" HeightRequest="30" HorizontalOptions="Center" VerticalOptions="Center" BackgroundColor="White" 
+                                     Source="distance.png"/>
+                            <Label x:Name="distancelbl" HorizontalOptions="Center"/>
+                        </StackLayout>
+                        <StackLayout   Grid.Column="1" >
+                            <Label TextColor="Blue" HorizontalOptions="Center" Text="{tr:Translate Weight}"/>
+                            <Image x:Name="cartypeimg" WidthRequest="30" HeightRequest="30" Source="weight.png" BackgroundColor="White" Aspect="AspectFit" 
                                    HorizontalOptions="Center" VerticalOptions="Center"
                                      />
-                            <Label Text="{tr:Translate CarType}"/>
+                            <Entry x:Name="Weightentry" Keyboard="Numeric" PlaceholderColor="Blue" FontSize="Small" Placeholder="{tr:Translate Addweight}"  />
                         </StackLayout>
-                        <StackLayout HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="1" >
+                        <StackLayout HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="2" >
                             <StackLayout.GestureRecognizers>
                                 <TapGestureRecognizer Tapped="DatePickerShow"/>
                             </StackLayout.GestureRecognizers>
-                            <Image Aspect="AspectFit" HorizontalOptions="Center" VerticalOptions="Center"
+                            <Label TextColor="Blue" HorizontalOptions="Center" Text="{tr:Translate Time}"/>
+                            <Image  WidthRequest="30" HeightRequest="30"   HorizontalOptions="Center" VerticalOptions="Center"
                                    BackgroundColor="White" 
                                      Source="calendar.png"/>
-                            <Label Text="{tr:Translate Now}"/>
+                            <Label HorizontalOptions="Center" TextColor="Blue" Text="{tr:Translate Now}"/>
                             <i18:DatePickerCtrl x:Name="datepicker" IsVisible="False"  Placeholder="{tr:Translate Now}"/>
                         </StackLayout>
                     </Grid>
                 </StackLayout>
                 <Button x:Name="Confirmbtn" AbsoluteLayout.LayoutBounds="1,1,1,50" BackgroundColor="LightGreen" 
                     AbsoluteLayout.LayoutFlags="PositionProportional,WidthProportional"
-                    Text="{tr:Translate ConfirmBooking}" CornerRadius="5" 
+                    Text="{tr:Translate ConfirmBooking}" CornerRadius="5" Clicked="Confirmbtn_Clicked"
                     TextColor="White"/>
             </AbsoluteLayout>
             <ActivityIndicator x:Name="Active"  HorizontalOptions="Center" VerticalOptions="Center"

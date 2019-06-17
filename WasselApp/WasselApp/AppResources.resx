@@ -366,4 +366,67 @@
   <data name="PickUpLocation" xml:space="preserve">
     <value>PickUp Location</value>
   </data>
+  <data name="UpdateLocation" xml:space="preserve">
+    <value>Update Your Location</value>
+  </data>
+  <data name="UseCurrentPlace" xml:space="preserve">
+    <value>Use Current Place</value>
+  </data>
+  <data name="ConfirmSentCode" xml:space="preserve">
+    <value>Verification Code Sent To Your Email</value>
+  </data>
+  <data name="EnterVerifyCode" xml:space="preserve">
+    <value>Please , Enter The validation Code Sent To You By Mail</value>
+  </data>
+  <data name="ForgetPasswrd" xml:space="preserve">
+    <value>Forgot Password !</value>
+  </data>
+  <data name="NoAccount" xml:space="preserve">
+    <value>Don't Have Account !</value>
+  </data>
+  <data name="Send" xml:space="preserve">
+    <value>Send</value>
+  </data>
+  <data name="SendCode" xml:space="preserve">
+    <value>Please , Send Code Using </value>
+  </data>
+  <data name="WrongEmail" xml:space="preserve">
+    <value>Sorry , This Email isn't Exist .</value>
+  </data>
+  <data name="OrderSuccess" xml:space="preserve">
+    <value>Order Confirmed</value>
+  </data>
+  <data name="EmailRequired" xml:space="preserve">
+    <value>You Must Enter Your Email .</value>
+  </data>
+  <data name="RequiredFields" xml:space="preserve">
+    <value>You Must Fill All Fields First .</value>
+  </data>
+  <data name="LocationRequierd" xml:space="preserve">
+    <value>You Should Add the Location Permission</value>
+  </data>
+  <data name="OrderPage" xml:space="preserve">
+    <value>Order Page</value>
+  </data>
+  <data name="Addweight" xml:space="preserve">
+    <value>Add in KG </value>
+  </data>
+  <data name="Distance" xml:space="preserve">
+    <value>Distance</value>
+  </data>
+  <data name="Weight" xml:space="preserve">
+    <value>Weight</value>
+  </data>
+  <data name="Time" xml:space="preserve">
+    <value>Time</value>
+  </data>
+  <data name="NoCars" xml:space="preserve">
+    <value>No Cars Available For That Model</value>
+  </data>
+  <data name="ProfilePage" xml:space="preserve">
+    <value>Profile Page</value>
+  </data>
+  <data name="DriverPanel" xml:space="preserve">
+    <value>Driver Panel</value>
+  </data>
 </root>

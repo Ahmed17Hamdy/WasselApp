@@ -4,35 +4,33 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using WasselApp.Views.HomeMaster;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace WasselApp
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class HomePage : Shell
+    public partial class HomePage : MasterDetailPage
     {
-        //Random rand = new Random();
-        //Dictionary<string, Type> routes = new Dictionary<string, Type>();
-        //public Dictionary<string,Type> Routes { get { return routes; }  }
-        //public ICommand HelpCommand => new Command<string>((url) => Device.OpenUri(new Uri (url)));
-        //public ICommand RandomPageCommand => new Command(async () => await NavigateToRandomPageAsync());
-
-        //private Task NavigateToRandomPageAsync()
-        //{
-        //    string destinationRoute = routes.ElementAt(rand.Next(0, routes.Count)).Key;
-        //    string PageName = null;
-
-        //}
-
+        
         public HomePage()
         {
             InitializeComponent();
-           
+            masterPage.listView.ItemSelected += OnItemSelected;
         }
 
-       
+        void OnItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            var item = e.SelectedItem as MasterPageItem;
+            if (item != null)
+            {
+                Detail = new NavigationPage((Page)Activator.CreateInstance(item.TargetType));
+                masterPage.listView.SelectedItem = null;
+                IsPresented = false;
+            }
+        }
 
-      
+
     }
 }

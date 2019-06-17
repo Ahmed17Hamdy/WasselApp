@@ -23,8 +23,9 @@ namespace WasselApp
             OneSignal.Current.StartInit("f5f4f650-3453-456c-8024-010ea68e738b")
                   .EndInit();
             OneSignal.Current.IdsAvailable(IdsAvailable);
-            //  MainPage = new NavigationPage( new Freightcars());
-            MainPage = new NavigationPage( new OrderDetailsPage( car));
+           
+              MainPage = new NavigationPage( new IntroPage());
+         //   MainPage = new NavigationPage( new OrderDetailsPage( car));
         }
         private void IdsAvailable(string userID, string pushToken)
         {

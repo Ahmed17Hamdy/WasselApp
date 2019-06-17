@@ -63,7 +63,7 @@
                                             <Frame 
                                                    Padding="5" BorderColor="Blue" CornerRadius="10">
                                                 <StackLayout   Orientation="Horizontal">
-                                                    <Image Source="{Binding icon}"  HeightRequest="20" WidthRequest="20"/>
+                                                    <Image Source="{Binding icon,StringFormat='http://waselksa.alsalil.net/users/images/{0}'}"  HeightRequest="20" WidthRequest="20" />
                                                     <Label Text="{Binding name}" HorizontalTextAlignment="Center" />
                                                 </StackLayout>
                                             </Frame>
@@ -88,7 +88,7 @@
                                         <ViewCell>
                                             <Frame Padding="5" BorderColor="Blue" CornerRadius="10">
                                                 <StackLayout  Orientation="Horizontal">
-                                                    <Image Source="{Binding icon}"  HeightRequest="20" WidthRequest="20"/>
+                                                    <Image Source="{Binding icon,StringFormat='http://waselksa.alsalil.net/users/images/{0}'}"  HeightRequest="20" WidthRequest="20" />
                                                     <Label Text="{Binding name}" HorizontalTextAlignment="Center" />
                                                 </StackLayout>
                                             </Frame>
@@ -112,7 +112,7 @@
                                         <ViewCell>
                                             <Frame Padding="5" BorderColor="Blue" CornerRadius="10">
                                                 <StackLayout  Orientation="Horizontal">
-                                                    <Image Source="{Binding icon}"  HeightRequest="20" WidthRequest="20"/>
+                                                    <Image Source="{Binding icon,StringFormat='http://waselksa.alsalil.net/users/images/{0}'}"  HeightRequest="20" WidthRequest="20" />
                                                     <Label Text="{Binding name}" HorizontalTextAlignment="Center" />
                                                 </StackLayout>
                                             </Frame>
@@ -137,7 +137,7 @@
                                         <ViewCell>
                                             <Frame Padding="5" BorderColor="Blue" CornerRadius="10">
                                                 <StackLayout  Orientation="Horizontal">
-                                                    <Image Source="{Binding icon}"  HeightRequest="20" WidthRequest="20"/>
+                                                    <Image Source="{Binding icon,StringFormat='http://waselksa.alsalil.net/users/images/{0}'}"  HeightRequest="20" WidthRequest="20" />
                                                     <Label Text="{Binding name}" HorizontalTextAlignment="Center" />
                                                 </StackLayout>
                                             </Frame>

@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage
+    xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:tr="clr-namespace:WasselApp.Helpers"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewmodels="clr-namespace:WasselApp.ViewModels"
+    mc:Ignorable="d"
+    HeightRequest="300" WidthRequest="250"
+             x:Class="WasselApp.Views.Popups.ResidencesListView">
+    <pages:PopupPage.BindingContext>
+        <viewmodels:UserViewModel/>
+    </pages:PopupPage.BindingContext>
+    <pages:PopupPage.Content>
+        <Grid HeightRequest="250" HorizontalOptions="Center" VerticalOptions="Center">
+            <Frame BorderColor="Blue" CornerRadius="10" Margin="10">
+                <StackLayout>
+                    <Label Text="{tr:Translate ChooseResidence}" />
+                    <ListView  x:Name="Residencelst" HasUnevenRows="True" 
+                              ItemsSource="{Binding residents}" 
+                       ItemSelected="Residencelst_ItemSelected"              >
+
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <Frame Padding="5" BorderColor="Blue" CornerRadius="10">
+                                        <StackLayout  Orientation="Horizontal">
+                                            <Label Text="{Binding name}" HorizontalTextAlignment="Center" />
+                                        </StackLayout>
+                                    </Frame>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackLayout>
+            </Frame>
+        </Grid>
+    </pages:PopupPage.Content>
+</pages:PopupPage>

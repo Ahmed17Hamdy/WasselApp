@@ -15,6 +15,34 @@ namespace WasselApp.Helpers
                 return CrossSettings.Current;
             }
         }
+        private const string LastResidentnameKey = "last_Resident_key";
+        private static readonly string Residentnamekey = string.Empty;
+        public static string ResidentName
+        {
+            get
+            =>
+                 AppSettings.GetValueOrDefault(LastResidentnameKey, Residentnamekey);
+
+
+            set
+            =>
+                AppSettings.AddOrUpdateValue(LastResidentnameKey, value);
+
+        }
+        private const string Lastresident = "last_resident_key";
+        private static readonly string Residentkey = String.Empty;
+        public static string Residentid
+        {
+            get
+            =>
+                 AppSettings.GetValueOrDefault(Lastresident, Residentkey);
+
+
+            set
+            =>
+                AppSettings.AddOrUpdateValue(Lastresident, value);
+
+        }
         private const string LastType = "last_Type_key";
         private static readonly int Typekey = 0;
         public static int Type
@@ -27,6 +55,34 @@ namespace WasselApp.Helpers
             set
             =>
                 AppSettings.AddOrUpdateValue(LastType, value);
+
+        }
+        private const string LastDistance = "last_Type_key";
+        private static readonly Double Distancekey = 0;
+        public static Double Distance
+        {
+            get
+            =>
+                 AppSettings.GetValueOrDefault(LastDistance, Distancekey);
+
+
+            set
+            =>
+                AppSettings.AddOrUpdateValue(LastDistance, value);
+
+        }
+        private const string Lastcarorderid = "last_carorder_id";
+        private static readonly int carorderidey = 0;
+        public static int CarOrderid
+        {
+            get
+            =>
+                 AppSettings.GetValueOrDefault(Lastcarorderid, carorderidey);
+
+
+            set
+            =>
+                AppSettings.AddOrUpdateValue(Lastcarorderid, value);
 
         }
         private const string LascarmodelidKey = "last_carmodelid_key";

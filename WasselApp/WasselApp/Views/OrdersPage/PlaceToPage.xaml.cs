@@ -62,15 +62,14 @@ namespace WasselApp.Views.OrdersPage
 
         async void ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-            Settings.Placeto = String.Empty;
-            Settings.Latto = String.Empty;
-            Settings.Lngto = String.Empty;
+           
             if (e.SelectedItem == null) return;
             var prediction = (IPlaceResult)e.SelectedItem;
             try
             {
                 var Address = prediction.Description;
-                Settings.Placeto = addlbl.Text= Address;                        
+                 addlbl.Text= Address;
+                Settings.Placeto = addlbl.Text;
                 Orderbtn.IsVisible = true;
                 var locations = await Geocoding.GetLocationsAsync(Address);
                 var location = locations?.FirstOrDefault();
@@ -81,7 +80,8 @@ namespace WasselApp.Views.OrdersPage
                     var newPin = new TKCustomMapPin
                     {
                         Position = new Position(location.Latitude, location.Longitude),
-                        Title = "Cluster Test"
+                        Title = "Cluster Test",
+                        Image = "placeholder.png"
                     };
                     Pins.Clear();
                     Pins.Add(newPin);
@@ -106,7 +106,7 @@ namespace WasselApp.Views.OrdersPage
 
         private async void Orderbtn_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PopAsync();
+            await Navigation.PopAsync();            
         }
     }
 }

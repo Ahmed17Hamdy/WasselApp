@@ -4,6 +4,8 @@
              xmlns:viewmodel="clr-namespace:WasselApp.ViewModels"
              xmlns:i18="clr-namespace:WasselApp.Helpers"
              BackgroundColor="White"
+             Padding="5"
+             Title="{i18:Translate DriverPanel}"
              xmlns:customcontrols="clr-namespace:WasselApp.CustomControls"
              xmlns:Validators="clr-namespace:WasselApp.Models.BModel"
              xmlns:Behaviors="clr-namespace:WasselApp.Behaviors"
@@ -14,12 +16,13 @@
     <ContentPage.Content>
         <Grid Margin="10">
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="150"/>
                 <RowDefinition Height="60"/>
                 <RowDefinition Height="Auto"/>
+                <RowDefinition Height="25"/>
             </Grid.RowDefinitions>
-            <Image Grid.Row="0" VerticalOptions="Center" HorizontalOptions="Center" 
-                   HeightRequest="100" WidthRequest="250" Aspect="AspectFit" Source="WasselLogo.PNG" />
+            <Image Grid.Row="0" 
+                  Aspect="Fill" Source="WasselLogo.PNG" />
             <StackLayout Padding="5" Orientation="Horizontal" Grid.Row="1" HorizontalOptions="CenterAndExpand"
                          VerticalOptions="CenterAndExpand">
                 <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
@@ -41,14 +44,14 @@
                 </StackLayout>
             </StackLayout>
             <ScrollView x:Name="RegisterPanel" Grid.Row="2">
-                <StackLayout   Grid.Row="2" IsVisible="True" >
+                <StackLayout   IsVisible="True" >
                     <StackLayout.Behaviors>
                         <Validators:ValidationGroupBehavior x:Name="Registerform"/>
                     </StackLayout.Behaviors>
                     <customcontrols:ImageEntry  x:Name="NameEntry"   Image="username" 
                                                 HorizontalTextAlignment="Center" Placeholder="{i18:Translate Name}" />
                     <customcontrols:ImageEntry x:Name="EmailEntry"  Image="email" HorizontalTextAlignment="Center"
-                                               Placeholder="{i18:Translate Email}" >
+                                     Keyboard="Email"          Placeholder="{i18:Translate Email}" >
                         <customcontrols:ImageEntry.Behaviors>
                             <Behaviors:ValidationBehavior Group="{x:Reference Registerform}" PropertyName="Text">
                                 <Behaviors:ValidationBehavior.Validators>
@@ -70,18 +73,18 @@
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
                         <customcontrols:ImageEntry Grid.Row="0" Grid.Column="0" 
-                                                   x:Name="CountryEntry"  Image="arrow"
+                                                   x:Name="CountryEntry"  Image="country"
                                                HorizontalTextAlignment="Center"
                                                    Placeholder="{i18:Translate Country}"/>
                         <customcontrols:ImageEntry Grid.Row="0" Grid.Column="1"
-                                                   x:Name="CityEntry"  Image="arrow"
+                                                   x:Name="CityEntry"  Image="city"
                                                    HorizontalTextAlignment="Center"
                                                Placeholder="{i18:Translate City}"/>
                         <customcontrols:ImageEntry x:Name="PhoneEntry" Grid.Row="1" Grid.Column="0"
-                                                   Image="arrow" HorizontalTextAlignment="Center"
+                                    Keyboard="Telephone"  MaxLength="11"      Image="phone" HorizontalTextAlignment="Center"
                                                Placeholder="{i18:Translate PhoneNumber}"/>
                         <customcontrols:ImageEntry x:Name="AgeEntry" Grid.Row="1" Grid.Column="1"  
-                                                   Image="arrow" HorizontalTextAlignment="Center" 
+                                      Keyboard="Numeric"  MaxLength="2"     Image="age" HorizontalTextAlignment="Center" 
                                                Placeholder="{i18:Translate Age}"/>
 
                     </Grid>
@@ -123,26 +126,22 @@
                         <Button Grid.Column="0" x:Name="NatoionalEntry"  Image="arrow" BorderColor="Blue"
                                    BorderWidth="1"  BackgroundColor="White"     TextColor="Blue"  HeightRequest="60" CornerRadius="30"
                                  Clicked="NatoionalEntry_Clicked"              Text="{i18:Translate Residence}"/>
-                        <Picker x:Name="nationalpicker" IsVisible="False" ItemsSource="{Binding ResidentsList}"
-                                ItemDisplayBinding="{Binding name}" SelectedIndexChanged="Nationalpicker_SelectedIndexChanged" SelectedItem="{Binding ResidentsList,Mode=TwoWay}"/>
+                        <Picker Grid.Column="0" x:Name="nationalpicker" IsVisible="False" ItemsSource="{Binding ResidentsList}"
+                                ItemDisplayBinding="{Binding name}" SelectedIndexChanged="Nationalpicker_SelectedIndexChanged"
+                                SelectedItem="{Binding ResidentsList,Mode=TwoWay}"/>
 
                     </Grid>
-                    <customcontrols:ImageEntry x:Name="nationalityEntry"  Image="arrow" 
+                    <customcontrols:ImageEntry x:Name="nationalityEntry"  Image="flag" 
                                                HorizontalTextAlignment="Center" 
                                                Placeholder="{i18:Translate Nationality}"/>
                     <customcontrols:ImageEntry x:Name="IdNumberEntry" 
-                                               Image="arrow" HorizontalTextAlignment="Center"
+                                               Image="idcard" HorizontalTextAlignment="Center"
                                                Placeholder="{ i18:Translate IdNumber}"/>
                     <customcontrols:ImageEntry x:Name="CarNumberEntry"   Image="driverlicense" 
                                                HorizontalTextAlignment="Center" Placeholder="{i18:Translate Carid}"/>
                     <Button x:Name="Cartypebtn" BackgroundColor="White" Text="{i18:Translate CarType}" 
-                            CornerRadius="30"
+                            CornerRadius="30" TextColor="Blue" ImageSource="truck.png"
                        Clicked="Cartypebtn_Clicked"     HeightRequest="50" BorderWidth="1" BorderColor="Blue"  />
-                    <!--<Picker x:Name="CarTypePicker" ItemsSource="{Binding CarsType}"    
-                            SelectedIndexChanged="CarTypeList_SelectedIndexChanged" Title="{i18:Translate CarType}"  />
-                    <Picker x:Name="CarModelPicker"  
-                            Title="{i18:Translate CarModel}" SelectedIndexChanged="CarmodelList_SelectedIndexChanged"/>-->
-
                     <Frame BorderColor="Blue" x:Name="LiecenceImg"  CornerRadius="30">
                         <Grid>
                             <Label VerticalOptions="Start" HorizontalOptions="Center" TextColor="Blue"
@@ -159,7 +158,7 @@
                             </Grid.GestureRecognizers>
                         </Grid>
                     </Frame>
-                    <customcontrols:ImageEntry x:Name="loadEntry"   Image="arrow" HorizontalTextAlignment="Center"
+                    <customcontrols:ImageEntry x:Name="loadEntry"   Image="load" HorizontalTextAlignment="Center"
                                                Placeholder="{i18:Translate Load}"/>
                     <customcontrols:ImageEntry x:Name="passwordEntry"  Image="lock"  IsPassword="True" 
                                                HorizontalTextAlignment="Center" Placeholder="{i18:Translate PassWord}"/>
@@ -172,6 +171,15 @@
                 </StackLayout>
 
             </ScrollView>
+            <StackLayout x:Name="loginlbl" Grid.Row="3" Orientation="Horizontal">
+                <Label  TextColor="Blue" Text="{i18:Translate HaveAccount }"/>
+                <Label TextColor="DarkBlue" Text="{i18:Translate LogIn}">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="login_Tapped"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                
+            </StackLayout>
             <ScrollView x:Name="LoginPanel" IsVisible="False"  Grid.Row="2">
                 <StackLayout  Grid.Row="2" >
                     <StackLayout.Behaviors>
@@ -206,13 +214,21 @@
                             <Behaviors:MaxLengthValidatorBehavior  MaxLength="15"/>
                         </customcontrols:ImageEntry.Behaviors>
                     </customcontrols:ImageEntry>
-                    <Button  IsEnabled="{Binding Source={x:Reference Loginform}, Path=IsValid}"  Command="{Binding LoginCommand}" BackgroundColor="Blue" BorderColor="Blue"
+                    <Button  IsEnabled="{Binding Source={x:Reference Loginform}, Path=IsValid}"  Command="{Binding DriverLoginCommand}" BackgroundColor="Blue" BorderColor="Blue"
                              Text="{i18:Translate LogIn}"
                              TextColor="White"
                         BorderRadius="20"/>
                 </StackLayout>
             </ScrollView>
-            <ActivityIndicator x:Name="Active" Grid.Row="0" Grid.RowSpan="3" 
+            <StackLayout IsVisible="False" x:Name="Registerlbl" Grid.Row="3" Orientation="Horizontal">
+                <Label TextColor="DarkBlue" Text="{i18:Translate ForgetPasswrd}">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Recovery_Tapped"/>
+                    </Label.GestureRecognizers>
+                </Label>
+
+            </StackLayout>
+            <ActivityIndicator x:Name="Active" Grid.Row="0" Grid.RowSpan="4" 
                                VerticalOptions="Center" HorizontalOptions="Center"
                                IsRunning="{Binding IsRunning}" Color="Blue" WidthRequest="100" HeightRequest="100" />
 

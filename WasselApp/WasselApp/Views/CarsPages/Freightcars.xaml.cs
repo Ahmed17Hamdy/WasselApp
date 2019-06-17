@@ -53,32 +53,11 @@ namespace WasselApp.Views.CarsPages
             var request = new GeolocationRequest(GeolocationAccuracy.High);
             var location = await Geolocation.GetLocationAsync(request);
             MainMap.MapRegion=  MapSpan.FromCenterAndRadius(
-                    new Position(location.Longitude,location.Longitude), Distance.FromMiles(1));
+                    new Position(location.Longitude,location.Longitude), Distance.FromKilometers(50));
         }
 
-        private async void All_Tapped(object sender, EventArgs e)
-        {
-           
-            Label Alllbl = (Label)sender;
-               string citem = Alllbl.Text;
-            CarsViewModel cars = new CarsViewModel();
-            await cars.ShippingCarGetter();
-            Cars = cars.ShippingCars.ToList();
-            MainMap.Pins = Cars ;
-
-        }
-
-        private async void namelblTabbed(object sender, EventArgs e)
-        {
-            MainMap.Pins = null;
-            Label Alllbl = (Label)sender;
-            string citem = Alllbl.Text;
-            CarsViewModel cars = new CarsViewModel();
-            await cars.ShippingCarGetter();
-            MainMap.Pins = cars.ShippingCars.Where(o => o.cartypename == citem).ToList();
-        }
-
-        private async void StackTapped(object sender, EventArgs e)
+      
+   private async void StackTapped(object sender, EventArgs e)
         {
             Activ.IsRunning = true;
             if (ModelFrame.IsVisible != true)
@@ -98,7 +77,15 @@ namespace WasselApp.Views.CarsPages
                 CarsViewModel cars = new CarsViewModel();
                 await cars.ShippingCarGetter();
                 Cars = cars.ShippingCars.Where(o => o.cartypename == cartypenamestring).ToList();
-                MainMap.Pins = Cars;
+                if (Cars.Count() == 0)
+                {
+                    Pinslbl.IsVisible = false;
+                    MainMap.Pins = Cars;
+                }
+                else
+                {
+                    Pinslbl.IsVisible = true;
+                }
                 CarsType= cars.CarTypes.Where(o => o.name == cartypenamestring).ToList();
                 foreach (var item in CarsType)
                 {
@@ -122,10 +109,18 @@ namespace WasselApp.Views.CarsPages
         }
         private void Modellist_ItemTapped(object sender, ItemTappedEventArgs e)
         {
-          
+            MainMap.Pins = null;
             var ModelSelected = Modellist.SelectedItem as Carmodal;
             var SelectedCars = Cars.Where(o => o.Member.carmodal == ModelSelected.id.ToString()).ToList();
-            
+            if (SelectedCars.Count() == 0)
+            {
+                Pinslbl.IsVisible = false;
+                MainMap.Pins = SelectedCars;
+            }
+           else
+            {
+                Pinslbl.IsVisible = true;
+            }
             Activ.IsRunning = false;
 
             ModelFrame.IsVisible = false;
@@ -133,27 +128,26 @@ namespace WasselApp.Views.CarsPages
 
         private async void AllStack_Tapped(object sender, EventArgs e)
         {
+            MainMap.Pins = null;
             Activ.IsRunning = true;
             if (ModelFrame.IsVisible == true)
             {
                 ModelFrame.IsVisible = false;
                 ModelActive.IsRunning = false;
             }
-            StackLayout f = (StackLayout)sender;
-            string cartypenamestring = string.Empty;
-            var fcontent = f.Children;
-            var reqLabel = fcontent[0];
-            var theLabel = reqLabel.GetType();
-            if (theLabel == typeof(Label))
-            {
-                Label emailLabel = (Label)reqLabel;
-                cartypenamestring = emailLabel.Text;
                 CarsViewModel cars = new CarsViewModel();
                await cars.ShippingCarGetter();
                 Cars = cars.ShippingCars.ToList();
-                MainMap.Pins = Cars;
-                Activ.IsRunning = false;
-            }
+                if (Cars.Count() == 0)
+                {
+                    Pinslbl.IsVisible = false;
+                    MainMap.Pins = Cars;
+                }
+                else
+                {
+                    Pinslbl.IsVisible = true;
+                }
+                Activ.IsRunning = false;           
         }
 
         private async void MainMap_PinSelected(object sender, TKGenericEventArgs<TKCustomMapPin> e)

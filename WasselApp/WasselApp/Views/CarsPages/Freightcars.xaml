@@ -3,8 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewmodels="clr-namespace:WasselApp.ViewModels"
              xmlns:tr="clr-namespace:WasselApp.Helpers"
-             Shell.NavBarIsVisible="True" Shell.TabBarIsVisible="False"
-             Title="{tr:Translate FrieghtCars}"
+             Shell.NavBarIsVisible="True" Shell.TabBarIsVisible="True"
+             Title="{tr:Translate FrieghtCars}" 
              xmlns:tk="clr-namespace:TK.CustomMap;assembly=TK.CustomMap"
              x:Class="WasselApp.Views.CarsPages.Freightcars">
     <ContentPage.BindingContext>
@@ -16,17 +16,13 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            
-            <ScrollView Orientation="Horizontal">
-                <StackLayout Grid.Row="0"  Orientation="Horizontal">
+            <ScrollView Grid.Row="0" Orientation="Horizontal">
+                <StackLayout   Orientation="Horizontal">
                     <StackLayout VerticalOptions="StartAndExpand" HorizontalOptions="CenterAndExpand" >
                         <StackLayout.GestureRecognizers>
                             <TapGestureRecognizer Tapped="AllStack_Tapped"/>
                         </StackLayout.GestureRecognizers>
-                        <Label HorizontalTextAlignment="Center"  VerticalTextAlignment="Center"  Text="الكل" >
-                            
-                        </Label>
-                        
+                        <Label HorizontalTextAlignment="Center"  VerticalTextAlignment="Center"  Text="الكل" />
                     </StackLayout>
                 <ScrollView Orientation="Horizontal" HorizontalScrollBarVisibility="Always">
                 <StackLayout Orientation="Horizontal" VerticalOptions="Start" HorizontalOptions="Center"
@@ -36,11 +32,7 @@
                                     <StackLayout x:Name="viewcellstk" HorizontalOptions="Center" VerticalOptions="Center" >
                                         <Label x:Name="namelbl"  HorizontalTextAlignment="Center" VerticalOptions="Center"
                                                HorizontalOptions="Center"
-                                       Text="{Binding name}">
-                                            <Label.GestureRecognizers>
-                                                <TapGestureRecognizer Tapped="namelblTabbed"/>
-                                            </Label.GestureRecognizers>
-                                        </Label>
+                                       Text="{Binding name}"/>
                                         <Image  Source="{Binding icon}" HeightRequest="30" WidthRequest="60"/>
                                         <StackLayout.GestureRecognizers>
                                             <TapGestureRecognizer Tapped="StackTapped"/>
@@ -54,15 +46,17 @@
             </ScrollView>
             <AbsoluteLayout Padding="5" Grid.Row="1">
                 <tk:TKCustomMap  IsShowingUser="True"    AbsoluteLayout.LayoutBounds="0,0,1,1" 
-                                 AbsoluteLayout.LayoutFlags="All" 
+                                 AbsoluteLayout.LayoutFlags="All"  
                                  x:Name="MainMap" MapType="Street" Pins="{Binding ShippingCars}" 
                                  IsClusteringEnabled="False"
                                 PinSelected="MainMap_PinSelected"
                                    HasScrollEnabled="True" HasZoomEnabled="True"   />
-                <Label x:Name="Addresslbl" AbsoluteLayout.LayoutBounds="0,0,1,50" 
-                       AbsoluteLayout.LayoutFlags="PositionProportional, WidthProportional"
-                       HorizontalTextAlignment="Center"
-                       Text="موقع مكانك هنا" />
+                <Frame x:Name="Pinslbl" IsVisible="False"  BackgroundColor="White"  CornerRadius="10" 
+                       AbsoluteLayout.LayoutBounds="0.5,0.5,300,150" AbsoluteLayout.LayoutFlags="PositionProportional">
+                    <Label  HorizontalOptions="Center" HorizontalTextAlignment="Center"
+                       Text="{tr:Translate NoCars}" TextColor="Red" FontSize="Large" />
+                </Frame>
+                
                 <Frame Padding="5" x:Name="ModelFrame" IsVisible="False" BackgroundColor="White" CornerRadius="20"
                        AbsoluteLayout.LayoutBounds="0.5,0.5,300,300" AbsoluteLayout.LayoutFlags="PositionProportional">
                     <AbsoluteLayout>

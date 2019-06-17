@@ -14,15 +14,41 @@ namespace WasselApp.Views.Intro
 		public IntroPage ()
 		{
 			InitializeComponent ();
-		}
+            if (Settings.LastUserGravity == "Arabic")
+            {
+                Arabiclbl.TextColor = Color.Blue;
+                Englishlbl.TextColor = Color.Black;
+                arabicimg.IsVisible = true;
+                Englishimg.IsVisible = false;
+                CrossMultilingual.Current.CurrentCultureInfo =
+                CrossMultilingual.Current.NeutralCultureInfoList.ToList().First(element => element.EnglishName.Contains(Settings.LastUserGravity));
+
+                FlowDirection = (Settings.LastUserGravity == "Arabic") ? FlowDirection.RightToLeft
+                    : FlowDirection.LeftToRight;
+                AppResources.Culture = CrossMultilingual.Current.CurrentCultureInfo;
+            }
+            else
+            {
+                Arabiclbl.TextColor = Color.Black;
+                Englishlbl.TextColor = Color.Blue;
+                arabicimg.IsVisible = false;
+                Englishimg.IsVisible = true;
+                CrossMultilingual.Current.CurrentCultureInfo =
+                CrossMultilingual.Current.NeutralCultureInfoList.ToList().First(element => element.EnglishName.Contains(Settings.LastUserGravity));
+
+                FlowDirection = (Settings.LastUserGravity == "Arabic") ? FlowDirection.RightToLeft
+                    : FlowDirection.LeftToRight;
+                AppResources.Culture = CrossMultilingual.Current.CurrentCultureInfo;
+            }
+        }
         private async void UserButton_Cilcked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new UserPanel());
+            await Navigation.PushAsync(new NavigationPage( new UserPanel()),true);
         }
 
         private async void DriverButton_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new DriverPanel());
+            await Navigation.PushAsync(new NavigationPage(new DriverPanel()),true);
         }
         
       

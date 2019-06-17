@@ -54,8 +54,7 @@ namespace WasselApp.Views.Popups
             Settings.cartypename = CartypeSelected.name;
             Settings.cartype = CartypeSelected.id;
             Carmodelsstk.IsVisible = true;
-            Carmodelsbrickstk.IsVisible = false;
-            Carmodelsstk.IsVisible = true;
+            Carmodelsbrickstk.IsVisible = false;           
             Modellist.ItemsSource = CartypeSelected.carmodals;
 
         }

@@ -91,25 +91,13 @@ namespace WasselApp.ViewModels
         public async Task CartypeGetter()
         {
             CarServices serv = new CarServices();
-            var ResBack = await serv.GetCarstype();
-            foreach (var modelitem in ResBack)
-            {
-
-                var baramIcon = modelitem.icon;
-                modelitem.icon = "http://waselksa.alsalil.net/users/images/" + baramIcon;
-            }
+            var ResBack = await serv.GetCarstype();          
             CarTypes = ResBack;
         }
         public async Task CartypebrickGetter()
         {
             CarServices serv = new CarServices();
-            var ResBack = await serv.GetCarsbricktype();
-            foreach (var modelitem in ResBack)
-            {
-
-                var baramIcon = modelitem.icon;
-                modelitem.icon = "http://waselksa.alsalil.net/users/images/" + baramIcon;
-            }
+            var ResBack = await serv.GetCarsbricktype();            
             CarTypesBrick = ResBack;
         }
 
@@ -149,9 +137,9 @@ namespace WasselApp.ViewModels
                 {
                     if (item.Order.weight != null)
                     {
-                        if (item.Order.weight >= 0.9 * int.Parse(item.Member.load) && item.cartypename == "دينا")
+                        if (Convert.ToDouble(item.Order.weight) > (0.9 * Convert.ToDouble(item.Member.load)) && item.cartypename == "دينا")
                         {
-                            item.Image = "dinared.png";
+                            item.carmodalname = "dinared";
                         }
                         else if (item.Order.weight >= 0.25 * int.Parse(item.Member.load)
                              && item.Order.weight < 0.9 * int.Parse(item.Member.load) && item.cartypename == "دينا")

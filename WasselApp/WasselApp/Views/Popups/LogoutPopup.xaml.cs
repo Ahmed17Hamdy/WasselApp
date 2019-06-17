@@ -13,7 +13,7 @@ using Xamarin.Forms.Xaml;
 namespace WasselApp.Views.Popups
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class LogoutPopup : PopupPage
+	public partial class LogoutPopup : ContentPage
 	{
         public LogoutPopup()
         {
@@ -28,12 +28,13 @@ namespace WasselApp.Views.Popups
             Settings.LastUsedDriverID = 0;
             Settings.LastUseeRole = 0;
             App.Current.MainPage = new IntroPage();
-            PopupNavigation.Instance.PopAsync();
+        //    PopupNavigation.Instance.PopAsync();
         }
 
         private void Button_Clicked_1(object sender, EventArgs e)
         {
-            PopupNavigation.Instance.PopAsync();
+            App.Current.MainPage = new HomePage();
+            //   PopupNavigation.Instance.PopAsync();
         }
     }
 }

@@ -1,44 +1,61 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<Shell xmlns="http://xamarin.com/schemas/2014/forms"
+<MasterDetailPage  xmlns="http://xamarin.com/schemas/2014/forms"
        BackgroundColor='Blue'
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="WasselApp.HomePage"
        xmlns:locals="clr-namespace:WasselApp.Views.CarsPages"
              xmlns:pages="clr-namespace:WasselApp"
-      
+      Shell.TabBarUnselectedColor="Gray"
+       Shell.BackgroundColor="Blue"
+       Shell.ForegroundColor="White"
+       Shell.TitleColor="White"
+       
+      xmlns:popup="clr-namespace:WasselApp.Views.Popups"
+     
                   xmlns:carspages="clr-namespace:WasselApp.Views.CarsPages"
-       xmlns:locals1="clr-namespace:WasselApp.Views.HomeMaster">
+       xmlns:locals1="clr-namespace:WasselApp.Views.HomeMaster"
+       xmlns:tr="clr-namespace:WasselApp.Helpers">
+    <MasterDetailPage.Master>
+        <locals1:MasterPage x:Name="masterPage" />
+    </MasterDetailPage.Master>
+    <MasterDetailPage.Detail>
+        <NavigationPage>
+            <x:Arguments>
+                <locals1:MainPage Title="{tr:Translate MainPage}" />
+            </x:Arguments>
+        </NavigationPage>
+    </MasterDetailPage.Detail>
+    <!--<Shell.FlyoutHeader>
+        <Grid BackgroundColor="Black">
+            <Image Aspect="Fill"
+               Source="WasselLogo.PNG"
+               Opacity="0.6" />
+        </Grid>
+    </Shell.FlyoutHeader>
     <FlyoutItem Title="Cars" IsTabStop="False"
                 FlyoutDisplayOptions="AsMultipleItems">
-        <Tab Title="Domestic"
-             Icon="paw.png">
-            <ShellContent   Title="Main Page"
-                      Icon="Main.png">
-                <locals1:MainPage />
-            </ShellContent>
-            <ShellContent Title="Cats"
-                          Icon="cat.png">
-                <locals:Freightcars />
-            </ShellContent>
-            <ShellContent Title="Dogs"
-                          Icon="dog.png">
-                <locals:PrivateCars />
-            </ShellContent>
-        </Tab>
+      
 
-        
-        <ShellContent   Title="About Application"
-                      Icon="abouus.PNG">
+        <ShellContent   Title="{tr:Translate MainPage}"
+                      Icon="Main.png">
+            <locals1:MainPage />
+        </ShellContent>
+        <ShellContent   "
+                      Icon="aboutus32.PNG">
             <locals1:AboutUsPage />
         </ShellContent>
-        <ShellContent Title="Our Goals"
-                      Icon="goals.PNG">
+        <ShellContent 
+                      Icon="goals32.PNG">
             <locals1:OurGoals />
         </ShellContent>
-        <ShellContent Title="Call Us"
-                      Icon="callus.PNG">
+        <ShellContent "
+                      Icon="callus32.PNG">
             <locals1:CallUsPage />
         </ShellContent>
+        <ShellContent Title="{tr:Translate LogOUt}"
+                      Icon="logout.png">
+            <popup:LogoutPopup/>
+        </ShellContent>
 
-    </FlyoutItem>
-</Shell>
+    </FlyoutItem>-->
+</MasterDetailPage>

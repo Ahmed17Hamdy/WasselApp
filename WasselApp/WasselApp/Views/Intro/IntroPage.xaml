@@ -14,7 +14,7 @@
                 <RowDefinition Height="60"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <Image Grid.Row="0" Aspect="AspectFill" Source="WasselLogo.PNG"  />
+            <Image Grid.Row="0" Aspect="Fill" Source="WasselLogo.PNG"  />
             <Frame Padding="5" BorderColor="Blue" BackgroundColor="LightGoldenrodYellow" Grid.Row="1" 
                            VerticalOptions="CenterAndExpand"
                                  HorizontalOptions="CenterAndExpand">

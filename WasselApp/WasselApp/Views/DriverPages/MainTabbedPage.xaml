@@ -2,9 +2,10 @@
 <TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
             xmlns:local="clr-namespace:WasselApp.Views.CarsPages"
+            xmlns:Main="clr-namespace:WasselApp.Views.DriverPages"
+            xmlns:tr="clr-namespace:WasselApp.Helpers"
              x:Class="WasselApp.Views.CarsPages.MainTabbedPage">
   <!--Pages can be added as references or inline-->
-  <local:Freightcars Title="Freight Cars" />
-    <local:PrivateCars Title="Private Cars" />
-    <local:ProfilePage Title="Profile Page" />
+    <Main:DriverMainPage IconImageSource="Main.png" Title="{tr:Translate MainPage}"/>
+    <local:ProfilePage Title="{tr:Translate ProfilePage}" />
 </TabbedPage>

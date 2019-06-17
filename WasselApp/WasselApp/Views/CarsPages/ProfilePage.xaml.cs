@@ -125,7 +125,7 @@ namespace WasselApp.Views.CarsPages
 
         private async void LogOutbtn_Clicked(object sender, EventArgs e)
         {
-            await PopupNavigation.Instance.PushAsync(new LogoutPopup());
+        //    await PopupNavigation.Instance.PushAsync(new LogoutPopup());
         }
 
         private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)

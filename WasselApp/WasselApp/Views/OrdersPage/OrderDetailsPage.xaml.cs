@@ -13,28 +13,40 @@ using Xamarin.Essentials;
 using WasselApp.Views.HomeMaster;
 using Plugin.Permissions;
 using Plugin.Permissions.Abstractions;
+using Newtonsoft.Json;
+
 namespace WasselApp.Views.OrdersPage
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class OrderDetailsPage : ContentPage
     {
+        private bool visibli =true;
+
         public OrderDetailsPage(Car carOrder)
         {
+           
             InitializeComponent();
-            if (AddressTo.Text!= null || AddressFrom!=null)
+            Settings.LastUsedDriverID = carOrder.Member.id;
+            if (AddressTo.Text!= null || AddressFrom.Text!=null)
             {
                 Settings.Placeto = String.Empty;
                 AddressTo.Text = null;
                 AddressFrom.Text = null;
+                GetLocation();
             }
-
-            GetLocation();
+            else
+            {
+                Settings.Placeto = String.Empty;
+                AddressTo.Text = null;
+                GetLocation();
+            }
+           
         }
 
         private async void GetLocation()
         {
             var locationStatus = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Location);
-            if (locationStatus != PermissionStatus.Granted)
+            if (locationStatus == PermissionStatus.Granted)
             {
                 var request = new GeolocationRequest(GeolocationAccuracy.High);
                 var location = await Geolocation.GetLocationAsync(request);
@@ -78,6 +90,8 @@ namespace WasselApp.Views.OrdersPage
         protected override void OnAppearing()
         {
             AddressTo.Text = Settings.Placeto;
+            AddressFrom.Text = Settings.PlaceFrom;
+            CalculatDistance();
             base.OnAppearing();
         }
         private async void OnNotificationOpened(OSNotificationOpenedResult result)
@@ -143,7 +157,8 @@ namespace WasselApp.Views.OrdersPage
         {
             Location FromLocation = new Location(Convert.ToDouble(Settings.Latfrom), Convert.ToDouble(Settings.Lngfrom));
             Location ToLocation = new Location(Convert.ToDouble(Settings.Latto), Convert.ToDouble(Settings.Lngto));
-            double Distance = Location.CalculateDistance(FromLocation, ToLocation, (DistanceUnits.Kilometers));
+            Settings.Distance = Location.CalculateDistance(FromLocation, ToLocation, (DistanceUnits.Kilometers));
+            distancelbl.Text = Settings.Distance.ToString();
         }
 
         private void DatePickerShow(object sender, EventArgs e)
@@ -151,78 +166,91 @@ namespace WasselApp.Views.OrdersPage
             datepicker.Focus();
         }
 
-        //private async void Confirmbtn_Clicked(object sender, EventArgs e)
-        //{
-        //    Active.IsRunning = true;
-        //    var date = String.Format("{0:yyyy-MM-dd}", datepicker.Date);
-        //    TirhalOrder order = new TirhalOrder
-        //    {
-        //        latfrom = Settings.Latfrom,
-        //        lngfrom = Settings.Lngfrom,
-        //        user_id = Settings.LastUsedID.ToString(),
-        //        driver_id = Settings.LastUsedDriverID.ToString(),
-        //        car_model_id = Settings.LastUsedCarModel.ToString(),
-
-        //        latto = Settings.Latto,
-        //        lngto = Settings.Lngto,
-        //        created_at = datepicker.Date.ToString(),
-
-        //    };
-        //    Dictionary<string, string> values = new Dictionary<string, string>();
-        //    values.Add("user_id", order.user_id.ToString());
-        //    values.Add("driver_id", order.driver_id);
-        //    values.Add("latfrom", order.latfrom);
-        //    values.Add("lngfrom", order.lngfrom);
-        //    values.Add("done", order.done.ToString());
-        //    values.Add("latto", order.latto);
-        //    values.Add("lngto", order.lngto);
-        //    values.Add("car_model", order.car_model_id);
-        //    values.Add("created_at", order.created_at);
-        //    string content = JsonConvert.SerializeObject(values);
-        //    var httpClient = new HttpClient();
-        //    try
-        //    {
-        //        var response = await httpClient.PostAsync("http://wassel.alsalil.net/api/addtirhalorder",
-        //            new StringContent(content, Encoding.UTF8, "text/json"));
-        //        var serverResponse = response.Content.ReadAsStringAsync().Result.ToString();
-        //        var json = JsonConvert.DeserializeObject<Response<TirhalOrder, string>>(serverResponse);
-        //        if (json.success == false)
-        //        {
-        //            Active.IsRunning = false;
-        //            await DisplayAlert(AppResources.Error, json.message, AppResources.OK);
-        //        }
-        //        else
-        //        {
-        //            Active.IsRunning = false;
-        //            await DisplayAlert(AppResources.OrderSuccess, json.message, AppResources.OK);
-        //            Settings.carorderid = json.data.id;
-        //            ShowPanel.IsVisible = false;
-        //            Confirmbtn.IsVisible = false;
-        //            Active.IsRunning = true;
-        //        }
-        //    }
-        //    catch (Exception)
-        //    {
-        //        Active.IsRunning = false;
-        //        await DisplayAlert(AppResources.ErrorMessage, AppResources.ErrorMessage, AppResources.OK);
-        //    }
-
-        //}
-
-        private void Button_Clicked(object sender, EventArgs e)
+        private async void Confirmbtn_Clicked(object sender, EventArgs e)
         {
-            NoteEditor.IsVisible = true;
+            Active.IsRunning = true;
+            var date = String.Format("{0:yyyy-MM-dd}", datepicker.Date);
+         //   CalculatDistance();
+            CarOrder order = new CarOrder
+            {
+                latfrom = Settings.Latfrom,
+                lngfrom = Settings.Lngfrom,
+                user_id = Settings.LastUsedDriverID,
+                owner_id =Settings.LastUsedID,
+                addressto=Settings.Placeto,
+                addressfrom=Settings.PlaceFrom,
+                ordertype="نقل بضاعه",
+                weight= int.Parse(Weightentry.Text),
+             // car_model_id = Settings.LastUsedCarModel.ToString(),
+                distance = Convert.ToInt32(Settings.Distance),
+                latto = Settings.Latto,
+                lngto = Settings.Lngto,
+                created_at = datepicker.Date.ToString(),
+            };
+            Dictionary<string, string> values = new Dictionary<string, string>();
+            values.Add("user_id", order.user_id.ToString());
+            values.Add("owner_id", order.owner_id.ToString());
+            values.Add("latto", order.latto);
+            values.Add("lngto", order.lngto);
+            values.Add("latfrom", order.latfrom);
+            values.Add("lngfrom", order.lngfrom);
+            values.Add("addressto", order.addressto);
+            values.Add("addressfrom", order.addressfrom);
+            values.Add("ordertype", order.ordertype);
+            values.Add("weight", order.weight.ToString());
+            values.Add("distance", order.distance.ToString());
+            //values.Add("car_model", order.car_model_id);
+           // values.Add("waiting_hours", order.created_at);
+            string content = JsonConvert.SerializeObject(values);
+            var httpClient = new HttpClient();
+            try
+            {
+                var response = await httpClient.PostAsync("https://waselksa.alsalil.net/api/addwaselorder",
+                    new StringContent(content, Encoding.UTF8, "text/json"));
+                var serverResponse = response.Content.ReadAsStringAsync().Result.ToString();
+                var json = JsonConvert.DeserializeObject<Response<CarOrder, string>>(serverResponse);
+                if (json.success == false)
+                {
+                    Active.IsRunning = false;
+                    await DisplayAlert(AppResources.Error, json.message, AppResources.Ok);
+                }
+                else
+                {
+                    Active.IsRunning = false;
+                    await DisplayAlert(AppResources.OrderSuccess, json.message, AppResources.Ok);
+                    Settings.CarOrderid = json.data.id;
+                    ShowPanel.IsVisible = false;
+                    Confirmbtn.IsVisible = false;
+                    Active.IsRunning = true;
+                }
+            }
+            catch (Exception)
+            {
+                Active.IsRunning = false;
+                await DisplayAlert(AppResources.Error, AppResources.ErrorMessage, AppResources.Ok);
+            }
+
         }
 
-        
-
-       
-
+    private void Button_Clicked(object sender, EventArgs e)
+        {
+            if (NoteEditor.IsVisible != true)
+            {
+                NoteEditor.IsVisible = true;
+            }
+            else
+            {
+                NoteEditor.IsVisible = false;
+            }
+        }
         private void Datepicker_DateSelected(object sender, DateChangedEventArgs e)
         {
 
         }
 
-       
+        private async void UserPlacebtn_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new  UserPlacePage(), true);
+        }
     }
 }

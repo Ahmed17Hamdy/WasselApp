@@ -56,12 +56,14 @@
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
                         <StackLayout Grid.Column="0" VerticalOptions="Center" HorizontalOptions="Center">
-                            <Image />
+                            <Image HorizontalOptions="Center" Source="PlaceFrom.png"  VerticalOptions="Center"
+                                   HeightRequest="50" WidthRequest="50" />
                             <Label  HorizontalTextAlignment="Center" FontSize="Small" x:Name="Fromlbl"/>
                         </StackLayout>
                         <BoxView Grid.Column="1" WidthRequest="1" Color="Blue"  />
                         <StackLayout Grid.Column="2" VerticalOptions="Center" HorizontalOptions="Center">
-                            <Image />
+                            <Image HorizontalOptions="Center" Source="placetoHome.png"  VerticalOptions="Center"
+                                   HeightRequest="50" WidthRequest="50" />
                             <Label HorizontalTextAlignment="Center" FontSize="Small" x:Name="Tolbl"/>
                         </StackLayout>
                     </Grid>

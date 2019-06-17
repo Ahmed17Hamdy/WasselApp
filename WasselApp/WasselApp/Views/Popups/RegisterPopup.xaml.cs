@@ -39,11 +39,11 @@ namespace WasselApp.Views.Popups
                 conditionlbl.Text = AppResources.UserRegistered;
                 conditionlbl.TextColor = Color.Blue;
             }
-        }
+        }   
 
         private async void Login_Tapped(object sender, EventArgs e)
         {            
-            await Navigation.PushAsync(new UserPanel(x));
+            await Navigation.PushModalAsync(new UserPanel(x));
             await PopupNavigation.Instance.PopAsync();
         }
     }

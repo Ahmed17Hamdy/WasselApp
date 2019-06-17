@@ -15,6 +15,8 @@ using Xamarin.Essentials;
 using Xamarin.Forms;
 using WasselApp.Helpers;
 using Com.OneSignal;
+using Plugin.Permissions;
+using Plugin.Permissions.Abstractions;
 
 namespace WasselApp.ViewModels
 {
@@ -24,7 +26,13 @@ namespace WasselApp.ViewModels
 
         public UserViewModel()
         {
-            ResidentsList = GetResidents();
+              ResidentsList = GetResidents();
+            residents = new List<Resident>()
+            {
+            new Resident(){id =0, name=AppResources.resident},
+            new Resident(){id=1,name=AppResources.Saudi}
+
+            };
             //    AddToCarTypeList();
         }
         private bool _isRunning;
@@ -58,10 +66,10 @@ namespace WasselApp.ViewModels
             throw new NotImplementedException();
         }
 
-       
+        public  List<Resident> residents { get; set; }
         public List<Resident> GetResidents()
         {
-            var residents = new List<Resident>()
+             residents = new List<Resident>()
             {
             new Resident(){id =0, name=AppResources.resident},
             new Resident(){id=1,name=AppResources.Saudi}
@@ -101,153 +109,247 @@ namespace WasselApp.ViewModels
             Settings.UserFirebaseToken = userID;
 
         }
-        public ICommand UserRegisterCommand => new Command(async () =>
+        private void GetFirbasetoken()
         {
-            IsRunning = true;
-            var location = await Geolocation.GetLocationAsync();
-            var device = DeviceInfo.Model;
             OneSignal.Current.IdsAvailable(IdsAvailable);
-            User _userReg = new User
+        }
+        private async void GetLocation()
+        {
+            var locationStatus = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Location);
+            if (locationStatus == PermissionStatus.Granted)
             {
-                email = email,
-                name = name,
-                password = password,
-                confirmpass = confirmpass,
-                firebase_token = Settings.LastSignalID,
-                device_id = Settings.UserFirebaseToken,
-                lat = location.Latitude.ToString(),
-                lng = location.Longitude.ToString()
-
-            };
-            var ResBack = await userService.RegisterAsync(_userReg);
-
-            if (ResBack == "false")
-            {
-                await PopupNavigation.Instance.PushAsync(new ConnectionPopup());
+                var location = await Geolocation.GetLocationAsync();
+                Settings.LastLat = location.Latitude.ToString();
+                Settings.LastLng = location.Longitude.ToString();
             }
             else
             {
+                await PopupNavigation.Instance.PushAsync(new ConnectionPopup(y));
+                //await DisplayAlert(AppResources.PermissionsDenied, AppResources.PermissionLocationDetails,
+                //    AppResources.Ok);
+                //On iOS you may want to send your user to the settings screen.
+                CrossPermissions.Current.OpenAppSettings();
+            }
+        }
+        public ICommand UserRegisterCommand => new Command(async () =>
+        {
+            GetFirbasetoken();
+            
+            GetLocation();
+            if (email!=null && name!= null && password!= null && confirmpass!= null )
+            {
+                IsRunning = true;
+                GetLocation();
+                
+                var device = DeviceInfo.Model;
+               
+                User _userReg = new User
+                {
+                    email = email,
+                    name = name,
+                    password = password,
+                    confirmpass = confirmpass,
+                    firebase_token = Settings.UserFirebaseToken,
+                    device_id = Settings.LastSignalID,
+                    lat = Settings.LastLat,
+                    lng = Settings.LastLng
+
+                };
+                var ResBack = await userService.RegisterAsync(_userReg);
+
+                if (ResBack == "false")
+                {
+                    await PopupNavigation.Instance.PushAsync(new ConnectionPopup());
+                }
+                else
+                {
                     try
                     {
-                        var JsonResponse = JsonConvert.DeserializeObject<RegisterResponse>(ResBack);
-                        if (JsonResponse.success == false)
+                        try
                         {
-                            IsRunning = false;
-                            await PopupNavigation.Instance.PushAsync(new RegisterPopup(JsonResponse.data));
+                            var JsonResponse = JsonConvert.DeserializeObject<RegisterResponse>(ResBack);
+                            if (JsonResponse.success == false)
+                            {
+                                IsRunning = false;
+                                await PopupNavigation.Instance.PushAsync(new RegisterPopup(JsonResponse.data));
+                            }
                         }
-                        else
+                        catch
                         {
-                            IsRunning = false;
-                            await PopupNavigation.Instance.PushAsync(new RegisterPopup(JsonResponse.data));
-                        Settings.LastUsedID = JsonResponse.message.id;
-                        Settings.LastUsedEmail = JsonResponse.message.email;                        
-                        Settings.ProfileName = JsonResponse.message.name;
-                        Device.BeginInvokeOnMainThread(() => App.Current.MainPage = new HomePage());
+                            var JsonResponser = JsonConvert.DeserializeObject<Response<string, User>>(ResBack);
+                            if (JsonResponser.success == true)
+                            {
+                                IsRunning = false;
+                                await PopupNavigation.Instance.PushAsync(new RegisterPopup(JsonResponser.data));
+                                Settings.LastUsedID = JsonResponser.message.id;
+                                Settings.LastUsedEmail = JsonResponser.message.email;
+                                Settings.ProfileName = JsonResponser.message.name;
+                                Settings.Type = 2;
+                                Device.BeginInvokeOnMainThread(() => App.Current.MainPage = new HomePage());
+                            }
                         }
                     }
-                    
-                catch (Exception)
-                {
-
-                    await PopupNavigation.Instance.PushAsync(new ConnectionPopup());
-                    return;
+                    catch (Exception)
+                    {
+                        var JsonResponse = JsonConvert.DeserializeObject<RegisterResponse>(ResBack);
+                        await PopupNavigation.Instance.PushAsync(new ConnectionPopup());
+                        return;
+                    }
                 }
+            }
+            else if (email == null || name==null || password==null || confirmpass==null )
+            {
+              
+                await PopupNavigation.Instance.PushAsync(new ConnectionPopup(x));
+            }
+            else
+            {
+                await PopupNavigation.Instance.PushAsync(new ConnectionPopup(y));
             }
 
         });
         public ICommand LoginCommand => new Command(async () =>
         {
-            //   OneSignal.Current.IdsAvailable(IdsAvailable);
+            GetFirbasetoken();
+            if (email != null  && password != null )
+            {
+                User user = new User
+                {
+                    name = name,
+                    email = email,
+                    password = password,
+                    confirmpass = confirmpass,
+                    firebase_token = Settings.UserFirebaseToken,
+                    device_id = Settings.LastSignalID,
+                };
+                var ResBack = await userService.LoginCommandAsync(user);
+                if (ResBack == "false")
+                {
+                    await PopupNavigation.Instance.PushAsync(new ConnectionPopup());
+                }
+                else
+                {
 
-            User user = new User
+                    try
+                    {
+                        try
+                        {
+                            var JsonResponse = JsonConvert.DeserializeObject<LoginResponse>(ResBack);
+                            if (JsonResponse.success == false)
+                                IsRunning = false;
+                            await PopupNavigation.Instance.PushAsync(new LoginPopup(JsonResponse.data));
+                        }
+                        catch
+                        {
+                            var JsonResponse = JsonConvert.DeserializeObject<Response<string, User>>(ResBack);
+                            if (JsonResponse.success == true)
+                            {
+                                IsRunning = false;
+                                var _userID = JsonResponse.message.id;
+
+                                Settings.LastUsedID = _userID;
+                                Settings.LastUsedEmail = JsonResponse.message.email;
+                                Settings.ProfileName = JsonResponse.message.name;
+                                Settings.Type = 1;
+                                await PopupNavigation.Instance.PushAsync(new LoginPopup(JsonResponse.data));
+                                Device.BeginInvokeOnMainThread(() => App.Current.MainPage = new HomePage());
+                            }
+                            else
+                            {
+                                await PopupNavigation.Instance.PushAsync(new LoginPopup(JsonResponse.data));
+                            }
+                        }
+                    }
+                    catch (Exception)
+                    {
+
+                        await PopupNavigation.Instance.PushAsync(new ConnectionPopup());
+                        return;
+                    }
+                }
+            }
+            else if (email == null || name == null || password == null )
             {
-                name = name,
-                email = email,
-                password = password,
-                confirmpass = confirmpass,
-                firebase_token = "3333333" /*Settings.UserFirebaseToken*/,
-                device_id = "0",
-            };
-            var ResBack = await userService.LoginCommandAsync(user);
-            if (ResBack == "false")
-            {
-                await PopupNavigation.Instance.PushAsync(new ConnectionPopup());
+                await PopupNavigation.Instance.PushAsync(new ConnectionPopup(x));
             }
             else
             {
-
-                try
+                await PopupNavigation.Instance.PushAsync(new ConnectionPopup());
+            }
+        });
+        public ICommand DriverLoginCommand => new Command(async () =>
+        {
+            GetFirbasetoken();
+            if (email != null && password != null)
+            {
+                User user = new User
                 {
+                    name = name,
+                    email = email,
+                    password = password,
+                    confirmpass = confirmpass,
+                    firebase_token = Settings.UserFirebaseToken,
+                    device_id = Settings.LastSignalID,
+                };
+                var ResBack = await userService.LoginCommandAsync(user);
+                if (ResBack == "false")
+                {
+                    await PopupNavigation.Instance.PushAsync(new ConnectionPopup());
+                }
+                else
+                {
+
                     try
                     {
-                        var JsonResponse = JsonConvert.DeserializeObject<RegisterResponse>(ResBack);
-                        if (JsonResponse.success == false)
-                            IsRunning = false;
-                        await PopupNavigation.Instance.PushAsync(new LoginPopup(JsonResponse.data));
+                        try
+                        {
+                            var JsonResponse = JsonConvert.DeserializeObject<LoginResponse>(ResBack);
+                            if (JsonResponse.success == false)
+                                IsRunning = false;
+                            await PopupNavigation.Instance.PushAsync(new LoginPopup(JsonResponse.data));
+                        }
+                        catch
+                        {
+                            var JsonResponse = JsonConvert.DeserializeObject<Response<string, User>>(ResBack);
+                            if (JsonResponse.success == true)
+                            {
+                                IsRunning = false;
+                                var _userID = JsonResponse.message.id;
+
+                                Settings.LastUsedDriverID = _userID;
+                                Settings.LastUsedEmail = JsonResponse.message.email;
+                                Settings.ProfileName = JsonResponse.message.name;
+                                Settings.Type = 1;
+                                await PopupNavigation.Instance.PushAsync(new LoginPopup(JsonResponse.data));
+                                Device.BeginInvokeOnMainThread(() => App.Current.MainPage = new MainTabbedPage());
+                            }
+                            else
+                            {
+                                await PopupNavigation.Instance.PushAsync(new LoginPopup(JsonResponse.data));
+                            }
+                        }
                     }
-                    catch
+                    catch (Exception)
                     {
-                        var JsonResponse = JsonConvert.DeserializeObject<Response<string, User>>(ResBack);
-                        if (JsonResponse.success == true)
-                        {
-                            IsRunning = false;
-                            var _userID = JsonResponse.message.id;
 
-                            Settings.LastUsedID = _userID;
-                            Settings.LastUsedEmail = JsonResponse.message.email;
-                            await PopupNavigation.Instance.PushAsync(new LoginPopup(JsonResponse.data));
-                            Device.BeginInvokeOnMainThread(() => App.Current.MainPage = new HomePage());
-                        }
-                        else
-                        {
-                            await PopupNavigation.Instance.PushAsync(new LoginPopup(JsonResponse.data));
-                        }
+                        await PopupNavigation.Instance.PushAsync(new ConnectionPopup());
+                        return;
                     }
-                }
-                catch (Exception)
-                {
-
-                    await PopupNavigation.Instance.PushAsync(new ConnectionPopup());
-                    return;
                 }
             }
-            // email = Settings.LastUsedEmail;
-            //if (ResBack == "false")
-            //{
-            //    await PopupNavigation.Instance.PushAsync(new ConnectionPopup());
-            //}
-            //else
-            //{
-            //    bool checker = false;
-            //    try
-            //    {
-
-            //        //var JsonResponse = JsonConvert.DeserializeObject<Response<string, User>>(ResBack);
-            //        //if (JsonResponse.success == true)
-            //        //{
-            //        //    var _userID = JsonResponse.message.id;
-            //        //    checker = true;
-            //        //    // Settings.LastUsedID = _userID;
-            //        //    //  Settings.LastUsedEmail = EntryEmail.Text;
-            //        //    await PopupNavigation.Instance.PushAsync(new LoginPopup(JsonResponse.data));
-            //        //    Device.BeginInvokeOnMainThread(() => App.Current.MainPage = new HomePage());
-            //        //}
-            //        //else
-            //        //{
-            //        //    await PopupNavigation.Instance.PushAsync(new LoginPopup(JsonResponse.data));
-            //        //}
-            //    }
-            //    catch (Exception)
-            //    {
-
-            //        await PopupNavigation.Instance.PushAsync(new ConnectionPopup());
-            //        return;
-            //    }
-            //}
-
+            else if (email == null || name == null || password == null)
+            {
+                await PopupNavigation.Instance.PushAsync(new ConnectionPopup(x));
+            }
+            else
+            {
+                await PopupNavigation.Instance.PushAsync(new ConnectionPopup());
+            }
         });
         private ObservableCollection<Cartype> _carstypelist = new ObservableCollection<Cartype>();
         private Resident myProperty;
+        private object x;
+        private int y;
 
         public ObservableCollection<Cartype> CarsTypeList
         {

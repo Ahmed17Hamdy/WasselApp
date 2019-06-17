@@ -11,6 +11,11 @@ namespace WasselApp.Models
         public T data { get; set; }
         public I message { get; set; }
     }
+    public class LoginResponse
+    {
+        public bool success { get; set; }
+        public string data { get; set; }
+    }
     public class RegisterResponse
     {
         public bool success { get; set; }

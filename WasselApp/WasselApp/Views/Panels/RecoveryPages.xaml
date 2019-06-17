@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:Behaviors="clr-namespace:WasselApp.Behaviors"
+             xmlns:Validators="clr-namespace:WasselApp.Models.BModel"
+             mc:Ignorable="d"
+             xmlns:i18n="clr-namespace:WasselApp.Helpers"
+             x:Class="WasselApp.Views.Panels.RecoveryPages">
+    <ContentPage.Content>
+        <Grid>
+            <Grid x:Name="ForgetPassWordgrid" Padding="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Image  Margin='10,10,10,10'   Grid.Row="0"    x:Name="image" Source="Forgot.PNG"  
+                  HorizontalOptions="CenterAndExpand"/>
+                <StackLayout HorizontalOptions="Center" VerticalOptions="Center" Padding="5" Grid.Row="1"  >
+                    <StackLayout.Behaviors>
+                        <Validators:ValidationGroupBehavior x:Name="form"/>
+                    </StackLayout.Behaviors>
+                    <Label Text="{i18n:Translate SendCode}"  HorizontalOptions="CenterAndExpand"/>
+                    <StackLayout Orientation="Horizontal">
+                        <Entry Placeholder="{i18n:Translate Email}" Keyboard="Email" x:Name="EntryEmail" 
+                                   HorizontalTextAlignment="Center" HorizontalOptions="FillAndExpand">
+                            <Entry.Behaviors>
+                                <Behaviors:ValidationBehavior Group="{x:Reference form}" PropertyName="Text">
+                                    <Behaviors:ValidationBehavior.Validators>
+                                        <Validators:RequiredValidator />
+                                        <Behaviors:FormatValidator
+                            Message="{i18n:Translate InvalidMail}" 
+                            Format="^[_a-z0-9-]*(.[a-z0-9-]+)@[a-z0-9-]+(.[a-z0-9-]+)*(.[a-z]{2,4})$" />
+                                    </Behaviors:ValidationBehavior.Validators>
+                                </Behaviors:ValidationBehavior>
+
+                            </Entry.Behaviors>
+                        </Entry>
+                    </StackLayout>
+                    <Button IsEnabled="{Binding Source={x:Reference form}, Path=IsValid}"
+                                HeightRequest="60" Margin="30" Padding="10,2,10,2" Text="{i18n:Translate Send}"  TextColor="White" 
+                                BackgroundColor="DarkBlue" BorderRadius="12" 
+                        HorizontalOptions="FillAndExpand" Clicked="Button_Clicked_1"/>
+                </StackLayout>
+            </Grid>
+            <Grid IsVisible="False" x:Name="Activegrid" Padding="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0">
+                    <Image Aspect="AspectFit" Source="n.png" HorizontalOptions="Center" VerticalOptions="Center"/>
+                </Grid>
+                <StackLayout Grid.Row="1">
+                    <StackLayout.Behaviors>
+                        <Validators:ValidationGroupBehavior x:Name="Activeform"/>
+                    </StackLayout.Behaviors>
+                    <Label HorizontalTextAlignment="Center" HorizontalOptions="Center"
+                           Text="{i18n:Translate EnterVerifyCode}" FontSize="Large"/>
+                    <Entry IsPassword="True" x:Name="EntryCode" Placeholder="*******"
+                           HorizontalTextAlignment="Center">
+                        <Entry.Behaviors>
+                            <Behaviors:ValidationBehavior Group="{x:Reference Activeform}" PropertyName="Text">
+                                <Behaviors:ValidationBehavior.Validators>
+                                    <Validators:RequiredValidator />
+                                </Behaviors:ValidationBehavior.Validators>
+                            </Behaviors:ValidationBehavior>
+                        </Entry.Behaviors>
+                    </Entry>
+                    <Button x:Name="Activebtn" BackgroundColor="Blue" Text="{i18n:Translate Send}"
+                            Clicked="Activebtn_Clicked" 
+                            IsEnabled="{Binding Source={x:Reference Activeform}, Path=IsValid}"
+                            HorizontalOptions="Center"
+                            Margin="0,30,0,0"/>
+                </StackLayout>
+            </Grid>
+            <Grid IsVisible="False" x:Name="ChangePassWordgrid" Padding="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0" HorizontalOptions="Center" VerticalOptions="Center">
+                    <Image Aspect="AspectFit" Source="x.png" HorizontalOptions="Center" VerticalOptions="Center"/>
+                </Grid>
+                <StackLayout Grid.Row="1" VerticalOptions="Center" HorizontalOptions="Center">
+                    <StackLayout.Behaviors>
+                        <Validators:ValidationGroupBehavior x:Name="ChangePassWordform"/>
+                    </StackLayout.Behaviors>
+                    <Label HorizontalTextAlignment="Center" HorizontalOptions="Center" Text="{i18n:Translate EnterNewPassWord}"
+                           FontSize="Large"/>
+                    <Entry IsPassword="True" x:Name="EntryPass" Placeholder="{i18n:Translate NewPass}" 
+                           HorizontalTextAlignment="Center">
+                        <Entry.Behaviors>
+                            <Behaviors:ValidationBehavior Group="{x:Reference ChangePassWordform}" PropertyName="Text">
+                                <Behaviors:ValidationBehavior.Validators>
+                                    <Validators:RequiredValidator />
+                                    <Behaviors:FormatValidator
+                            Message="{i18n:Translate PassWordValid}" 
+                            Format="(?=^[^\s]{6,}$)(?=.*\d)(?=.*[a-zA-Z])"/>
+                                </Behaviors:ValidationBehavior.Validators>
+                            </Behaviors:ValidationBehavior>
+                            <Behaviors:MaxLengthValidatorBehavior  MaxLength="15"/>
+                        </Entry.Behaviors>
+                    </Entry>
+                    <Entry IsPassword="True" x:Name="ConfirmPass" Placeholder="{i18n:Translate ConfirmPass}"
+                           HorizontalTextAlignment="Center">
+                        <Entry.Behaviors>
+                            <Behaviors:ValidationBehavior Group="{x:Reference form}" PropertyName="Text">
+                                <Behaviors:ValidationBehavior.Validators>
+                                    <Validators:RequiredValidator />
+                                    <Behaviors:FormatValidator
+                            Message="{i18n:Translate PassWordMatch}" 
+                            Format="(?=^[^\s]{6,}$)(?=.*\d)(?=.*[a-zA-Z])" />
+                                </Behaviors:ValidationBehavior.Validators>
+                            </Behaviors:ValidationBehavior>
+                            <Behaviors:CompareValidationBehavior BindingContext="{x:Reference EntryPass}" Text="
+                                                                     {Binding Text}"/>
+                        </Entry.Behaviors>
+                    </Entry>
+                    <Button  IsEnabled="{Binding Source={x:Reference ChangePassWordform}, Path=IsValid}" BackgroundColor="Blue" 
+                             Text="{i18n:Translate Confirm}" HorizontalOptions="Center" TextColor="White"
+                            Clicked="Button_Clicked" Margin="0,30,0,0"/>
+                </StackLayout>
+            </Grid>
+            <ActivityIndicator HorizontalOptions="Center" HeightRequest="100" WidthRequest="100"
+                               VerticalOptions="Center" x:Name="Activ" Color="Blue"/>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

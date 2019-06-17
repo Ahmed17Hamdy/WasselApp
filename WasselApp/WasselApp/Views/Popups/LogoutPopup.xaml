@@ -1,17 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<pages:PopupPage
+<ContentPage
     xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:i18="clr-namespace:WasselApp.Helpers"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
     x:Class="WasselApp.Views.Popups.LogoutPopup">
-    <pages:PopupPage.Animation>
+    <!--<pages:PopupPage.Animation>
         <animations:ScaleAnimation PositionIn="Center" PositionOut="Center" ScaleIn="1.2" ScaleOut="0.8"
                                    DurationIn="400" DurationOut="300" EasingIn="SinInOut" EasingOut="SinIn" HasBackgroundAnimation="False">
         </animations:ScaleAnimation>
-    </pages:PopupPage.Animation>
-    <pages:PopupPage.Content>
+    </pages:PopupPage.Animation>-->
+    <ContentPage.Content>
         <StackLayout VerticalOptions="Center" Padding="20,0" HorizontalOptions="Center">
             <Frame CornerRadius="20" Padding="0" x:Name="PopFrame">
                 <StackLayout Padding="10" FlowDirection="RightToLeft">
@@ -29,5 +29,5 @@
                 </StackLayout>
             </Frame>
         </StackLayout>
-    </pages:PopupPage.Content>
-</pages:PopupPage>
+    </ContentPage.Content>
+</ContentPage>

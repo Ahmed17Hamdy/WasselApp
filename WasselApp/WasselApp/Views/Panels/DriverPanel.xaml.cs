@@ -19,6 +19,7 @@ using Rg.Plugins.Popup.Services;
 using WasselApp.Views.Popups;
 using Plugin.Permissions;
 using Plugin.Permissions.Abstractions;
+using Com.OneSignal;
 
 namespace WasselApp.Views.Panels
 {
@@ -49,7 +50,13 @@ namespace WasselApp.Views.Panels
         public DriverPanel()
         {
             InitializeComponent();
+           
             // CarsTypedata();
+        }
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            NatoionalEntry.Text = Settings.ResidentName;
         }
         private bool AllNeeded()
         {
@@ -73,10 +80,11 @@ namespace WasselApp.Views.Panels
                 PopupNavigation.Instance.PushAsync(new CartypePage());
                 return false;
             }
-            else if (nationalpicker.SelectedItem == null)
+            else if (Settings.Residentid!=string.Empty)
             {
                 Active.IsRunning = false;
                 DisplayAlert(AppResources.Error, AppResources.ChooseResidence, AppResources.Ok);
+                PopupNavigation.Instance.PushAsync(new ResidencesListView());
                 return false;
             }
             return true;
@@ -103,21 +111,22 @@ namespace WasselApp.Views.Panels
         {
             lgnlbl.TextColor = Color.Blue;
             rgslbl.TextColor = Color.Gray;
+            loginlbl.IsVisible = false;
+            Registerlbl.IsVisible = true ;
             RegisterPanel.IsVisible = false;
             rgstimg.IsVisible = false;
             LoginPanel.IsVisible = true;
             lgnimg.IsVisible = true;
         }
-
-
-
         private void registerdriver_Tapped(object sender, EventArgs e)
         {
             rgslbl.TextColor = Color.Blue;
             lgnlbl.TextColor = Color.Gray;
+            RegisterPanel.IsVisible = true;
             LoginPanel.IsVisible = false;
             lgnimg.IsVisible = false;
-            RegisterPanel.IsVisible = true;
+            loginlbl.IsVisible = true;
+            Registerlbl.IsVisible = false;
             rgstimg.IsVisible = true;
         }
 
@@ -125,6 +134,16 @@ namespace WasselApp.Views.Panels
         //{
 
         //}
+        private void IdsAvailable(string userID, string pushToken)
+        {
+            Settings.LastSignalID = pushToken;
+            Settings.UserFirebaseToken = userID;
+
+        }
+        private void GetFirbasetoken()
+        {
+            OneSignal.Current.IdsAvailable(IdsAvailable);
+        }
         private async void DriverRegisterCommand(object sender, EventArgs e)
         {
             Active.IsRunning = true;
@@ -134,6 +153,7 @@ namespace WasselApp.Views.Panels
             var device = DeviceInfo.Model;
             if (AllNeeded() == true)
             {
+                GetFirbasetoken();
                 UserService userService = new UserService();
                 DriverUser _driveruser = new DriverUser
                 {
@@ -144,10 +164,10 @@ namespace WasselApp.Views.Panels
                     confirmpass = confirmpassEntry.Text,
                     country = CountryEntry.Text,
                     city = CityEntry.Text,
-                    firebase_token = "35",
+                    firebase_token = Settings.UserFirebaseToken,
                     nationality = nationalityEntry.Text,
-                    national = uid.ToString(),
-                    device_id = "111.2225.555",
+                    national = Settings.Residentid.ToString(),
+                    device_id = Settings.LastSignalID,
                     age = AgeEntry.Text,
                     carmodal = Settings.CarModelID,
                     cartype = Settings.cartype.ToString(),
@@ -230,6 +250,7 @@ namespace WasselApp.Views.Panels
                                 Settings.LastUsedDriverID = JsonResponse.message.id;
                                 Settings.LastUsedEmail = JsonResponse.message.email;
                                 Settings.LastUserStatus = "0";
+                                Settings.Type = 2;
                                 Settings.ProfileName = JsonResponse.message.name;
                                 await PopupNavigation.Instance.PushAsync(new RegisterPopup(JsonResponse.data));
                                 Device.BeginInvokeOnMainThread(() => App.Current.MainPage = new MainTabbedPage());
@@ -264,9 +285,6 @@ namespace WasselApp.Views.Panels
         {
             await PopupNavigation.Instance.PushAsync(new CartypePage());
         }
-
-
-
         private async void ProfileImg_Clicked(object sender, EventArgs e)
         {
             var storageStatus = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Storage);
@@ -292,20 +310,23 @@ namespace WasselApp.Views.Panels
                 CrossPermissions.Current.OpenAppSettings();
             }
         }
-
-        private void NatoionalEntry_Clicked(object sender, EventArgs e)
+        private async  void NatoionalEntry_Clicked(object sender, EventArgs e)
         {
-            nationalpicker.Focus();
+          //    nationalpicker.Focus();
+              await PopupNavigation.Instance.PushAsync(new ResidencesListView());
+          
         }
-
         private void Nationalpicker_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var item = sender as Picker;
-            var selectedItem = item.SelectedItem as Resident;
+            var picker = (Picker)sender;            
+            Resident selectedItem = picker.SelectedItem as Resident;
             uid = selectedItem.id;
             NatoionalEntry.Text = selectedItem.name;
         }
-
+        private async  void Recovery_Tapped(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new RecoveryPages(), true);
+        }
         private async void LiecenceImg_Clicked(object sender, EventArgs e)
         {
             var storageStatus = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Storage);

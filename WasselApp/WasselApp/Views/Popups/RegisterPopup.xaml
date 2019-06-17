@@ -12,6 +12,9 @@
             <StackLayout VerticalOptions="Center" HorizontalOptions="Center"  BackgroundColor="White">
                 <Label BackgroundColor="White" FontSize="Large" x:Name="conditionlbl" IsVisible="False"  />
                 <Label BackgroundColor="White" FontSize="Large" x:Name="Emaillbl" IsVisible="False"  />
+                <Label BackgroundColor="White" FontSize="Large" x:Name="Namelbl" IsVisible="False"  />
+                <Label BackgroundColor="White" FontSize="Large" x:Name="Passwordlbl" IsVisible="False"  />
+                <Label BackgroundColor="White" FontSize="Large" x:Name="locationlbl" IsVisible="False"  />
                 <StackLayout  BackgroundColor="White" x:Name="haveaccstk" IsVisible="False" Orientation="Horizontal">
                     <Label BackgroundColor="White"  Text="{tr:Translate HaveAccount}"   />
                     <Label BackgroundColor="White" TextColor="Blue" Text="{tr:Translate LogIn}">

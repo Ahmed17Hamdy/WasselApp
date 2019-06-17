@@ -18,7 +18,7 @@
                 <Grid AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
                     <custommap:TKCustomMap x:Name="ToMap"  UserLocationChanged="MainMap_UserLocationChanged"
                                            IsRegionChangeAnimated="True"  IsShowingUser="True" MapType="Street"/>
-                    <Image x:Name="ToPlaceimg" Source="ToPlace.png" HeightRequest="50" WidthRequest="50" 
+                    <Image x:Name="ToPlaceimg" Source="placeholder.png" HeightRequest="50" WidthRequest="50" 
                            HorizontalOptions="Center"
                        VerticalOptions="Center"/>
                 </Grid>

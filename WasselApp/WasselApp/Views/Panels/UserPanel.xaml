@@ -103,7 +103,8 @@
                                                                      {Binding Text}"/>
                         </customcontrols:ImageEntry.Behaviors>
                     </customcontrols:ImageEntry>
-                    <Button  IsEnabled="{Binding Source={x:Reference form}, Path=IsValid}" Command="{Binding UserRegisterCommand}" BackgroundColor="Blue"
+                    <Button  IsEnabled="{Binding Source={x:Reference form}, Path=IsValid}"
+                             Command="{Binding UserRegisterCommand}" BackgroundColor="Blue"
                                  BorderColor="Blue" Text="{i81:Translate Register}" TextColor="White"
                             BorderRadius="20"/>
                         </StackLayout>

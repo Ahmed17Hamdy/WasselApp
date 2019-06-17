@@ -17,7 +17,7 @@
   <permission android:name="com.alsalilweb.WasselAp.permission.C2D_MESSAGE"
             android:protectionLevel="signature" />
   <uses-permission android:name="com.alsalilweb.WasselApp.permission.C2D_MESSAGE" />
-	<application android:label="WasselApp.Android">
+  <application android:label="WasselApp.Android" >
     <receiver android:name="com.onesignal.GcmBroadcastReceiver"
             android:permission="com.google.android.c2dm.permission.SEND" >
       <intent-filter>
@@ -25,9 +25,9 @@
         <category android:name="com.alsalilweb.WasselAp" />
       </intent-filter>
     </receiver>
-		<provider android:name="android.support.v4.content.FileProvider" android:authorities="${applicationId}.fileprovider" android:exported="false" android:grantUriPermissions="true">
-			<meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/file_paths"></meta-data>
-		</provider>
-		<meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyBfx7Wgm0NDTk0ctaKAPWlfb61zM1YGGgs" />
-	</application>
+    <provider android:name="android.support.v4.content.FileProvider" android:authorities="${applicationId}.fileprovider" android:exported="false" android:grantUriPermissions="true">
+      <meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/file_paths"></meta-data>
+    </provider>
+    <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyBfx7Wgm0NDTk0ctaKAPWlfb61zM1YGGgs" />
+  </application>
 </manifest>

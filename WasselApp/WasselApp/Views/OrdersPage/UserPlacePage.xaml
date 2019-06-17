@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:tr="clr-namespace:WasselApp.Helpers"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:custommap="clr-namespace:TK.CustomMap;assembly=TK.CustomMap"
+             mc:Ignorable="d"
+             x:Class="WasselApp.Views.OrdersPage.UserPlacePage">
+    <ContentPage.Content>
+        <AbsoluteLayout>
+            <Grid AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
+                <custommap:TKCustomMap x:Name="ToMap"  UserLocationChanged="MainMap_UserLocationChanged"
+                                           IsRegionChangeAnimated="True"  IsShowingUser="True" MapType="Street"/>
+                <Image x:Name="ToPlaceimg" Source="ToPlace.png" HeightRequest="50" WidthRequest="50" 
+                           HorizontalOptions="Center"
+                       VerticalOptions="Center"/>
+            </Grid>
+            <StackLayout AbsoluteLayout.LayoutBounds=".5,0,200,100"
+                AbsoluteLayout.LayoutFlags="PositionProportional"
+                  Opacity="0.5" BackgroundColor="White" >
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                </Grid>
+                <Label Grid.Row="0" HorizontalOptions="Center"
+                           TextColor="DarkBlue" Text="{tr:Translate PickUpLocation}" FontSize="Large" />
+                <Label Grid.Row="1" HorizontalTextAlignment="Center" FontSize="Medium"   x:Name="addlbl"/>
+                <Label Grid.Row="1" HorizontalTextAlignment="Center" FontSize="Medium" IsVisible="False"  x:Name="adlbl"/>
+            </StackLayout>
+            <Button AbsoluteLayout.LayoutBounds="0,1,1,40"  AbsoluteLayout.LayoutFlags="PositionProportional,WidthProportional"
+                        x:Name="Continuebtn" IsVisible="False" Clicked="Continuebtn_Clicked"
+                            BackgroundColor="Blue" TextColor="White"
+                            CornerRadius="10"
+                            Text="{tr:Translate Continue}"   />
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

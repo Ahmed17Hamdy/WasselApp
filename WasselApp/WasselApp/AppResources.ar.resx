@@ -363,4 +363,64 @@
   <data name="PickUpLocation" xml:space="preserve">
     <value>إختر موقعاً</value>
   </data>
+  <data name="UpdateLocation" xml:space="preserve">
+    <value> أضف مكان آخر</value>
+  </data>
+  <data name="UseCurrentPlace" xml:space="preserve">
+    <value>إستخدم مكانك الحالي</value>
+  </data>
+  <data name="ConfirmSentCode" xml:space="preserve">
+    <value>لقد تم إرسال رقم التأكد من الهوية إلي البريد الإلكتروني الذى تم إدخاله</value>
+  </data>
+  <data name="EnterVerifyCode" xml:space="preserve">
+    <value>برجاء إدخال كود التأكيد المُرسل لبريدك الإلكتروني</value>
+  </data>
+  <data name="ForgetPasswrd" xml:space="preserve">
+    <value>هل نسيت كلمة المرور ؟</value>
+  </data>
+  <data name="NoAccount" xml:space="preserve">
+    <value>لا تملك حساب ؟</value>
+  </data>
+  <data name="Send" xml:space="preserve">
+    <value>إرسال</value>
+  </data>
+  <data name="SendCode" xml:space="preserve">
+    <value>برجاء إرسال الكود عن طريق </value>
+  </data>
+  <data name="WrongEmail" xml:space="preserve">
+    <value>عفواً لا يوجد حساب لهذا البريد الإلكتروني من فضلك قم بالتسجيل</value>
+  </data>
+  <data name="OrderSuccess" xml:space="preserve">
+    <value>Order Confirmed</value>
+  </data>
+  <data name="EmailRequired" xml:space="preserve">
+    <value>يجب أن تسجل البريد الإلكتروني</value>
+  </data>
+  <data name="RequiredFields" xml:space="preserve">
+    <value>يجب أن تملأ كل الحقول أولاً</value>
+  </data>
+  <data name="OrderPage" xml:space="preserve">
+    <value>صفحة الطلب</value>
+  </data>
+  <data name="Addweight" xml:space="preserve">
+    <value>أدخل بال كجم</value>
+  </data>
+  <data name="Distance" xml:space="preserve">
+    <value>المسافة</value>
+  </data>
+  <data name="Weight" xml:space="preserve">
+    <value>الوزن</value>
+  </data>
+  <data name="Time" xml:space="preserve">
+    <value>الوقت</value>
+  </data>
+  <data name="NoCars" xml:space="preserve">
+    <value>! لا يوجد سيارات متوفرة لهذا المودل</value>
+  </data>
+  <data name="ProfilePage" xml:space="preserve">
+    <value>الصفحة الشخصية</value>
+  </data>
+  <data name="DriverPanel" xml:space="preserve">
+    <value>لوحة السائق</value>
+  </data>
 </root>

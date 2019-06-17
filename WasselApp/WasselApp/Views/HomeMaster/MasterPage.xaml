@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             Title="Title"
+             xmlns:pop="clr-namespace:WasselApp.Views.Popups"
+             xmlns:local="using:WasselApp.Views.HomeMaster"
+             xmlns:tr="clr-namespace:WasselApp.Helpers"
+             x:Class="WasselApp.Views.HomeMaster.MasterPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <Grid BackgroundColor="Black">
+                <Image Aspect="Fill"
+               Source="WasselLogo.PNG"
+               Opacity="0.6" />
+            </Grid>
+            <ListView x:Name="listView" x:FieldModifier="public">
+                <ListView.ItemsSource>
+                    <x:Array Type="{x:Type local:MasterPageItem}">
+                        <local:MasterPageItem Title="{tr:Translate MainPage}" IconSource="Main.png" TargetType="{x:Type local:MainPage}" />
+                        <local:MasterPageItem Title="{tr:Translate AboutApp}" IconSource="aboutus32.PNG" TargetType="{x:Type local:AboutUsPage}" />
+                        <local:MasterPageItem Title="{tr:Translate OurGoals}" IconSource="goals32.PNG" TargetType="{x:Type local:OurGoals}" />
+                        <local:MasterPageItem Title="{tr:Translate Callus}" IconSource="goals32.PNG" TargetType="{x:Type local:CallUsPage}" />
+                        <local:MasterPageItem Title="{tr:Translate LogOUt}" IconSource="logout.png" TargetType="{x:Type pop:LogoutPopup}" />
+                    </x:Array>
+                </ListView.ItemsSource>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid Margin="10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="50"/>
+                                    <ColumnDefinition Width="2*" />
+                                </Grid.ColumnDefinitions>
+                                <Image Grid.Column="0" HorizontalOptions="Start" Source="{Binding IconSource}" />
+                                <Label Grid.Column="1" Text="{Binding Title}" />
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

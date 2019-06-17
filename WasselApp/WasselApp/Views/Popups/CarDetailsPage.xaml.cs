@@ -9,6 +9,8 @@ using WasselApp.Views.OrdersPage;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using WasselApp.Helpers;
+using Rg.Plugins.Popup.Services;
+
 namespace WasselApp.Views.Popups
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
@@ -33,8 +35,20 @@ namespace WasselApp.Views.Popups
         }
 
         private async void Orderbtn_Clicked(object sender, EventArgs e)
+        {            
+       await Navigation.PushModalAsync( new NavigationPage(new OrderDetailsPage(CarOrder)));
+        await PopupNavigation.Instance.PopAsync();
+        }
+        protected  override bool OnBackButtonPressed()
         {
-            await Navigation.PushAsync(new OrderDetailsPage(CarOrder));
+            
+            return base.OnBackButtonPressed();
+            _ = PopupNavigation.Instance.PopAsync();
+        }
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            _ = PopupNavigation.Instance.PopAsync();
         }
     }
 }
