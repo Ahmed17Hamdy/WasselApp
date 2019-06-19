@@ -3,13 +3,29 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:custommap="clr-namespace:TK.CustomMap;assembly=TK.CustomMap"
              mc:Ignorable="d"
+             xmlns:tr="clr-namespace:WasselApp.Helpers"
              x:Class="WasselApp.Views.OrdersPage.OrderSuccessPage">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <Grid Padding="5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <custommap:TKCustomMap Grid.Row="0" x:Name="OrderMap"  
+                                   IsShowingUser="True" HasScrollEnabled="True" 
+                                   RouteCalculationFinished="OrderMap_RouteCalculationFinished" 
+                               HasZoomEnabled="True"
+                               />
+            <Grid Padding="5" Grid.Row="1" HeightRequest="40" >
+
+                <Button  CornerRadius="20"  x:Name="Cancelbtn" BackgroundColor="Red" TextColor="White" 
+                        Text="{tr:Translate CancelOrder}" Clicked="Cancelbtn_Clicked" />
+            </Grid>
+            <ActivityIndicator x:Name="Active"  Grid.Row="0" Grid.RowSpan="2" 
+                                   HorizontalOptions="Center" VerticalOptions="Center"
+                             HeightRequest="100" WidthRequest="100"   Color="Blue" />
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

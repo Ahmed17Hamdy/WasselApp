@@ -1,22 +1,21 @@
 ﻿using Rg.Plugins.Popup.Pages;
-using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WasselApp.Helpers;
-using WasselApp.Views.Intro;
 using WasselApp.Views.Panels;
+using WasselApp.Helpers;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Rg.Plugins.Popup.Services;
 
 namespace WasselApp.Views.Popups
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class LogoutPopup : ContentPage
-	{
-        public LogoutPopup()
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class DriverLoguot : PopupPage
+    {
+        public DriverLoguot()
         {
             InitializeComponent();
             FlowDirection = (Settings.LastUserGravity == "Arabic") ? FlowDirection.RightToLeft : FlowDirection.LeftToRight;
@@ -28,14 +27,14 @@ namespace WasselApp.Views.Popups
             Settings.LastUsedID = 0;
             Settings.LastUsedDriverID = 0;
             Settings.LastUseeRole = 0;
-            App.Current.MainPage = new UserPanel();
-        //    PopupNavigation.Instance.PopAsync();
+            App.Current.MainPage = new DriverPanel();
+               PopupNavigation.Instance.PopAsync();
         }
 
         private void Button_Clicked_1(object sender, EventArgs e)
         {
-            App.Current.MainPage = new HomePage();
-            //   PopupNavigation.Instance.PopAsync();
+         //   App.Current.MainPage = new HomePage();
+               PopupNavigation.Instance.PopAsync();
         }
     }
 }

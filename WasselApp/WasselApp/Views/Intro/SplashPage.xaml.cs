@@ -23,19 +23,27 @@ namespace WasselApp.Views.Intro
             {
                 Application.Current.MainPage =  new IntroPage();
             }
-            else if (Settings.LastUsedID == 0 && Settings.Type == 1)
+            else if (Settings.LastUsedID != 0 && Settings.ProfileUser == string.Empty)
+            {
+                Application.Current.MainPage = new IntroPage();
+            }
+            else if (Settings.LastUsedDriverID != 0 && Settings.ProfileUser == string.Empty)
+            {
+                Application.Current.MainPage = new IntroPage();
+            }
+            else if (Settings.LastUsedID == 0 && Settings.ProfileUser == "1")
             {
                 Application.Current.MainPage = new UserPanel();
             }
-            else if ( Settings.LastUsedID != 0 && Settings.Type==1)
+            else if ( Settings.LastUsedID != 0 && Settings.ProfileUser == "1")
             {
                 Application.Current.MainPage = new HomePage();
             }
-            else if (Settings.Type == 2  && Settings.LastUsedDriverID != 0)
+            else if (Settings.ProfileUser == "2"  && Settings.LastUsedDriverID != 0)
             {
                 Application.Current.MainPage = new MainTabbedPage();
             }
-            else if (Settings.Type == 2 && Settings.LastUsedDriverID == 0)
+            else if (Settings.ProfileUser == "2" && Settings.LastUsedDriverID == 0)
             {
                 Application.Current.MainPage = new DriverPanel();
             }

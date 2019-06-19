@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Rg.Plugins.Popup.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,6 +7,7 @@ using System.Threading.Tasks;
 using TK.CustomMap;
 using WasselApp.Models;
 using WasselApp.ViewModels;
+using WasselApp.Views.Popups;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -19,6 +21,12 @@ namespace WasselApp.Views.CarsPages
 		{
 			InitializeComponent ();
 		}
+        protected override bool OnBackButtonPressed()
+        {
+
+            return base.OnBackButtonPressed();
+            _ = PopupNavigation.Instance.PopAsync();
+        }
         private async void GetCars()
         {
             CarsViewModel carsViewModel = new CarsViewModel();
@@ -61,15 +69,7 @@ namespace WasselApp.Views.CarsPages
 
         }
 
-        private async void namelblTabbed(object sender, EventArgs e)
-        {
-            MainMap.Pins = null;
-            Label Alllbl = (Label)sender;
-            string citem = Alllbl.Text;
-            CarsViewModel cars = new CarsViewModel();
-           await cars.BrickCarGetter();
-            MainMap.Pins = cars.BrickCars.Where(o => o.cartypename == citem).ToList();
-        }
+        
 
         private async void StackTapped(object sender, EventArgs e)
         {
@@ -91,7 +91,15 @@ namespace WasselApp.Views.CarsPages
                 CarsViewModel cars = new CarsViewModel();
                 await cars.BrickCarGetter();
                 Cars = cars.BrickCars.Where(o => o.cartypename == cartypenamestring).ToList();
-                MainMap.Pins = Cars;
+                if (Cars.Count() == 0)
+                {
+                    Pinslbl.IsVisible = false;
+                    MainMap.Pins = Cars;
+                }
+                else
+                {
+                    Pinslbl.IsVisible = true;
+                }
                 CarsTypeBrick = cars.CarTypesBrick.Where(o => o.name == cartypenamestring).ToList();
                 foreach (var item in CarsTypeBrick)
                 {
@@ -145,8 +153,23 @@ namespace WasselApp.Views.CarsPages
                 await cars.BrickCarGetter();
                 Cars = cars.BrickCars.ToList();
                 MainMap.Pins = Cars;
+                if (Cars.Count() == 0)
+                {
+                    Pinslbl.IsVisible = false;
+                    MainMap.Pins = Cars;
+                }
+                else
+                {
+                    Pinslbl.IsVisible = true;
+                }
                 Activ.IsRunning = false;
             }
+        }
+
+        private async void MainMap_PinSelected(object sender, TKGenericEventArgs<TKCustomMapPin> e)
+        {
+            var _Carorder = MainMap.SelectedPin as Car;
+            await PopupNavigation.Instance.PushAsync(new BrickCarDetailsPage(_Carorder));
         }
     }
 }

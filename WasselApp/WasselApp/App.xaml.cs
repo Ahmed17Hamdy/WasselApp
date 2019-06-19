@@ -24,7 +24,7 @@ namespace WasselApp
                   .EndInit();
             OneSignal.Current.IdsAvailable(IdsAvailable);
            
-              MainPage = new NavigationPage( new IntroPage());
+              MainPage = new NavigationPage( new CallUsPage());;
          //   MainPage = new NavigationPage( new OrderDetailsPage( car));
         }
         private void IdsAvailable(string userID, string pushToken)

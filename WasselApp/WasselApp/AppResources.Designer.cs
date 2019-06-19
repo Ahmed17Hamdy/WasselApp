@@ -160,6 +160,15 @@ namespace WasselApp {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cancel Order.
+        /// </summary>
+        internal static string CancelOrder {
+            get {
+                return ResourceManager.GetString("CancelOrder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Car Number.
         /// </summary>
         internal static string Carid {
@@ -322,6 +331,15 @@ namespace WasselApp {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Details.
+        /// </summary>
+        internal static string Details {
+            get {
+                return ResourceManager.GetString("Details", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Distance.
         /// </summary>
         internal static string Distance {
@@ -372,6 +390,15 @@ namespace WasselApp {
         internal static string EmailTaken {
             get {
                 return ResourceManager.GetString("EmailTaken", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter New PassWord.
+        /// </summary>
+        internal static string EnterNewPassWord {
+            get {
+                return ResourceManager.GetString("EnterNewPassWord", resourceCulture);
             }
         }
         
@@ -484,6 +511,15 @@ namespace WasselApp {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Start Location :.
+        /// </summary>
+        internal static string LocationFrom {
+            get {
+                return ResourceManager.GetString("LocationFrom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sorry, This Location doesn&apos;t have Address .
         /// </summary>
         internal static string LocationNotFound {
@@ -507,6 +543,15 @@ namespace WasselApp {
         internal static string LocationTo {
             get {
                 return ResourceManager.GetString("LocationTo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Arrival Location :.
+        /// </summary>
+        internal static string LocationToo {
+            get {
+                return ResourceManager.GetString("LocationToo", resourceCulture);
             }
         }
         
@@ -682,6 +727,24 @@ namespace WasselApp {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Your Order Was Accepted.
+        /// </summary>
+        internal static string OrderAccepted {
+            get {
+                return ResourceManager.GetString("OrderAccepted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wants to Make an Order.
+        /// </summary>
+        internal static string OrderDetails {
+            get {
+                return ResourceManager.GetString("OrderDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Order Page.
         /// </summary>
         internal static string OrderPage {
@@ -853,6 +916,15 @@ namespace WasselApp {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This Route isn&apos;t Exist ..
+        /// </summary>
+        internal static string RouteNotFound {
+            get {
+                return ResourceManager.GetString("RouteNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Saudi Citizen.
         /// </summary>
         internal static string Saudi {
@@ -907,11 +979,29 @@ namespace WasselApp {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Subject.
+        /// </summary>
+        internal static string Subject {
+            get {
+                return ResourceManager.GetString("Subject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Time.
         /// </summary>
         internal static string Time {
             get {
                 return ResourceManager.GetString("Time", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The Trip is Completed , thank You For Using Wassel.
+        /// </summary>
+        internal static string TripCompleted {
+            get {
+                return ResourceManager.GetString("TripCompleted", resourceCulture);
             }
         }
         
@@ -934,11 +1024,29 @@ namespace WasselApp {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to User Panel.
+        /// </summary>
+        internal static string UserPanel {
+            get {
+                return ResourceManager.GetString("UserPanel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to You have Registered Successfully !.
         /// </summary>
         internal static string UserRegistered {
             get {
                 return ResourceManager.GetString("UserRegistered", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your Account is not Activated Yet , Please Wait Until We Contact You , Then Login Again ..
+        /// </summary>
+        internal static string UserStatues {
+            get {
+                return ResourceManager.GetString("UserStatues", resourceCulture);
             }
         }
         

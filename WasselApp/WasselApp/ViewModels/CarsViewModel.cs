@@ -249,153 +249,69 @@ namespace WasselApp.ViewModels
                     Convert.ToDouble(item.Member.lng));
                 if (item.cartypename == null)
                 {
-
-                    if (item.Member.cartype == "5")
+                    switch (item.Member.cartype)
                     {
-                        item.cartypename = "لانسر";
-                    }
-                    else if (item.Member.cartype == "6")
-                    {
-                        item.cartypename = "تيوتا";
-                    }
-                    else if (item.Member.cartype == "7")
-                    {
-                        item.cartypename = "نيسان";
-                    }
-                    else if (item.Member.cartype == "8")
-                    {
-                        item.cartypename = "هيونداي";
-                    }
-                    else if (item.Member.cartype == "0")
-                    {
-                        item.cartypename = "أودي";
+                        case "1":
+                            item.cartypename = "لانسر";
+                            break;
+                        case "2":
+                            item.cartypename = "تيوتا";
+                            break;
+                        case "3":
+                            item.cartypename = "نيسان";
+                            break;
+                        case "4":
+                            item.cartypename = "هيونداي";
+                            break;
+                        case "17":
+                            item.cartypename = "أودي";
+                            break;
                     }
                 }
                 item.Title = item.Member.name;
                 item.ShowCallout = true;
                 if (item.Order != null)
                 {
-                    if (item.Order.weight != null)
+                    switch (item.cartypename)
                     {
-
-                        if (item.Order.weight >= (0.9 * int.Parse(item.Member.load)) && item.cartypename == "لانسر")
-                        {
+                        case "لانسر":
                             item.Image = "lancerred.png";
-                        }
-                        else if (item.Order.weight >= (0.25 * int.Parse(item.Member.load))
-                             && item.Order.weight < (0.9 * int.Parse(item.Member.load)) && item.cartypename == "لانسر")
-                        {
-                            item.Image = "lancerblue.png";
-                        }
-                        else if (item.Order.weight >= (0.9 * int.Parse(item.Member.load)) && item.cartypename == "تيوتا")
-                        {
+                            break;
+                        case "تيوتا":
+
                             item.Image = "toyotared.png";
-                        }
-                        else if (item.Order.weight >= (0.25 * int.Parse(item.Member.load)) &&
-                            item.Order.weight < (0.9 * int.Parse(item.Member.load)) && item.cartypename == "تيوتا")
-                        {
-                            item.Image = "toyotablue.png";
-                        }
-                        else if (item.Order.weight >= (0.9 * int.Parse(item.Member.load)) && item.cartypename == "نيسان")
-                        {
+                            break;
+                        case "نيسان":
                             item.Image = "nissanred.png";
-                        }
-                        else if (item.Order.weight >= (0.25 * int.Parse(item.Member.load)) &&
-                            item.Order.weight < 0.9 * int.Parse(item.Member.load) && item.cartypename == "نيسان")
-                        {
-                            item.Image = "nissanblue.png";
-                        }
-                        else if (item.Order.weight >= 0.9 * double.Parse(item.Member.load) && item.cartypename == "هيونداي")
-                        {
+                            break;
+                        case "هيونداي":
                             item.Image = "hyundaired.png";
-                        }
-                        else if (item.Order.weight >= 0.25 * double.Parse(item.Member.load) &&
-                            item.Order.weight < 0.9 * double.Parse(item.Member.load) && item.cartypename == "هيونداي")
-                        {
-                            item.Image = "hyundaiblue.png";
-                        }
-                        else if (item.Order.weight >= 0.9 * double.Parse(item.Member.load) && item.cartypename == "أودي")
-                        {
-                            item.Image = "hyundaired.png";
-                        }
-                        else if (item.Order.weight >= 0.25 * double.Parse(item.Member.load) &&
-                            item.Order.weight < 0.9 * double.Parse(item.Member.load) && item.cartypename == "أودي")
-                        {
-                            item.Image = "hyundaiblue.png";
-                        }
-                        else
-                        {
-
-                            if (item.Order.weight < 0.25 * double.Parse(item.Member.load) && item.cartypename == "لانسر")
-                            {
-                                item.Image = "lancergreen.png";
-                            }
-                            else if (item.Order.weight < 0.25 * double.Parse(item.Member.load) && item.cartypename == "تيوتا")
-                            {
-                                item.Image = "toyotagreen.png";
-                            }
-                            else if (item.Order.weight < 0.25 * double.Parse(item.Member.load) && item.cartypename == "نيسان")
-                            {
-                                item.Image = "nissangreen.png";
-                            }
-                            else if (item.Order.weight < 0.25 * double.Parse(item.Member.load) && item.cartypename == "هيونداي")
-                            {
-                                item.Image = "hyundaigreen.png";
-                            }
-                            else
-                            {
-                                item.Image = "hyundaigreen.png";
-                            }
-                        }
-                    }
-                    else
-                    {
-
-                        if (item.cartypename == "لانسر")
-                        {
-                            item.Image = "lancergreen.png";
-                        }
-                        else if (item.cartypename == "تيوتا")
-                        {
-                            item.Image = "toyotagreen.png";
-                        }
-                        else if (item.cartypename == "نيسان")
-                        {
-                            item.Image = "nissangreen.png";
-                        }
-                        else if (item.cartypename == "هيونداي")
-                        {
-                            item.Image = "hyundaigreen.png";
-                        }
-                        else if (item.cartypename == "أودي")
-                        {
-                            item.Image = "hyundaigreen.png";
-                        }
+                            break;
+                        case "أودي":
+                            item.Image = "audired.png";
+                            break;
                     }
                 }
                 else
                 {
+                    switch (item.cartypename)
+                    {
+                        case "لانسر":
+                            item.Image = "lancergreen.png";
+                            break;
+                        case "تيوتا":
 
-
-                     if (item.cartypename == "لانسر")
-                    {
-                        item.Image = "lancergreen.png";
-                    }
-                    else if (item.cartypename == "تيوتا")
-                    {
-                        item.Image = "toyotagreen.png";
-                    }
-                    else if (item.cartypename == "نيسان")
-                    {
-                        item.Image = "nissangreen.png";
-                    }
-                    else if (item.cartypename == "هيونداي")
-                    {
-                        item.Image = "hyundaigreen.png";
-                    }
-                    else if (item.cartypename == "أودي")
-                    {
-                        item.Image = "hyundaigreen.png";
+                            item.Image = "toyotagreen.png";
+                            break;
+                        case "نيسان":
+                            item.Image = "nissangreen.png";
+                            break;
+                        case "هيونداي":
+                            item.Image = "hyundaigreen.png";
+                            break;
+                        case "أودي":
+                             item.Image = "audigreen.png";
+                            break;
                     }
                 }
             }

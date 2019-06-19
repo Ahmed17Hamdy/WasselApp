@@ -423,4 +423,40 @@
   <data name="DriverPanel" xml:space="preserve">
     <value>لوحة السائق</value>
   </data>
+  <data name="EnterNewPassWord" xml:space="preserve">
+    <value>أدخل كلمة مرور جديدة</value>
+  </data>
+  <data name="UserPanel" xml:space="preserve">
+    <value>لوحة المستخدم</value>
+  </data>
+  <data name="UserStatues" xml:space="preserve">
+    <value>حسابك غير مفعل حتى الآن , يرجى الإنتظار وسنقوم بالتواصل معك , ثم سجل الدخول مرة أخرى .</value>
+  </data>
+  <data name="RouteNotFound" xml:space="preserve">
+    <value>هذا الطريق غير موجود</value>
+  </data>
+  <data name="CancelOrder" xml:space="preserve">
+    <value>إلغ الطلب</value>
+  </data>
+  <data name="LocationFrom" xml:space="preserve">
+    <value>: عنوان مكان بدء التحرك</value>
+  </data>
+  <data name="LocationToo" xml:space="preserve">
+    <value>: عنوان الوصول</value>
+  </data>
+  <data name="OrderDetails" xml:space="preserve">
+    <value>يريد طلب توصيل</value>
+  </data>
+  <data name="TripCompleted" xml:space="preserve">
+    <value>تم الإنتهاء من الرحلة , نشكرك لإستخدام واصل</value>
+  </data>
+  <data name="OrderAccepted" xml:space="preserve">
+    <value>تم قبول طلبك</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>التفاصيل</value>
+  </data>
+  <data name="Subject" xml:space="preserve">
+    <value>الموضوع</value>
+  </data>
 </root>

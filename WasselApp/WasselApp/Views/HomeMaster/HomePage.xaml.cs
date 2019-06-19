@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using WasselApp.Views.HomeMaster;
 using Xamarin.Forms;
+using WasselApp.Helpers;
 using Xamarin.Forms.Xaml;
 
 namespace WasselApp

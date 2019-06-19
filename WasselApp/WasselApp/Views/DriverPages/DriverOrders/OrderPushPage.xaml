@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:i18n="clr-namespace:WasselApp.Helpers"
+             xmlns:custommap="clr-namespace:TK.CustomMap;assembly=TK.CustomMap"
+             x:Class="WasselApp.Views.DriverPages.DriverOrders.OrderPushPage">
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <custommap:TKCustomMap  Grid.Row="0" x:Name="OrderMap"  IsClusteringEnabled="False"
+                                    IsShowingUser="True" HasScrollEnabled="True"
+                                   RouteCalculationFinished="OrderMap_RouteCalculationFinished" 
+                               HasZoomEnabled="True"/>
+            <StackLayout Grid.Row="1" Padding="10"  BackgroundColor="White" >
+                <StackLayout  BackgroundColor="White" 
+                             Orientation="Horizontal">
+                    <Label x:Name="userNamelbl"/>
+                    <Label Text="{i18n:Translate OrderDetails }"/>
+                </StackLayout>
+                <StackLayout  BackgroundColor="White"  Orientation="Horizontal">
+                    <Label Text="{i18n:Translate LocationFrom }"/>
+                    <Label x:Name="AddressFromlbl"/>
+                </StackLayout>
+                <StackLayout  BackgroundColor="White" Orientation="Horizontal">
+                    <Label Text="{i18n:Translate LocationToo }"/>
+                    <Label x:Name="AddressTolbl"/>
+                </StackLayout>
+                <StackLayout   HorizontalOptions="Center" BackgroundColor="White"
+                             Orientation="Horizontal">
+                    <Button x:Name="Acceptbtn" BackgroundColor="Green" Clicked="Acceptbtn_Clicked"
+                            Text="{i18n:Translate Confirm}" />
+                    <BoxView BackgroundColor="Blue" WidthRequest="1"/>
+                    <Button x:Name="Cancelbtn" Clicked="Cancelbtn_Clicked" BackgroundColor="Red" 
+                            Text="{i18n:Translate Cancel}" />
+                </StackLayout>
+            </StackLayout>
+            <ActivityIndicator x:Name="Active"  HorizontalOptions="Center" VerticalOptions="Center"
+                                 Color="Blue" />
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

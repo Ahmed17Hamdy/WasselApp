@@ -15,6 +15,35 @@ namespace WasselApp.Helpers
                 return CrossSettings.Current;
             }
         }
+        private const string LastCarLatKey = "last_Lat_key";
+        private static readonly double CarLatDefault = 0;
+        public static double CarLat
+        {
+            get => AppSettings.GetValueOrDefault(LastCarLatKey, CarLatDefault);
+            set => AppSettings.AddOrUpdateValue(LastCarLatKey, value);
+        }
+        private const string LastCarlngKey = "last_lng_key";
+        private static readonly double CarLngDefault = 0;
+        public static double CarLng
+        {
+            get => AppSettings.GetValueOrDefault(LastCarlngKey, CarLngDefault);
+            set => AppSettings.AddOrUpdateValue(LastCarlngKey, value);
+        }
+        private const string LastProfileUserKey = "last_ProfileUser_key";
+        private static readonly string ProfileUserkey = string.Empty;
+        public static string ProfileUser
+
+        {
+            get
+            =>
+                 AppSettings.GetValueOrDefault(LastProfileUserKey, ProfileUserkey);
+
+
+            set
+            =>
+                AppSettings.AddOrUpdateValue(LastProfileUserKey, value);
+
+        }
         private const string LastResidentnameKey = "last_Resident_key";
         private static readonly string Residentnamekey = string.Empty;
         public static string ResidentName

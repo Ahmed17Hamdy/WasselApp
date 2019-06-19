@@ -3,12 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:Behaviors="clr-namespace:WasselApp.Behaviors"
+             xmlns:Behaviors="clr-namespace:WasselApp.Behaviors" 
              xmlns:Validators="clr-namespace:WasselApp.Models.BModel"
-             mc:Ignorable="d"
-             NavigationPage.HasNavigationBar="False" NavigationPage.HasBackButton="True"
+             
+             mc:Ignorable="d" NavigationPage.HasNavigationBar="False" NavigationPage.HasBackButton="True"
              xmlns:i18n="clr-namespace:WasselApp.Helpers"
-             x:Class="WasselApp.Views.Panels.RecoveryPages">
+             x:Class="WasselApp.Views.Panels.RecoveryPagesForUsers">
     <ContentPage.Content>
         <Grid>
             <Grid x:Name="ForgetPassWordgrid" Padding="10">

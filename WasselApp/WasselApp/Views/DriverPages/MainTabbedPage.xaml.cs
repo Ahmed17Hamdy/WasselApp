@@ -1,11 +1,14 @@
-﻿using System;
+﻿using Com.OneSignal.Abstractions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using WasselApp.Helpers;
 using System.Threading.Tasks;
-
+using WasselApp.Views.DriverPages.DriverOrders;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Com.OneSignal;
 
 namespace WasselApp.Views.CarsPages
 {
@@ -15,6 +18,41 @@ namespace WasselApp.Views.CarsPages
         public MainTabbedPage ()
         {
             InitializeComponent();
+            OneSignal.Current.StartInit("f5f4f650-3453-456c-8024-010ea68e738b")
+             .InFocusDisplaying(OSInFocusDisplayOption.None)
+             .HandleNotificationReceived(OnNotificationRecevied)
+             .HandleNotificationOpened(OnNotificationOpened)
+             .EndInit();
+        }
+        private void OnNotificationOpened(OSNotificationOpenedResult result)
+        {
+            if (result.notification?.payload?.additionalData == null)
+            {
+                return;
+            }
+
+            if (result.notification.payload.additionalData.ContainsKey("body"))
+            {
+                var labelText = result.notification.payload.additionalData["body"].ToString();
+                Settings.LastNotify = labelText;
+                App.Current.MainPage = new OrderPushPage();
+            }
+
+        }
+
+        private void OnNotificationRecevied(OSNotification notification)
+        {
+            if (notification.payload?.additionalData == null)
+            {
+                return;
+            }
+
+            if (notification.payload.additionalData.ContainsKey("body"))
+            {
+                var labelText = notification.payload.additionalData["body"].ToString();
+                Settings.LastNotify = labelText;
+                App.Current.MainPage = new OrderPushPage();
+            }
         }
     }
 }

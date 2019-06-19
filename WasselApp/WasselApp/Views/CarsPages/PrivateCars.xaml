@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewmodels="clr-namespace:WasselApp.ViewModels"
+             xmlns:tr="clr-namespace:WasselApp.Helpers"
              xmlns:tk="clr-namespace:TK.CustomMap;assembly=TK.CustomMap"
              x:Class="WasselApp.Views.CarsPages.PrivateCars">
     <ContentPage.BindingContext>
@@ -34,11 +35,9 @@
                                         <Label x:Name="namelbl"  HorizontalTextAlignment="Center" VerticalOptions="Center"
                                                HorizontalOptions="Center"
                                        Text="{Binding name}">
-                                            <Label.GestureRecognizers>
-                                                <TapGestureRecognizer Tapped="namelblTabbed"/>
-                                            </Label.GestureRecognizers>
+                                            
                                         </Label>
-                                        <Image  Source="{Binding icon}" HeightRequest="30" WidthRequest="60"/>
+                                        <Image Source="{Binding icon,StringFormat='http://waselksa.alsalil.net/users/images/{0}'}"  HeightRequest="50" WidthRequest="50" />
                                         <StackLayout.GestureRecognizers>
                                             <TapGestureRecognizer Tapped="StackTapped"/>
                                         </StackLayout.GestureRecognizers>
@@ -51,13 +50,14 @@
             </ScrollView>
             <AbsoluteLayout Padding="5" Grid.Row="1">
                 <tk:TKCustomMap  IsShowingUser="True"    AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" 
-                                 x:Name="MainMap" MapType="Street" Pins="{Binding Cars}"  IsClusteringEnabled="False"
-                                
+                                 x:Name="MainMap" MapType="Street" Pins="{Binding BrickCars}"  IsClusteringEnabled="False"
+                                PinSelected="MainMap_PinSelected"
                                    HasScrollEnabled="True" HasZoomEnabled="True"   />
-                <Label x:Name="Addresslbl" AbsoluteLayout.LayoutBounds="0,0,1,50" 
-                       AbsoluteLayout.LayoutFlags="PositionProportional, WidthProportional"
-                       HorizontalTextAlignment="Center"
-                       Text="موقع مكانك هنا" />
+                <Frame x:Name="Pinslbl" IsVisible="False"  BackgroundColor="White"  CornerRadius="10" 
+                       AbsoluteLayout.LayoutBounds="0.5,0.5,300,150" AbsoluteLayout.LayoutFlags="PositionProportional">
+                    <Label  HorizontalOptions="Center" HorizontalTextAlignment="Center"
+                       Text="{tr:Translate NoCars}" TextColor="Red" FontSize="Large" />
+                </Frame>
                 <Frame Padding="5" x:Name="ModelFrame" IsVisible="False" BackgroundColor="White" CornerRadius="20"
                        AbsoluteLayout.LayoutBounds="0.5,0.5,300,300" AbsoluteLayout.LayoutFlags="PositionProportional">
                     <AbsoluteLayout>
@@ -71,7 +71,7 @@
                                     <DataTemplate>
                                         <ViewCell>
                                             <StackLayout FlowDirection="RightToLeft"  Orientation="Horizontal">
-                                                <Image Source="{Binding icon}"  HeightRequest="20" WidthRequest="20"/>
+                                                <Image Source="{Binding icon,StringFormat='http://waselksa.alsalil.net/users/images/{0}'}"  HeightRequest="20" WidthRequest="20" />
                                                 <Label Text="{Binding name}" HorizontalTextAlignment="Center" />
                                             </StackLayout>
                                         </ViewCell>

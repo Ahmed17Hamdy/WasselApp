@@ -6,6 +6,7 @@
              xmlns:viewmodels="clr-namespace:WasselApp.ViewModels"
              xmlns:Behaviors="clr-namespace:WasselApp.Behaviors"
              xmlns:Validators="clr-namespace:WasselApp.Models.BModel"
+             Title="{i81:Translate UserPanel}" NavigationPage.HasBackButton="True" 
              x:Class="WasselApp.Views.Panels.UserPanel">
     <ContentPage.BindingContext>
         <viewmodels:UserViewModel/>
@@ -13,12 +14,13 @@
         <ContentPage.Content>
             <Grid Margin="10">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
+                <RowDefinition Height="150"/>
                     <RowDefinition Height="60"/>
                     <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-                <Image Grid.Row="0" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="100"
-                       WidthRequest="250" Aspect="AspectFit" Source="WasselLogo.PNG" />
+                <RowDefinition Height="25"/>
+            </Grid.RowDefinitions>
+                <Image Grid.Row="0"
+                       WidthRequest="250" Aspect="Fill" Source="WasselLogo.PNG" />
                 <StackLayout Padding="5" Orientation="Horizontal" Grid.Row="1" HorizontalOptions="CenterAndExpand"
                              VerticalOptions="CenterAndExpand">
                     <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
@@ -110,7 +112,15 @@
                         </StackLayout>
 
                 </ScrollView>
-                <ScrollView x:Name="LoginPanel" IsVisible="False"  Grid.Row="2">
+            <StackLayout x:Name="loginlbl" Grid.Row="3" Orientation="Horizontal">
+                <Label  TextColor="Blue" Text="{i81:Translate HaveAccount }"/>
+                <Label TextColor="DarkBlue" Text="{i81:Translate LogIn}">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Login_Tapped"/>
+                    </Label.GestureRecognizers>
+                </Label>
+            </StackLayout>
+            <ScrollView x:Name="LoginPanel" IsVisible="False"  Grid.Row="2">
                     <StackLayout  Grid.Row="2" >
                     <StackLayout.Behaviors>
                         <Validators:ValidationGroupBehavior x:Name="Loginform"/>
@@ -150,6 +160,14 @@
                         BorderRadius="20"/>
                     </StackLayout>
                 </ScrollView>
+            <StackLayout IsVisible="False" x:Name="Registerlbl" Grid.Row="3" Orientation="Horizontal">
+                <Label TextColor="DarkBlue" Text="{i81:Translate ForgetPasswrd}">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Recovery_Tapped"/>
+                    </Label.GestureRecognizers>
+                </Label>
+
+            </StackLayout>
             <ActivityIndicator Grid.Row="0" Grid.RowSpan="3" VerticalOptions="Center" HorizontalOptions="Center"
                                IsRunning="{Binding IsRunning}" Color="Blue" WidthRequest="100" HeightRequest="100" />
         </Grid>

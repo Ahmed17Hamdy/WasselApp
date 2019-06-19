@@ -25,7 +25,12 @@ namespace WasselApp.Views.CarsPages
             GetLocation();
            // GetCars();
         }
+        protected override bool OnBackButtonPressed()
+        {
 
+            return base.OnBackButtonPressed();
+            _ = PopupNavigation.Instance.PopAsync();
+        }
         private async void GetCars()
         {
             CarsViewModel carsViewModel = new CarsViewModel();

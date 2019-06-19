@@ -1,4 +1,7 @@
 ﻿using Com.OneSignal.Abstractions;
+using Newtonsoft.Json;
+using Plugin.Permissions;
+using Plugin.Permissions.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,33 +10,21 @@ using System.Text;
 using System.Threading.Tasks;
 using WasselApp.Models;
 using WasselApp.Helpers;
+using WasselApp.Views.HomeMaster;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using Xamarin.Essentials;
-using WasselApp.Views.HomeMaster;
-using Plugin.Permissions;
-using Plugin.Permissions.Abstractions;
-using Newtonsoft.Json;
-using Com.OneSignal;
 
 namespace WasselApp.Views.OrdersPage
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class OrderDetailsPage : ContentPage
+    public partial class BrickOrderDetailsPage : ContentPage
     {
-        private bool visibli =true;
-
-        public OrderDetailsPage(Car carOrder)
+        public BrickOrderDetailsPage(Car carOrder)
         {
-           
             InitializeComponent();
-            OneSignal.Current.StartInit("f5f4f650-3453-456c-8024-010ea68e738b")
-           .InFocusDisplaying(OSInFocusDisplayOption.None)
-           .HandleNotificationReceived(OnNotificationRecevied)
-           .HandleNotificationOpened(OnNotificationOpened)
-           .EndInit();
             Settings.LastUsedDriverID = carOrder.Member.id;
-            if (AddressTo.Text!= null || AddressFrom.Text!=null)
+            if (AddressTo.Text != null || AddressFrom.Text != null)
             {
                 Settings.Placeto = String.Empty;
                 AddressTo.Text = null;
@@ -46,10 +37,7 @@ namespace WasselApp.Views.OrdersPage
                 AddressTo.Text = null;
                 GetLocation();
             }
-
-           
         }
-
         private async void GetLocation()
         {
             var locationStatus = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Location);
@@ -81,7 +69,7 @@ namespace WasselApp.Views.OrdersPage
             }
             else
             {
-                await DisplayAlert(AppResources.PermissionsDenied, AppResources.PermissionLocationDetails, 
+                await DisplayAlert(AppResources.PermissionsDenied, AppResources.PermissionLocationDetails,
                     AppResources.Ok);
                 //On iOS you may want to send your user to the settings screen.
                 CrossPermissions.Current.OpenAppSettings();
@@ -92,7 +80,7 @@ namespace WasselApp.Views.OrdersPage
         private async void LocationTobtn_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new PlaceToPage(), true);
-           
+
         }
         protected override void OnAppearing()
         {
@@ -101,7 +89,7 @@ namespace WasselApp.Views.OrdersPage
             CalculatDistance();
             base.OnAppearing();
         }
-        private void OnNotificationOpened(OSNotificationOpenedResult result)
+        private async void OnNotificationOpened(OSNotificationOpenedResult result)
         {
             if (result.notification?.payload?.additionalData == null)
             {
@@ -117,7 +105,7 @@ namespace WasselApp.Views.OrdersPage
 
         }
 
-        private void OnNotificationRecevied(OSNotification notification)
+        private async void OnNotificationRecevied(OSNotification notification)
         {
 
             if (notification.payload?.additionalData == null)
@@ -138,26 +126,23 @@ namespace WasselApp.Views.OrdersPage
             if (Settings.LastNotify == "Has been approved")
             {
                 Active.IsRunning = false;
-                await DisplayAlert(AppResources.Alert, AppResources.OrderAccepted, AppResources.Ok);
-                App.Current.MainPage = new NavigationPage(new OrderSuccessPage());
-                
-                //Device.BeginInvokeOnMainThread(() =>
-                //{
-                //    Navigation.PushModalAsync(new OrderSuccessPage());
-                //    DisplayAlert(AppResources.Alert, AppResources.OrderAccepted, AppResources.Ok);
+                App.Current.MainPage = new OrderSuccessPage();
+                await DisplayAlert(AppResources.Alert, AppResources.OrderRefused, AppResources.Ok);
+                //Device.BeginInvokeOnMainThread(() => {
+                //    Navigation.PushModalAsync(new TirhalPage());
+                //     DisplayAlert(AppResources.Alert, AppResources.OrderAccepted, AppResources.OK);
 
                 //});
             }
             else
             {
                 Active.IsRunning = false;
+                App.Current.MainPage = new MainPage();
                 await DisplayAlert(AppResources.Alert, AppResources.OrderRefused, AppResources.Ok);
-                App.Current.MainPage = new NavigationPage(new HomePage());
-              
-               //Device.BeginInvokeOnMainThread(() => {
-               //    Navigation.PushModalAsync(new HomePage());
-               //     DisplayAlert(AppResources.Alert, AppResources.OrderRefused, AppResources.Ok);
-               // });
+                //Device.BeginInvokeOnMainThread(() => {
+                //    Navigation.PushModalAsync(new CarTypePage());
+                //     DisplayAlert(AppResources.Alert, AppResources.OrderRefused, AppResources.OK);
+                //});
 
             }
         }
@@ -178,18 +163,18 @@ namespace WasselApp.Views.OrdersPage
         {
             Active.IsRunning = true;
             var date = String.Format("{0:yyyy-MM-dd}", datepicker.Date);
-         //   CalculatDistance();
+            //   CalculatDistance();
             CarOrder order = new CarOrder
             {
                 latfrom = Settings.Latfrom,
                 lngfrom = Settings.Lngfrom,
                 user_id = Settings.LastUsedDriverID,
-                owner_id =Settings.LastUsedID,
-                addressto=Settings.Placeto,
-                addressfrom=Settings.PlaceFrom,
-                ordertype="نقل بضاعه",
-                weight= int.Parse(Weightentry.Text),
-             // car_model_id = Settings.LastUsedCarModel.ToString(),
+                owner_id = Settings.LastUsedID,
+                addressto = Settings.Placeto,
+                addressfrom = Settings.PlaceFrom,
+                ordertype = "نقل أجره",
+           //     weight = int.Parse(Weightentry.Text),
+                // car_model_id = Settings.LastUsedCarModel.ToString(),
                 distance = Convert.ToInt32(Settings.Distance),
                 latto = Settings.Latto,
                 lngto = Settings.Lngto,
@@ -205,15 +190,15 @@ namespace WasselApp.Views.OrdersPage
             values.Add("addressto", order.addressto);
             values.Add("addressfrom", order.addressfrom);
             values.Add("ordertype", order.ordertype);
-            values.Add("weight", order.weight.ToString());
+         //   values.Add("weight", order.weight.ToString());
             values.Add("distance", order.distance.ToString());
             //values.Add("car_model", order.car_model_id);
-           // values.Add("waiting_hours", order.created_at);
+            // values.Add("waiting_hours", order.created_at);
             string content = JsonConvert.SerializeObject(values);
             var httpClient = new HttpClient();
             try
             {
-                var response = await httpClient.PostAsync("https://waselksa.alsalil.net/api/addwaselorder",
+                var response = await httpClient.PostAsync("https://waselksa.alsalil.net/api/addograorder",
                     new StringContent(content, Encoding.UTF8, "text/json"));
                 var serverResponse = response.Content.ReadAsStringAsync().Result.ToString();
                 var json = JsonConvert.DeserializeObject<Response<CarOrder, string>>(serverResponse);
@@ -240,7 +225,7 @@ namespace WasselApp.Views.OrdersPage
 
         }
 
-    private void Button_Clicked(object sender, EventArgs e)
+        private void Button_Clicked(object sender, EventArgs e)
         {
             if (NoteEditor.IsVisible != true)
             {
@@ -258,7 +243,7 @@ namespace WasselApp.Views.OrdersPage
 
         private async void UserPlacebtn_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new  UserPlacePage(), true);
+            await Navigation.PushAsync(new UserPlacePage(), true);
         }
     }
 }

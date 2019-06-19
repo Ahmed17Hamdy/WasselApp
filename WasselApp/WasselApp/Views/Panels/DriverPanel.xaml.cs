@@ -56,7 +56,7 @@ namespace WasselApp.Views.Panels
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            NatoionalEntry.Text = Settings.ResidentName;
+          //  NatoionalEntry.Text = Settings.ResidentName;
         }
         private bool AllNeeded()
         {
@@ -80,7 +80,7 @@ namespace WasselApp.Views.Panels
                 PopupNavigation.Instance.PushAsync(new CartypePage());
                 return false;
             }
-            else if (Settings.Residentid!=string.Empty)
+            else if (Settings.Residentid==string.Empty)
             {
                 Active.IsRunning = false;
                 DisplayAlert(AppResources.Error, AppResources.ChooseResidence, AppResources.Ok);
@@ -240,34 +240,43 @@ namespace WasselApp.Views.Panels
                     }
                     else
                     {
-                       
                         try
                         {
-                            Active.IsRunning = false;
-                            var JsonResponse = JsonConvert.DeserializeObject<Response<string, Models.DriverUser>>(serverResponse);
-                            if (JsonResponse.success == true)
+                            try
                             {
-                                Settings.LastUsedDriverID = JsonResponse.message.id;
-                                Settings.LastUsedEmail = JsonResponse.message.email;
-                                Settings.LastUserStatus = "0";
-                                Settings.Type = 2;
-                                Settings.ProfileName = JsonResponse.message.name;
-                                await PopupNavigation.Instance.PushAsync(new RegisterPopup(JsonResponse.data));
-                                Device.BeginInvokeOnMainThread(() => App.Current.MainPage = new MainTabbedPage());
+                                Active.IsRunning = false;
+                                var JsonResponse = JsonConvert.DeserializeObject<Response<string, Models.DriverUser>>(serverResponse);
+                                if (JsonResponse.success == true)
+                                {
+                                    Settings.LastUsedDriverID = JsonResponse.message.id;
+                                    Settings.LastUsedEmail = JsonResponse.message.email;
+                                    Settings.LastUserStatus = "0";
+                                    Settings.ProfileUser = "2";
+                                    Settings.ProfileName = JsonResponse.message.name;
+                                    Settings.CarLat = Convert.ToDouble(JsonResponse.message.lat);
+                                    Settings.CarLng = Convert.ToDouble(JsonResponse.message.lng);
+                                    await PopupNavigation.Instance.PushAsync(new RegisterPopup(JsonResponse.data));
+                                    Device.BeginInvokeOnMainThread(() => App.Current.MainPage = new MainTabbedPage());
+                                }
+                                
                             }
-                            else
+                            catch 
                             {
-                                await PopupNavigation.Instance.PushAsync(new RegisterPopup(JsonResponse.data));
-                                //  await DisplayAlert(AppResources.Error, JsonResponse.data, AppResources.Ok);
-                                return;
+                                var JsonResponse = JsonConvert.DeserializeObject<RegisterResponse>(serverResponse);
+                                if (JsonResponse.success == false)
+                                {
+                                    Active.IsRunning = false;
+                                    await PopupNavigation.Instance.PushAsync(new RegisterPopup(JsonResponse.data));
+                                }
                             }
                         }
                         catch (Exception)
                         {
-                               Active.IsRunning = false;
-                            await PopupNavigation.Instance.PushAsync(new ConnectionPopup());                           
+                            Active.IsRunning = false;
+                            await PopupNavigation.Instance.PushAsync(new ConnectionPopup());
                             return;
                         }
+                       
                     }
 
                 }

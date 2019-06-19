@@ -33,7 +33,7 @@
                                         <Label x:Name="namelbl"  HorizontalTextAlignment="Center" VerticalOptions="Center"
                                                HorizontalOptions="Center"
                                        Text="{Binding name}"/>
-                                        <Image  Source="{Binding icon}" HeightRequest="30" WidthRequest="60"/>
+                                        <Image Source="{Binding icon,StringFormat='http://waselksa.alsalil.net/users/images/{0}'}"  HeightRequest="50" WidthRequest="50" />
                                         <StackLayout.GestureRecognizers>
                                             <TapGestureRecognizer Tapped="StackTapped"/>
                                         </StackLayout.GestureRecognizers>
@@ -70,7 +70,7 @@
                                     <DataTemplate>
                                         <ViewCell>
                                             <StackLayout FlowDirection="RightToLeft"  Orientation="Horizontal">
-                                                <Image Source="{Binding icon}"  HeightRequest="20" WidthRequest="20"/>
+                                                <Image Source="{Binding icon,StringFormat='http://waselksa.alsalil.net/users/images/{0}'}"  HeightRequest="20" WidthRequest="20" />
                                                 <Label Text="{Binding name}" HorizontalTextAlignment="Center" />
                                             </StackLayout>
                                         </ViewCell>

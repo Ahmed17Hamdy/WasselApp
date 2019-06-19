@@ -1,12 +1,99 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:customcontrols="clr-namespace:WasselApp.CustomControls"
+             xmlns:Behaviors="clr-namespace:WasselApp.Behaviors"
+             xmlns:Validators="clr-namespace:WasselApp.Models.BModel"
+             xmlns:i81="clr-namespace:WasselApp.Helpers"
+             Padding="10"
+             xmlns:viewmodels="clr-namespace:WasselApp.ViewModels"
              x:Class="WasselApp.Views.HomeMaster.CallUsPage">
+    <ContentPage.BindingContext>
+        <viewmodels:UserViewModel/>
+    </ContentPage.BindingContext>
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <Frame VerticalOptions="Center"  CornerRadius="2" BorderColor="Blue">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="150" />
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Image Grid.Row="0"
+                       WidthRequest="250" Aspect="Fill" Source="WasselLogo.PNG" />
+                <ScrollView Grid.Row="1">
+                    <StackLayout Grid.Row="1">
+                        <StackLayout.Behaviors>
+                            <Validators:ValidationGroupBehavior x:Name="form"/>
+                        </StackLayout.Behaviors>
+                        <customcontrols:ImageEntry  x:Name="nameentry"
+                                                    Image="username" HorizontalTextAlignment="Center" 
+                                                    Placeholder="{i81:Translate Name}">
+                            <customcontrols:ImageEntry.Behaviors>
+                                <Behaviors:ValidationBehavior Group="{x:Reference form}" 
+                                              PropertyName="Text">
+                                    <Behaviors:ValidationBehavior.Validators>
+                                        <Validators:RequiredValidator />
+                                    </Behaviors:ValidationBehavior.Validators>
+                                </Behaviors:ValidationBehavior>
+                            </customcontrols:ImageEntry.Behaviors>
+                        </customcontrols:ImageEntry>
+                        <customcontrols:ImageEntry  Image="email" x:Name="EmailEntry"
+                                                   HorizontalTextAlignment="Center"
+                                                   Placeholder="{i81:Translate Email}" >
+                            <customcontrols:ImageEntry.Behaviors>
+                                <Behaviors:ValidationBehavior Group="{x:Reference form}" PropertyName="Text">
+                                    <Behaviors:ValidationBehavior.Validators>
+                                        <Validators:RequiredValidator />
+                                        <Behaviors:FormatValidator
+                            Message="{i81:Translate InvalidMail}" 
+                            Format="^[_a-z0-9-]*(.[a-z0-9-]+)@[a-z0-9-]+(.[a-z0-9-]+)*(.[a-z]{2,4})$" />
+                                    </Behaviors:ValidationBehavior.Validators>
+                                </Behaviors:ValidationBehavior>
+                            </customcontrols:ImageEntry.Behaviors>
+                        </customcontrols:ImageEntry>
+                        <customcontrols:ImageEntry x:Name="PhoneEntry" 
+                                    Keyboard="Telephone"  MaxLength="11"      Image="phone" HorizontalTextAlignment="Center"
+                                               Placeholder="{i81:Translate PhoneNumber}">
+                            <customcontrols:ImageEntry.Behaviors>
+                                <Behaviors:ValidationBehavior Group="{x:Reference form}" PropertyName="Text">
+                                    <Behaviors:ValidationBehavior.Validators>
+                                        <Validators:RequiredValidator />
+                                    </Behaviors:ValidationBehavior.Validators>
+                                </Behaviors:ValidationBehavior>
+                            </customcontrols:ImageEntry.Behaviors>
+                        </customcontrols:ImageEntry>
+                        <customcontrols:ImageEntry x:Name="SubjectEntry"
+                                           Image="arrow" HorizontalTextAlignment="Center"
+                                               Placeholder="{i81:Translate Subject}">
+                            <customcontrols:ImageEntry.Behaviors>
+                                <Behaviors:ValidationBehavior Group="{x:Reference form}" PropertyName="Text">
+                                    <Behaviors:ValidationBehavior.Validators>
+                                        <Validators:RequiredValidator />
+                                    </Behaviors:ValidationBehavior.Validators>
+                                </Behaviors:ValidationBehavior>
+                            </customcontrols:ImageEntry.Behaviors>
+                        </customcontrols:ImageEntry>
+                        <Frame CornerRadius="5" BorderColor="Blue">
+                            <Editor x:Name="MessageEntry" HeightRequest="150" Placeholder="{i81:Translate Details }" >
+                                <Editor.Behaviors>
+                                    <Behaviors:ValidationBehavior Group="{x:Reference form}" PropertyName="Text">
+                                        <Behaviors:ValidationBehavior.Validators>
+                                            <Validators:RequiredValidator />
+                                        </Behaviors:ValidationBehavior.Validators>
+                                    </Behaviors:ValidationBehavior>
+                                </Editor.Behaviors>
+                            </Editor>
+
+                        </Frame>
+                        <Button Text="{i81:Translate Send}" CornerRadius="5" Clicked="Button_Clicked"
+                                Margin="15,0,15,0" IsEnabled="{Binding Source={x:Reference form}, Path=IsValid}"
+                                 BackgroundColor="Blue" TextColor="White"/>
+                    </StackLayout>
+                </ScrollView>
+                <ActivityIndicator Grid.Row="0" Grid.RowSpan="2" HorizontalOptions="Center"
+                          VerticalOptions="Center"   IsVisible="False"      x:Name="Active" IsRunning="False" WidthRequest="100"
+                                  HeightRequest="100" BackgroundColor="Blue"/>
+            </Grid>
+        </Frame>
     </ContentPage.Content>
 </ContentPage>

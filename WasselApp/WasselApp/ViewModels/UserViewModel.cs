@@ -26,7 +26,7 @@ namespace WasselApp.ViewModels
 
         public UserViewModel()
         {
-              ResidentsList = GetResidents();
+         //     ResidentsList = GetResidents();
             residents = new List<Resident>()
             {
             new Resident(){id =0, name=AppResources.resident},
@@ -184,7 +184,9 @@ namespace WasselApp.ViewModels
                                 Settings.LastUsedID = JsonResponser.message.id;
                                 Settings.LastUsedEmail = JsonResponser.message.email;
                                 Settings.ProfileName = JsonResponser.message.name;
-                                Settings.Type = 2;
+                                Settings.ProfileUser = "1";
+                                Settings.CarLat = Convert.ToDouble(JsonResponser.message.lat);
+                                Settings.CarLng = Convert.ToDouble(JsonResponser.message.lng);
                                 Device.BeginInvokeOnMainThread(() => App.Current.MainPage = new HomePage());
                             }
                         }
@@ -234,13 +236,6 @@ namespace WasselApp.ViewModels
                     {
                         try
                         {
-                            var JsonResponse = JsonConvert.DeserializeObject<LoginResponse>(ResBack);
-                            if (JsonResponse.success == false)
-                                IsRunning = false;
-                            await PopupNavigation.Instance.PushAsync(new LoginPopup(JsonResponse.data));
-                        }
-                        catch
-                        {
                             var JsonResponse = JsonConvert.DeserializeObject<Response<string, User>>(ResBack);
                             if (JsonResponse.success == true)
                             {
@@ -250,14 +245,22 @@ namespace WasselApp.ViewModels
                                 Settings.LastUsedID = _userID;
                                 Settings.LastUsedEmail = JsonResponse.message.email;
                                 Settings.ProfileName = JsonResponse.message.name;
-                                Settings.Type = 1;
-                                await PopupNavigation.Instance.PushAsync(new LoginPopup(JsonResponse.data));
+                                Settings.ProfileUser = "1";
                                 Device.BeginInvokeOnMainThread(() => App.Current.MainPage = new HomePage());
-                            }
-                            else
-                            {
                                 await PopupNavigation.Instance.PushAsync(new LoginPopup(JsonResponse.data));
                             }
+                                
+                        }
+                        catch
+                        {
+                            
+                            var JsonResponse = JsonConvert.DeserializeObject<LoginResponse>(ResBack);
+                            if (JsonResponse.success == false)
+                            {
+                                IsRunning = false;
+                                await PopupNavigation.Instance.PushAsync(new LoginPopup(JsonResponse.data));
+                            }
+                           
                         }
                     }
                     catch (Exception)
@@ -291,7 +294,7 @@ namespace WasselApp.ViewModels
                     firebase_token = Settings.UserFirebaseToken,
                     device_id = Settings.LastSignalID,
                 };
-                var ResBack = await userService.LoginCommandAsync(user);
+                var ResBack = await userService.DriverLoginCommandAsync(user);
                 if (ResBack == "false")
                 {
                     await PopupNavigation.Instance.PushAsync(new ConnectionPopup());
@@ -303,14 +306,7 @@ namespace WasselApp.ViewModels
                     {
                         try
                         {
-                            var JsonResponse = JsonConvert.DeserializeObject<LoginResponse>(ResBack);
-                            if (JsonResponse.success == false)
-                                IsRunning = false;
-                            await PopupNavigation.Instance.PushAsync(new LoginPopup(JsonResponse.data));
-                        }
-                        catch
-                        {
-                            var JsonResponse = JsonConvert.DeserializeObject<Response<string, User>>(ResBack);
+                            var JsonResponse = JsonConvert.DeserializeObject<Response<string, DriverUser>>(ResBack);
                             if (JsonResponse.success == true)
                             {
                                 IsRunning = false;
@@ -319,12 +315,18 @@ namespace WasselApp.ViewModels
                                 Settings.LastUsedDriverID = _userID;
                                 Settings.LastUsedEmail = JsonResponse.message.email;
                                 Settings.ProfileName = JsonResponse.message.name;
-                                Settings.Type = 1;
+                                Settings.LastUserStatus = JsonResponse.message.status.ToString();
+                                Settings.ProfileUser = "2";
                                 await PopupNavigation.Instance.PushAsync(new LoginPopup(JsonResponse.data));
                                 Device.BeginInvokeOnMainThread(() => App.Current.MainPage = new MainTabbedPage());
-                            }
-                            else
+                            }                                                                              
+                        }
+                        catch
+                        {
+                            var JsonResponse = JsonConvert.DeserializeObject<LoginResponse>(ResBack);
+                            if (JsonResponse.success == false)
                             {
+                                IsRunning = false;
                                 await PopupNavigation.Instance.PushAsync(new LoginPopup(JsonResponse.data));
                             }
                         }

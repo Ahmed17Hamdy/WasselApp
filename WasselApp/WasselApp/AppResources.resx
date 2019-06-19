@@ -429,4 +429,40 @@
   <data name="DriverPanel" xml:space="preserve">
     <value>Driver Panel</value>
   </data>
+  <data name="EnterNewPassWord" xml:space="preserve">
+    <value>Enter New PassWord</value>
+  </data>
+  <data name="UserPanel" xml:space="preserve">
+    <value>User Panel</value>
+  </data>
+  <data name="UserStatues" xml:space="preserve">
+    <value>Your Account is not Activated Yet , Please Wait Until We Contact You , Then Login Again .</value>
+  </data>
+  <data name="RouteNotFound" xml:space="preserve">
+    <value>This Route isn't Exist .</value>
+  </data>
+  <data name="CancelOrder" xml:space="preserve">
+    <value>Cancel Order</value>
+  </data>
+  <data name="LocationFrom" xml:space="preserve">
+    <value>Start Location :</value>
+  </data>
+  <data name="LocationToo" xml:space="preserve">
+    <value>Arrival Location :</value>
+  </data>
+  <data name="OrderDetails" xml:space="preserve">
+    <value>Wants to Make an Order</value>
+  </data>
+  <data name="TripCompleted" xml:space="preserve">
+    <value>The Trip is Completed , thank You For Using Wassel</value>
+  </data>
+  <data name="OrderAccepted" xml:space="preserve">
+    <value>Your Order Was Accepted</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>Details</value>
+  </data>
+  <data name="Subject" xml:space="preserve">
+    <value>Subject</value>
+  </data>
 </root>

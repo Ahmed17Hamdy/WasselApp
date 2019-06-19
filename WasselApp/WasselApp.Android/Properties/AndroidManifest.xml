@@ -28,6 +28,6 @@
     <provider android:name="android.support.v4.content.FileProvider" android:authorities="${applicationId}.fileprovider" android:exported="false" android:grantUriPermissions="true">
       <meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/file_paths"></meta-data>
     </provider>
-    <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyBfx7Wgm0NDTk0ctaKAPWlfb61zM1YGGgs" />
+    <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyB7rB6s8fc317zCPz8HS_yqwi7HjMsAqks" />
   </application>
 </manifest>

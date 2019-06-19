@@ -84,15 +84,11 @@ namespace WasselApp.Views.CarsPages
                     CrossMultilingual.Current.NeutralCultureInfoList.ToList().First(element => element.EnglishName.Contains("Arabic"));
                 AppResources.Culture = CrossMultilingual.Current.CurrentCultureInfo;
                 Settings.LastUserGravity = "Arabic";
-                //GravityClass.Grav();
-                if (Settings.LastUsedID == 0 || Settings.LastUserStatus == "0")
-                {
-                    await Navigation.PushModalAsync(new IntroPage());
-                }
-                else
-                {
+                GravityClass.Grav();
+               
+                
                     App.Current.MainPage = new MainTabbedPage();
-                }
+                
 
             }
             else
@@ -109,15 +105,9 @@ namespace WasselApp.Views.CarsPages
                 CrossMultilingual.Current.CurrentCultureInfo = CrossMultilingual.Current.NeutralCultureInfoList.ToList().First(element => element.EnglishName.Contains("English"));
                 AppResources.Culture = CrossMultilingual.Current.CurrentCultureInfo;
                 Settings.LastUserGravity = "English";
-                if (Settings.LastUsedID == 0 || Settings.LastUserStatus == "0")
-                {
-
-                    await Navigation.PushModalAsync(new IntroPage());
-                }
-                else
-                {
+               
                     App.Current.MainPage = new MainTabbedPage();
-                }
+                
             }
             else await DisplayAlert("Message", AppResources.ErrorMessage, "Ok");
 
@@ -125,7 +115,7 @@ namespace WasselApp.Views.CarsPages
 
         private async void LogOutbtn_Clicked(object sender, EventArgs e)
         {
-        //    await PopupNavigation.Instance.PushAsync(new LogoutPopup());
+           await PopupNavigation.Instance.PushAsync(new DriverLoguot());
         }
 
         private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)

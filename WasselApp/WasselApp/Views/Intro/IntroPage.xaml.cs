@@ -43,12 +43,12 @@ namespace WasselApp.Views.Intro
         }
         private async void UserButton_Cilcked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new NavigationPage( new UserPanel()),true);
+            await Navigation.PushModalAsync(new NavigationPage( new UserPanel()),true);
         }
 
         private async void DriverButton_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new NavigationPage(new DriverPanel()),true);
+            await Navigation.PushModalAsync(new NavigationPage(new DriverPanel()),true);
         }
         
       

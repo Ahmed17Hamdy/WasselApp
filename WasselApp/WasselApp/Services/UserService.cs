@@ -171,6 +171,28 @@ namespace WasselApp.Services
                 }
             }
         }
+        public async Task<string> UserBackupEmail(string _email)
+        {
+            using (var client = new HttpClient())
+            {
+                Dictionary<string, string> values = new Dictionary<string, string>();
+                values.Add("email", _email);
+                //  values.Add("user_hash", Settings.UserHash);
+
+                string content = JsonConvert.SerializeObject(values);
+                try
+                {
+                    var response = await client.PostAsync("https://waselksa.alsalil.net/api/forgetpassworduser",
+                        new StringContent(content, Encoding.UTF8, "text/json"));
+                    var serverResponse = response.Content.ReadAsStringAsync().Result.ToString();
+                    return serverResponse;
+                }
+                catch (Exception)
+                {
+                    return "False";
+                }
+            }
+        }
         public async Task<string> CodeVerfication(string mail, string Code)
         {
             using (var client = new HttpClient())
@@ -193,6 +215,28 @@ namespace WasselApp.Services
                 }
             }
         }
+        public async Task<string> UserCodeVerfication(string mail, string Code)
+        {
+            using (var client = new HttpClient())
+            {
+                Dictionary<string, string> values = new Dictionary<string, string>();
+                values.Add("email", mail);
+                values.Add("forgetcode", Code);
+                values.Add("user_hash", Settings.UserHash);
+
+                string content = JsonConvert.SerializeObject(values);
+                try
+                {
+                    var response = await client.PostAsync("https://waselksa.alsalil.net/api/activcodeuser", new StringContent(content, Encoding.UTF8, "text/json"));
+                    var serverResponse = response.Content.ReadAsStringAsync().Result.ToString();
+                    return serverResponse;
+                }
+                catch (Exception)
+                {
+                    return "False";
+                }
+            }
+        }
         public async Task<string> ResetPassword(string NewBassword)
         {
             using (var client = new HttpClient())
@@ -206,6 +250,28 @@ namespace WasselApp.Services
                 try
                 {
                     var response = await client.PostAsync("https://waselksa.alsalil.net/api/rechangepass", new StringContent(content, Encoding.UTF8, "text/json"));
+                    var serverResponse = response.Content.ReadAsStringAsync().Result.ToString();
+                    return serverResponse;
+                }
+                catch (Exception)
+                {
+                    return "False";
+                }
+            }
+        }
+        public async Task<string> UserResetPassword(string NewBassword)
+        {
+            using (var client = new HttpClient())
+            {
+                Dictionary<string, string> values = new Dictionary<string, string>();
+                values.Add("new_password", NewBassword);
+                values.Add("confirmpassword", NewBassword);
+                values.Add("user_hash", Settings.UserHash);
+
+                string content = JsonConvert.SerializeObject(values);
+                try
+                {
+                    var response = await client.PostAsync("https://waselksa.alsalil.net/api/rechangepassuser", new StringContent(content, Encoding.UTF8, "text/json"));
                     var serverResponse = response.Content.ReadAsStringAsync().Result.ToString();
                     return serverResponse;
                 }

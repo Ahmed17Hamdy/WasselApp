@@ -23,6 +23,8 @@ namespace WasselApp.Views.Panels
             rgstimg.IsVisible = false;
             rgslbl.TextColor = Color.Black;
             lgnlbl.TextColor = Color.Blue;
+            loginlbl.IsVisible = false;
+            Registerlbl.IsVisible = true;
             lgnimg.IsVisible = true;
             LoginPanel.IsVisible = true;
         }
@@ -32,6 +34,8 @@ namespace WasselApp.Views.Panels
             rgstimg.IsVisible = false;
             rgslbl.TextColor = Color.Black;
             lgnlbl.TextColor = Color.Blue;
+            loginlbl.IsVisible = false;
+            Registerlbl.IsVisible = true;
             lgnimg.IsVisible = true;
             LoginPanel.IsVisible = true;
         }
@@ -42,8 +46,14 @@ namespace WasselApp.Views.Panels
             lgnimg.IsVisible = false;
             LoginPanel.IsVisible = false;
             RegisterPanel.IsVisible = true;
+            loginlbl.IsVisible = true;
+            Registerlbl.IsVisible = false;
             rgstimg.IsVisible = true;
             rgslbl.TextColor = Color.Blue;
+        }
+        private async void Recovery_Tapped(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new RecoveryPagesForUsers(), true);
         }
     }
 }
