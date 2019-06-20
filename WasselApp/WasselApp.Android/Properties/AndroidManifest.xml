@@ -17,7 +17,7 @@
   <permission android:name="com.alsalilweb.WasselAp.permission.C2D_MESSAGE"
             android:protectionLevel="signature" />
   <uses-permission android:name="com.alsalilweb.WasselApp.permission.C2D_MESSAGE" />
-  <application android:label="WasselApp.Android" >
+  <application android:label="WasselApp.Android" android:supportsRtl="true" >
     <receiver android:name="com.onesignal.GcmBroadcastReceiver"
             android:permission="com.google.android.c2dm.permission.SEND" >
       <intent-filter>

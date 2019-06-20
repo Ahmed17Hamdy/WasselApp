@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using WasselApp.Helpers;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -15,7 +15,9 @@ namespace WasselApp.Views.Panels
 		public UserPanel ()
 		{
 			InitializeComponent ();
-		}
+            FlowDirection = (Settings.LastUserGravity == "Arabic") ? FlowDirection.RightToLeft
+                  : FlowDirection.LeftToRight;
+        }
         public UserPanel(object x)
         {
             InitializeComponent();

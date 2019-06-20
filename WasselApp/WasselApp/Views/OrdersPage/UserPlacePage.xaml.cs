@@ -20,6 +20,8 @@ namespace WasselApp.Views.OrdersPage
         public UserPlacePage()
         {
             InitializeComponent();
+            FlowDirection = (Settings.LastUserGravity == "Arabic") ? FlowDirection.RightToLeft
+                  : FlowDirection.LeftToRight;
             _ = GetUserLocationAsync();
         }
         private async Task GetUserLocationAsync()

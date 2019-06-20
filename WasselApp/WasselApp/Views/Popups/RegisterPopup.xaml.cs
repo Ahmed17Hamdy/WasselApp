@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WasselApp.Models;
+using WasselApp.Helpers;
 using WasselApp.Views.Panels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -20,6 +21,8 @@ namespace WasselApp.Views.Popups
         public RegisterPopup (Data data )
 		{
 			InitializeComponent ();
+            FlowDirection = (Settings.LastUserGravity == "Arabic") ? FlowDirection.RightToLeft
+                  : FlowDirection.LeftToRight;
             Registerframe.BorderColor = Color.Red;            
             if (data.email.ElementAt(0) == "The email has already been taken.")
             {

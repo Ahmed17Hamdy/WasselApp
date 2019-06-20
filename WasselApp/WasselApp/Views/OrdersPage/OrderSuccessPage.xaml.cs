@@ -27,6 +27,8 @@ namespace WasselApp.Views.OrdersPage
         public OrderSuccessPage()
         {
             InitializeComponent();
+            FlowDirection = (Settings.LastUserGravity == "Arabic") ? FlowDirection.RightToLeft
+                  : FlowDirection.LeftToRight;
             OneSignal.Current.StartInit("f5f4f650-3453-456c-8024-010ea68e738b")
           .InFocusDisplaying(OSInFocusDisplayOption.None)
           .HandleNotificationReceived(OnNotificationRecevied)

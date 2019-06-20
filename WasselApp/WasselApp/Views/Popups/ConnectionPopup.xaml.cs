@@ -21,6 +21,8 @@ namespace WasselApp.Views.Popups
         public ConnectionPopup ()
 		{
 			InitializeComponent ();
+            FlowDirection = (Settings.LastUserGravity == "Arabic") ? FlowDirection.RightToLeft
+                  : FlowDirection.LeftToRight;
             Connectionlbl.IsVisible = true;
             FieldsRequiredlbl.IsVisible = false;
 		}

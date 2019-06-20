@@ -23,6 +23,8 @@ namespace WasselApp.Views.OrdersPage
         public BrickOrderDetailsPage(Car carOrder)
         {
             InitializeComponent();
+            FlowDirection = (Settings.LastUserGravity == "Arabic") ? FlowDirection.RightToLeft
+                  : FlowDirection.LeftToRight;
             Settings.LastUsedDriverID = carOrder.Member.id;
             if (AddressTo.Text != null || AddressFrom.Text != null)
             {

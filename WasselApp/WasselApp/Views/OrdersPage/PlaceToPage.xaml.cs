@@ -29,6 +29,8 @@ namespace WasselApp.Views.OrdersPage
         {
 
             InitializeComponent();
+            FlowDirection = (Settings.LastUserGravity == "Arabic") ? FlowDirection.RightToLeft
+                  : FlowDirection.LeftToRight;
             Fromplacecc._autoCompleteListView.ItemSelected += ItemSelected; 
             GmsPlace.Init("AIzaSyB7rB6s8fc317zCPz8HS_yqwi7HjMsAqks");
             _ = GetUserLocationAsync();

@@ -50,7 +50,8 @@ namespace WasselApp.Views.Panels
         public DriverPanel()
         {
             InitializeComponent();
-           
+            FlowDirection = (Settings.LastUserGravity == "Arabic") ? FlowDirection.RightToLeft
+                   : FlowDirection.LeftToRight;
             // CarsTypedata();
         }
         protected override void OnAppearing()

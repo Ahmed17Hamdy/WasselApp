@@ -6,9 +6,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WasselApp.Models;
+using WasselApp.Helpers;
 using WasselApp.Views.OrdersPage;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using WasselApp.Views.Intro;
 
 namespace WasselApp.Views.Popups
 {
@@ -19,6 +21,8 @@ namespace WasselApp.Views.Popups
         public BrickCarDetailsPage(Models.Car _Carorder)
         {
             InitializeComponent();
+            FlowDirection = (Settings.LastUserGravity == "Arabic") ? FlowDirection.RightToLeft
+                  : FlowDirection.LeftToRight;
             CarOrder = _Carorder;
             if (CarOrder.Order != null)
             {
@@ -33,8 +37,17 @@ namespace WasselApp.Views.Popups
         }
         private async void Orderbtn_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushModalAsync(new NavigationPage(new BrickOrderDetailsPage(CarOrder)));
-            await PopupNavigation.Instance.PopAsync();
+            if (Settings.LastUsedID != 0)
+            {
+                await Navigation.PushModalAsync(new NavigationPage(new BrickOrderDetailsPage(CarOrder)));
+                await PopupNavigation.Instance.PopAsync();
+            }
+            else
+            {
+                //await Navigation.PushModalAsync(new NavigationPage(new IntroPage()), true);
+                await PopupNavigation.Instance.PopAsync();
+                App.Current.MainPage = new NavigationPage ( new IntroPage());
+            }            
         }
         protected override bool OnBackButtonPressed()
         {

@@ -8,14 +8,14 @@
     Padding="0,100,0,0"
              x:Class="WasselApp.Views.Popups.CarDetailsPage">
     <pages:PopupPage.Content>
-        <AbsoluteLayout >
-            <Grid 
-                AbsoluteLayout.LayoutBounds="0.5,0.7,370,250" AbsoluteLayout.LayoutFlags="PositionProportional">
+        <!--<AbsoluteLayout >-->
+            <Grid VerticalOptions="Center" HorizontalOptions="Center" >
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="75" />
+                    <RowDefinition Height="Auto" />
                     <RowDefinition Height="*"/>
+                <RowDefinition Height="50"/>
 
-                </Grid.RowDefinitions>
+            </Grid.RowDefinitions>
                 <Grid Margin="10,0,10,0" Grid.Row="0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
@@ -68,11 +68,14 @@
                         </StackLayout>
                     </Grid>
                 </Frame>
-            </Grid>
-            <Button  x:Name="orderbtn" AbsoluteLayout.LayoutBounds="0,1,1,40"
+            <Button Grid.Row="2"  x:Name="orderbtn"
+                     Clicked="Orderbtn_Clicked"                       
+                         Text="{tr:Translate Order}" BackgroundColor="Blue" CornerRadius="20"/>
+        </Grid>
+            <!--<Button  x:Name="orderbtn" AbsoluteLayout.LayoutBounds="0,1,1,40"
                      Clicked="Orderbtn_Clicked"
                         AbsoluteLayout.LayoutFlags="PositionProportional, WidthProportional"
-                         Text="{tr:Translate Order}" BackgroundColor="Blue" CornerRadius="20"/>
-        </AbsoluteLayout>
+                         Text="{tr:Translate Order}" BackgroundColor="Blue" CornerRadius="20"/>-->
+        <!--</AbsoluteLayout>-->
     </pages:PopupPage.Content>
 </pages:PopupPage>

@@ -934,6 +934,15 @@ namespace WasselApp {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Search.
+        /// </summary>
+        internal static string Search {
+            get {
+                return ResourceManager.GetString("Search", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select Car Type.
         /// </summary>
         internal static string SelectCarType {
@@ -1101,6 +1110,15 @@ namespace WasselApp {
         internal static string Yes {
             get {
                 return ResourceManager.GetString("Yes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your Place.
+        /// </summary>
+        internal static string YourPlace {
+            get {
+                return ResourceManager.GetString("YourPlace", resourceCulture);
             }
         }
     }

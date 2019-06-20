@@ -9,14 +9,14 @@
        Shell.BackgroundColor="Blue"
        Shell.ForegroundColor="White"
        Shell.TitleColor="White"
-       FlowDirection="MatchParent"
+      
       xmlns:popup="clr-namespace:WasselApp.Views.Popups"
      
                   xmlns:carspages="clr-namespace:WasselApp.Views.CarsPages"
        xmlns:locals1="clr-namespace:WasselApp.Views.HomeMaster"
        xmlns:tr="clr-namespace:WasselApp.Helpers">
     <MasterDetailPage.Master>
-        <locals1:MasterPage FlowDirection="MatchParent" x:Name="masterPage" />
+        <locals1:MasterPage  x:Name="masterPage" />
     </MasterDetailPage.Master>
     <MasterDetailPage.Detail>
         <NavigationPage  >

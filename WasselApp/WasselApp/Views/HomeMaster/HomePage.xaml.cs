@@ -18,6 +18,8 @@ namespace WasselApp
         public HomePage()
         {
             InitializeComponent();
+            FlowDirection = (Settings.LastUserGravity == "Arabic") ? FlowDirection.RightToLeft
+                  : FlowDirection.LeftToRight;
             masterPage.listView.ItemSelected += OnItemSelected;
         }
 

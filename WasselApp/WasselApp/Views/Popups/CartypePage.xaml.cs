@@ -18,6 +18,8 @@ namespace WasselApp.Views.Popups
         public CartypePage()
         {
             InitializeComponent();
+            FlowDirection = (Settings.LastUserGravity == "Arabic") ? FlowDirection.RightToLeft
+                  : FlowDirection.LeftToRight;
             Settings.Type = 1;
         }
 

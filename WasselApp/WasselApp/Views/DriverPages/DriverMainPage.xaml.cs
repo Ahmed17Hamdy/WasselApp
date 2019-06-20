@@ -23,6 +23,8 @@ namespace WasselApp.Views.DriverPages
         public DriverMainPage()
         {
             InitializeComponent();
+            FlowDirection = (Settings.LastUserGravity == "Arabic") ? FlowDirection.RightToLeft
+                  : FlowDirection.LeftToRight;
             GetLocation();
             CheckUserStatus();
            

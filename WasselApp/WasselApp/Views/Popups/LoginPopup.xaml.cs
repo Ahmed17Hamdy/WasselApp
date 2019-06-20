@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WasselApp.Views.Panels;
+using WasselApp.Helpers;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using WasselApp.Models;
@@ -18,7 +19,8 @@ namespace WasselApp.Views.Popups
         public LoginPopup (string data)
 		{
 			InitializeComponent ();
-
+            FlowDirection = (Settings.LastUserGravity == "Arabic") ? FlowDirection.RightToLeft
+                  : FlowDirection.LeftToRight;
             if (data == "success")
             {
                 Loginframe.BorderColor = Color.Blue;

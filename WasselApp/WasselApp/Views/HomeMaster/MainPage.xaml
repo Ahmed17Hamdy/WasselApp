@@ -6,7 +6,7 @@
              FlowDirection="MatchParent"
              x:Class="WasselApp.Views.HomeMaster.MainPage" Title="{tr:Translate MainPage}">
     <ContentPage.Content>
-    <Grid>
+    <!--<Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="1"/>
@@ -77,6 +77,32 @@
                 </StackLayout.GestureRecognizers>
             </StackLayout>
 
+        </Grid>-->
+        <Grid VerticalOptions="Center" HorizontalOptions="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="1"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <StackLayout x:Name="shippingstk"  Grid.Column="0"  VerticalOptions="Center" HorizontalOptions="Center">
+                <Image Source="truck.png" WidthRequest="50" HeightRequest="50" 
+                   VerticalOptions="Center" HorizontalOptions="Center"/>
+                <Label Text="{tr:Translate WaselShahn}" HorizontalOptions="Center" />
+                <Image Source="twoarch.PNG" />
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="Shippingstk_Tapped"/>
+                </StackLayout.GestureRecognizers>
+            </StackLayout>
+            <BoxView BackgroundColor="Blue" Grid.Column="1" />
+            <StackLayout Grid.Column="2" VerticalOptions="Center" HorizontalOptions="Center">
+                <Image Source="brickcar.png" WidthRequest="50" HeightRequest="50" 
+                   VerticalOptions="Center" HorizontalOptions="Center"/>
+                <Label Text="{tr:Translate Waselbrick}" HorizontalOptions="Center" />
+                <Image Source="twoarch.PNG" />
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="Brick_Tapped"/>
+                </StackLayout.GestureRecognizers>
+            </StackLayout>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

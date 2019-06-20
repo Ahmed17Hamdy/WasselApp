@@ -22,11 +22,14 @@ namespace WasselApp.Views.OrdersPage
     public partial class OrderDetailsPage : ContentPage
     {
         private bool visibli =true;
-
+        Car _carorder;
         public OrderDetailsPage(Car carOrder)
         {
            
             InitializeComponent();
+            FlowDirection = (Settings.LastUserGravity == "Arabic") ? FlowDirection.RightToLeft
+                  : FlowDirection.LeftToRight;
+            _carorder = carOrder;
             OneSignal.Current.StartInit("f5f4f650-3453-456c-8024-010ea68e738b")
            .InFocusDisplaying(OSInFocusDisplayOption.None)
            .HandleNotificationReceived(OnNotificationRecevied)
@@ -173,12 +176,15 @@ namespace WasselApp.Views.OrdersPage
         {
             datepicker.Focus();
         }
-
+        private void GetWeight()
+        {
+            Settings.Weight = int.Parse(Weightentry.Text) + Convert.ToInt32(_carorder.Order.weight);
+        }
         private async void Confirmbtn_Clicked(object sender, EventArgs e)
         {
             Active.IsRunning = true;
             var date = String.Format("{0:yyyy-MM-dd}", datepicker.Date);
-         //   CalculatDistance();
+            GetWeight();
             CarOrder order = new CarOrder
             {
                 latfrom = Settings.Latfrom,
@@ -188,7 +194,7 @@ namespace WasselApp.Views.OrdersPage
                 addressto=Settings.Placeto,
                 addressfrom=Settings.PlaceFrom,
                 ordertype="نقل بضاعه",
-                weight= int.Parse(Weightentry.Text),
+                weight= Settings.Weight,
              // car_model_id = Settings.LastUsedCarModel.ToString(),
                 distance = Convert.ToInt32(Settings.Distance),
                 latto = Settings.Latto,
@@ -240,7 +246,9 @@ namespace WasselApp.Views.OrdersPage
 
         }
 
-    private void Button_Clicked(object sender, EventArgs e)
+      
+
+        private void Button_Clicked(object sender, EventArgs e)
         {
             if (NoteEditor.IsVisible != true)
             {

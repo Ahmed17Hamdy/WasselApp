@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WasselApp.Models;
+using WasselApp.Helpers;
 using WasselApp.Services;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -17,6 +18,8 @@ namespace WasselApp.Views.Panels
         public RecoveryPagesForUsers()
         {
             InitializeComponent();
+            FlowDirection = (Settings.LastUserGravity == "Arabic") ? FlowDirection.RightToLeft
+                  : FlowDirection.LeftToRight;
         }
         private async void Button_Clicked_1(object sender, EventArgs e)
         {

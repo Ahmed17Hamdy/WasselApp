@@ -459,4 +459,10 @@
   <data name="Subject" xml:space="preserve">
     <value>الموضوع</value>
   </data>
+  <data name="YourPlace" xml:space="preserve">
+    <value>موقعك</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>بحث</value>
+  </data>
 </root>

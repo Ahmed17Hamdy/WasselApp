@@ -28,6 +28,8 @@ namespace WasselApp.Views.DriverPages.DriverOrders
         public OrderPushPage()
         {
             InitializeComponent();
+            FlowDirection = (Settings.LastUserGravity == "Arabic") ? FlowDirection.RightToLeft
+                  : FlowDirection.LeftToRight;
             ChechNotification();
             GmsDirection.Init("AIzaSyB7rB6s8fc317zCPz8HS_yqwi7HjMsAqks");
             SetMyLocation();

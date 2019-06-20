@@ -1,5 +1,6 @@
 ﻿using WasselApp.Helpers;
 using WasselApp.Views.CarsPages;
+using WasselApp.Views.HomeMaster;
 using WasselApp.Views.Panels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -19,34 +20,47 @@ namespace WasselApp.Views.Intro
 
         private void SetMainPage()
         {
-            if (Settings.LastUsedID==0 && Settings.LastUsedDriverID==0)
+            if(Settings.LastUsedDriverID==0 && Settings.LastUsedID == 0 && Settings.ProfileUser == string.Empty)
             {
-                Application.Current.MainPage =  new IntroPage();
+                Application.Current.MainPage = new NavigationPage(new MainPage());
             }
-            else if (Settings.LastUsedID != 0 && Settings.ProfileUser == string.Empty)
-            {
-                Application.Current.MainPage = new IntroPage();
-            }
-            else if (Settings.LastUsedDriverID != 0 && Settings.ProfileUser == string.Empty)
-            {
-                Application.Current.MainPage = new IntroPage();
-            }
-            else if (Settings.LastUsedID == 0 && Settings.ProfileUser == "1")
-            {
-                Application.Current.MainPage = new UserPanel();
-            }
-            else if ( Settings.LastUsedID != 0 && Settings.ProfileUser == "1")
-            {
-                Application.Current.MainPage = new HomePage();
-            }
-            else if (Settings.ProfileUser == "2"  && Settings.LastUsedDriverID != 0)
+            else if(Settings.LastUsedDriverID != 0 && Settings.ProfileUser == "2")
             {
                 Application.Current.MainPage = new MainTabbedPage();
             }
-            else if (Settings.ProfileUser == "2" && Settings.LastUsedDriverID == 0)
+            else 
             {
-                Application.Current.MainPage = new DriverPanel();
+                Application.Current.MainPage = new HomePage();
             }
+
+            //if (Settings.LastUsedID==0 && Settings.LastUsedDriverID==0)1
+            //{
+            //    Application.Current.MainPage =  new IntroPage();
+            //}
+            //else if (Settings.LastUsedID != 0 && Settings.ProfileUser == string.Empty)
+            //{
+            //    Application.Current.MainPage = new IntroPage();
+            //}
+            //else if (Settings.LastUsedDriverID != 0 && Settings.ProfileUser == string.Empty)
+            //{
+            //    Application.Current.MainPage = new IntroPage();
+            //}
+            //else if (Settings.LastUsedID == 0 && Settings.ProfileUser == "1")
+            //{
+            //    Application.Current.MainPage = new UserPanel();
+            //}
+            //else if ( Settings.LastUsedID != 0 && Settings.ProfileUser == "1")
+            //{
+            //    Application.Current.MainPage = new HomePage();
+            //}
+            //else if (Settings.ProfileUser == "2"  && Settings.LastUsedDriverID != 0)
+            //{
+            //    Application.Current.MainPage = new MainTabbedPage();
+            //}
+            //else if (Settings.ProfileUser == "2" && Settings.LastUsedDriverID == 0)
+            //{
+            //    Application.Current.MainPage = new DriverPanel();
+            //}
         }
 
         protected override async void OnAppearing()

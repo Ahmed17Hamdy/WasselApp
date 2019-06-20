@@ -18,7 +18,9 @@ namespace WasselApp.Views.Popups
         public ResidencesListView()
         {
             InitializeComponent();
-          //  Residencelst.ItemsSource= new[] { "a", "b", "c" };
+            FlowDirection = (Settings.LastUserGravity == "Arabic") ? FlowDirection.RightToLeft
+                  : FlowDirection.LeftToRight;
+            //  Residencelst.ItemsSource= new[] { "a", "b", "c" };
         }
 
         private async void Residencelst_ItemSelected(object sender, SelectedItemChangedEventArgs e)

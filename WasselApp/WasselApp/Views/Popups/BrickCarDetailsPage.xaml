@@ -8,71 +8,68 @@
              mc:Ignorable="d" xmlns:tr="clr-namespace:WasselApp.Helpers" 
              x:Class="WasselApp.Views.Popups.BrickCarDetailsPage">
     <pages:PopupPage.Content>
-        <AbsoluteLayout >
-            <Grid 
-                AbsoluteLayout.LayoutBounds="0.5,0.7,370,250" AbsoluteLayout.LayoutFlags="PositionProportional">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="75" />
-                    <RowDefinition Height="*"/>
+        <Grid VerticalOptions="Center" HorizontalOptions="Center" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="50"/>
 
-                </Grid.RowDefinitions>
-                <Grid Margin="10,0,10,0" Grid.Row="0">
+            </Grid.RowDefinitions>
+            <Grid Margin="10,0,10,0" Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
                     <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="10"/>
                         <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="10"/>
                     </Grid.ColumnDefinitions>
-                    <Grid Grid.Column="0">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="10"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="10"/>
-                        </Grid.ColumnDefinitions>
-                        <Frame Grid.Column="1" 
+                    <Frame Grid.Column="1" 
                              CornerRadius="5" BackgroundColor="Blue"  >
-                            <Label VerticalOptions="Center" HorizontalOptions="Center"
+                        <Label VerticalOptions="Center" HorizontalOptions="Center"
                                     HorizontalTextAlignment="Center" FontSize="Small"
                                    TextColor="White" BackgroundColor="Blue" Text="{tr:Translate DestinationFrom}"/>
-                        </Frame>
-                    </Grid>
-                    <Grid  Grid.Column="1">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="10"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="10"/>
-                        </Grid.ColumnDefinitions>
-                        <Frame Grid.Column="1" 
+                    </Frame>
+                </Grid>
+                <Grid  Grid.Column="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="10"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="10"/>
+                    </Grid.ColumnDefinitions>
+                    <Frame Grid.Column="1" 
                             CornerRadius="5" BackgroundColor="Blue">
-                            <Label VerticalOptions="Center" HorizontalOptions="Center" 
+                        <Label VerticalOptions="Center" HorizontalOptions="Center" 
                                    HorizontalTextAlignment="Center" FontSize="Small"
                                    TextColor="White" BackgroundColor="Blue" Text="{tr:Translate Destinationto}"/>
-                        </Frame>
-                    </Grid>
+                    </Frame>
                 </Grid>
-                <Frame Margin="20,0,20,0" Grid.Row="1"  CornerRadius="5" BackgroundColor="White" >
-                    <Grid Padding="20,0,20,0" >
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="1"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <StackLayout Grid.Column="0" VerticalOptions="Center" HorizontalOptions="Center">
-                            <Image HorizontalOptions="Center" Source="PlaceFrom.png"  VerticalOptions="Center"
-                                   HeightRequest="50" WidthRequest="50" />
-                            <Label  HorizontalTextAlignment="Center" FontSize="Small" x:Name="Fromlbl"/>
-                        </StackLayout>
-                        <BoxView Grid.Column="1" WidthRequest="1" Color="Blue"  />
-                        <StackLayout Grid.Column="2" VerticalOptions="Center" HorizontalOptions="Center">
-                            <Image HorizontalOptions="Center" Source="placetoHome.png"  VerticalOptions="Center"
-                                   HeightRequest="50" WidthRequest="50" />
-                            <Label HorizontalTextAlignment="Center" FontSize="Small" x:Name="Tolbl"/>
-                        </StackLayout>
-                    </Grid>
-                </Frame>
             </Grid>
-            <Button  x:Name="orderbtn" AbsoluteLayout.LayoutBounds="0,1,1,40"
-                     Clicked="Orderbtn_Clicked"
-                        AbsoluteLayout.LayoutFlags="PositionProportional, WidthProportional"
+            <Frame Margin="20,0,20,0" Grid.Row="1"  CornerRadius="5" BackgroundColor="White" >
+                <Grid Padding="20,0,20,0" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="1"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackLayout Grid.Column="0" VerticalOptions="Center" HorizontalOptions="Center">
+                        <Image HorizontalOptions="Center" Source="PlaceFrom.png"  VerticalOptions="Center"
+                                   HeightRequest="50" WidthRequest="50" />
+                        <Label  HorizontalTextAlignment="Center" FontSize="Small" x:Name="Fromlbl"/>
+                    </StackLayout>
+                    <BoxView Grid.Column="1" WidthRequest="1" Color="Blue"  />
+                    <StackLayout Grid.Column="2" VerticalOptions="Center" HorizontalOptions="Center">
+                        <Image HorizontalOptions="Center" Source="placetoHome.png"  VerticalOptions="Center"
+                                   HeightRequest="50" WidthRequest="50" />
+                        <Label HorizontalTextAlignment="Center" FontSize="Small" x:Name="Tolbl"/>
+                    </StackLayout>
+                </Grid>
+            </Frame>
+            <Button Grid.Row="2"  x:Name="orderbtn"
+                     Clicked="Orderbtn_Clicked"                       
                          Text="{tr:Translate Order}" BackgroundColor="Blue" CornerRadius="20"/>
-        </AbsoluteLayout>
+        </Grid>
     </pages:PopupPage.Content>
 </pages:PopupPage>

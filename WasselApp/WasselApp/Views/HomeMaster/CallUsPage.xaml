@@ -73,18 +73,16 @@
                                 </Behaviors:ValidationBehavior>
                             </customcontrols:ImageEntry.Behaviors>
                         </customcontrols:ImageEntry>
-                        <Frame CornerRadius="5" BorderColor="Blue">
-                            <Editor x:Name="MessageEntry" HeightRequest="150" Placeholder="{i81:Translate Details }" >
-                                <Editor.Behaviors>
-                                    <Behaviors:ValidationBehavior Group="{x:Reference form}" PropertyName="Text">
-                                        <Behaviors:ValidationBehavior.Validators>
-                                            <Validators:RequiredValidator />
-                                        </Behaviors:ValidationBehavior.Validators>
-                                    </Behaviors:ValidationBehavior>
-                                </Editor.Behaviors>
-                            </Editor>
 
-                        </Frame>
+                        <customcontrols:ImageEntry Image="idcard" x:Name="MessageEntry" HeightRequest="150" Placeholder="{i81:Translate Details }" >
+                            <customcontrols:ImageEntry.Behaviors>
+                                <Behaviors:ValidationBehavior Group="{x:Reference form}" PropertyName="Text">
+                                    <Behaviors:ValidationBehavior.Validators>
+                                        <Validators:RequiredValidator />
+                                    </Behaviors:ValidationBehavior.Validators>
+                                </Behaviors:ValidationBehavior>
+                            </customcontrols:ImageEntry.Behaviors>
+                        </customcontrols:ImageEntry>
                         <Button Text="{i81:Translate Send}" CornerRadius="5" Clicked="Button_Clicked"
                                 Margin="15,0,15,0" IsEnabled="{Binding Source={x:Reference form}, Path=IsValid}"
                                  BackgroundColor="Blue" TextColor="White"/>

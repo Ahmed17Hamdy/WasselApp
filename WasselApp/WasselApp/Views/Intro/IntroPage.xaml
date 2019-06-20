@@ -14,12 +14,18 @@
                 <RowDefinition Height="60"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <Image Grid.Row="0" Aspect="Fill" Source="WasselLogo.PNG"  />
-            <Frame Padding="5" BorderColor="Blue" BackgroundColor="LightGoldenrodYellow" Grid.Row="1" 
+            <Image Grid.Row="0" Aspect="AspectFit" Source="WasselLogo.PNG"  />
+            <Frame Padding="5" BorderColor="Gold" BackgroundColor="LightGoldenrodYellow" Grid.Row="1" 
                            VerticalOptions="CenterAndExpand"
                                  HorizontalOptions="CenterAndExpand">
                 <StackLayout Orientation="Horizontal">
-                    <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+                    <Button TextColor="White" BackgroundColor="Goldenrod" Text="English" Clicked="English_Clicked"/>
+                    <StackLayout  Orientation="Horizontal" VerticalOptions="Center"
+                                 HorizontalOptions="Center">
+                        <BoxView  Color="Blue" WidthRequest="1" />
+                    </StackLayout >
+                    <Button Text="عربي" TextColor="White" BackgroundColor="Blue"/>
+                    <!--<StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
                         <StackLayout.GestureRecognizers>
                             <TapGestureRecognizer Tapped="Arabic_Clicked"/>
                         </StackLayout.GestureRecognizers>
@@ -38,7 +44,7 @@
                         <Label x:Name="Englishlbl" TextColor="Blue" Text="English"/>
                         <Image WidthRequest="40" HeightRequest="20" x:Name="Englishimg" Source="Arch.png"
                                IsVisible="True" />
-                    </StackLayout>
+                    </StackLayout>-->
                 </StackLayout>
             </Frame>
             <Button Grid.Row="2" BackgroundColor="Blue" CornerRadius="20" TextColor="White" 

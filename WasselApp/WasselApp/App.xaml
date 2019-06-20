@@ -4,5 +4,19 @@
              x:Class="WasselApp.App">
     <Application.Resources>
         <Color x:Key="primary" >#0000FF</Color>
+        <Style TargetType="Label">
+            <Setter Property="FontFamily">
+                <Setter.Value>
+                    <OnPlatform x:TypeArguments="x:String" Android="Cairo-Regular.ttf#Cairo Regular " iOS="Cairo-Regular" />
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="Entry">
+            <Setter Property="FontFamily">
+                <Setter.Value>
+                    <OnPlatform x:TypeArguments="x:String" Android="Cairo-Regular.ttf#Cairo Regular " iOS="Cairo-Regular" />
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Application.Resources>
 </Application>

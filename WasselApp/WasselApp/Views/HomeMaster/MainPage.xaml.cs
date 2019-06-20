@@ -4,8 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WasselApp.Views.CarsPages;
+using WasselApp.Helpers;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Plugin.Multilingual;
+using WasselApp.Views.Intro;
 
 namespace WasselApp.Views.HomeMaster
 {
@@ -15,19 +18,34 @@ namespace WasselApp.Views.HomeMaster
 		public MainPage ()
 		{
 			InitializeComponent ();
-		}
+            FlowDirection = (Settings.LastUserGravity == "Arabic") ? FlowDirection.RightToLeft
+                   : FlowDirection.LeftToRight;         
+        }
 
         private async void Shippingstk_Tapped(object sender, EventArgs e)
         {
-          
-            await Navigation.PushAsync(new NavigationPage( new Freightcars()),true);
-            
+          if(Settings.LastUsedID != 0)
+            {
+                await Navigation.PushAsync(new NavigationPage(new Freightcars()), true);
+
+            }
+          else
+            {
+                await Navigation.PushAsync(new NavigationPage(new FrieghtUnRegister()), true);
+            }
         }
 
         private async void Brick_Tapped(object sender, EventArgs e)
         {
-        // await   Shell.Current.Navigation.PushModalAsync(new PrivateCars(),true);
-            await Navigation.PushAsync(new NavigationPage(new PrivateCars()), true);
+            // await   Shell.Current.Navigation.PushModalAsync(new PrivateCars(),true);
+            if (Settings.LastUsedID != 0)
+            {
+                await Navigation.PushAsync(new NavigationPage(new PrivateCars()), true);
+            }
+            else
+            {
+                await Navigation.PushAsync(new NavigationPage(new PrivateUnRegister()), true);
+            }           
             //  await Navigation.PushAsync( new PrivateCars());
         }
 
