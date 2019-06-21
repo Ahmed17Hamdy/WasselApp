@@ -91,7 +91,7 @@ namespace WasselApp.ViewModels
         public async Task CartypeGetter()
         {
             CarServices serv = new CarServices();
-            var ResBack = await serv.GetCarstype();          
+            var ResBack = await serv.GetCarstype();            
             CarTypes = ResBack;
         }
         public async Task CartypebrickGetter()

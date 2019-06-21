@@ -12,25 +12,25 @@
         <viewmodels:CarsViewModel/>
     </ContentPage.BindingContext>
     <ContentPage.Content>
-        <Grid>
+        <Grid BackgroundColor="White">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="2*"/>
             </Grid.RowDefinitions>
-            <Grid Grid.Row="0" Padding="5" BackgroundColor="Blue" >
+            <Grid Grid.Row="0" Padding="5" BackgroundColor="White" >
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <Button Grid.Column="0" Margin="10,0,10,0"  x:Name="Regestrationbtn" Clicked="Regestrationbtn_Clicked" BackgroundColor="DarkGoldenrod" CornerRadius="5" TextColor="White" Text="{tr:Translate Register}" />
-                <Button Grid.Column="1" Margin="10,0,10,0" x:Name="Placebtn" Clicked="Placebtn_Clicked"  BackgroundColor="DarkGoldenrod" CornerRadius="5" TextColor="White" Text="{tr:Translate YourPlace}" />
-                <Button Grid.Column="2" Margin="10,0,10,0"  x:Name="MyWay" Clicked="MyWay_Clicked" BackgroundColor="DarkGoldenrod" CornerRadius="5" TextColor="White" Text="{tr:Translate MyWay}" />
+                <Button Grid.Column="0" Margin="10,0,10,0"  x:Name="Regestrationbtn" Clicked="Regestrationbtn_Clicked" BackgroundColor="LightGreen" CornerRadius="5" TextColor="White" Text="{tr:Translate Register}" />
+                <Button Grid.Column="1" Margin="10,0,10,0" x:Name="Placebtn" Clicked="Placebtn_Clicked"  BackgroundColor="LightGreen" CornerRadius="5" TextColor="White" Text="{tr:Translate YourPlace}" />
+                <Button Grid.Column="2" Margin="10,0,10,0"  x:Name="MyWay" Clicked="MyWay_Clicked" BackgroundColor="LightGreen" CornerRadius="5" TextColor="White" Text="{tr:Translate MyWay}" />
             </Grid>
             <ScrollView BackgroundColor="White"  Padding="5,5,5,0" HorizontalScrollBarVisibility="Always" VerticalScrollBarVisibility="Always" Grid.Row="1" Orientation="Horizontal">
                 <StackLayout x:Name="Typestk" Padding="5"  BackgroundColor="White" Orientation="Horizontal">
-                    <StackLayout WidthRequest="85" VerticalOptions="StartAndExpand" HorizontalOptions="Start" >
+                    <StackLayout WidthRequest="85" VerticalOptions="Center" HorizontalOptions="Center" >
                         <StackLayout.GestureRecognizers>
                             <TapGestureRecognizer Tapped="AllStack_Tapped"/>
                         </StackLayout.GestureRecognizers>
@@ -44,7 +44,7 @@
                                     <Label x:Name="namelbl"  HorizontalTextAlignment="Center" VerticalOptions="Center"
                                                HorizontalOptions="Center" TextColor="Blue"
                                        Text="{Binding name}"/>
-                                    <Image Source="{Binding icon,StringFormat='http://waselksa.alsalil.net/users/images/{0}'}"  HeightRequest="40" WidthRequest="40" />
+                                    <Image Source="{Binding icon,StringFormat='http://waselksa.alsalil.net/users/images/{0}'}"  HeightRequest="30" WidthRequest="30" />
                                     <StackLayout.GestureRecognizers>
                                         <TapGestureRecognizer Tapped="StackTapped"/>
                                     </StackLayout.GestureRecognizers>

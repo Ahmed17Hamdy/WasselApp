@@ -28,20 +28,15 @@ namespace WasselApp.Views.CarsPages
             FlowDirection = (Settings.LastUserGravity == "Arabic") ? FlowDirection.RightToLeft
             : FlowDirection.LeftToRight;
             GetLocation();
-           // GetCars();
+            GetCars();
         }
-        protected override bool OnBackButtonPressed()
-        {
-
-            return base.OnBackButtonPressed();
-            _ = PopupNavigation.Instance.PopAsync();
-        }
+      
         private async void GetCars()
         {
             CarsViewModel carsViewModel = new CarsViewModel();
             await carsViewModel.ShippingCarGetter();
           Cars= carsViewModel.ShippingCars.ToList();
-           
+            CarsType = carsViewModel.CarTypes.ToList();
         }
         private List<Car> _cars;
         public List<Car> Cars
@@ -61,48 +56,59 @@ namespace WasselApp.Views.CarsPages
             var location = await Geolocation.GetLocationAsync(request);
             MainMap.MapRegion=  MapSpan.FromCenterAndRadius(
                     new Position(location.Longitude,location.Longitude), Distance.FromKilometers(50));
-        }     
-        private async void StackTapped(object sender, EventArgs e)
-        {            
-            MainMap.Pins = null;
-            Activ.IsRunning = true;
-            if (ModelFrame.IsVisible != true)
+        }
+        private void StackTapped(object sender, EventArgs e)
+        {
+            if (ModelFrame.IsVisible == true)
             {
-                ModelFrame.IsVisible = true;
-                ModelActive.IsRunning = true;
+                ModelFrame.IsVisible = false;
+                ModelActive.IsRunning = false;
             }
+
             StackLayout f = (StackLayout)sender;
-            
+            f.IsEnabled = false;
             string cartypenamestring = string.Empty;
             var fcontent = f.Children;
-            
             var reqLabel = fcontent[0];
             var theLabel = reqLabel.GetType();
             if (theLabel == typeof(Label))
             {
                 Label emailLabel = (Label)reqLabel;
+
                 cartypenamestring = emailLabel.Text;
-                CarsViewModel cars = new CarsViewModel();
-                await cars.ShippingCarGetter();
-                Cars = cars.ShippingCars.Where(o => o.cartypename == cartypenamestring).ToList();
-                if (Cars.Count() != 0)
-                {
-                    Pinslbl.IsVisible = false;
-                    MainMap.Pins = Cars;
-                }
-                else
-                {
-                    Pinslbl.IsVisible = true;
-                }
-                CarsType= cars.CarTypes.Where(o => o.name == cartypenamestring).ToList();
-                foreach (var item in CarsType)
-                {
-                    var CarModelList = item.carmodals;                
-                    Modellist.ItemsSource = CarModelList;
-                    ModelActive.IsRunning = false;
-                }
-               
             }
+            Activ.IsRunning = true;
+            if (ModelFrame.IsVisible != true)
+            {
+                ModelFrame.IsVisible = true;
+                ModelActive.IsRunning = true;
+
+                var CarTypes = CarsType.Where(o => o.name == cartypenamestring).ToList();
+
+                foreach (var item in CarTypes)
+                {
+                    var CarModelList = item.carmodals;
+                    Modellist.ItemsSource = CarModelList;
+                }
+                ModelActive.IsRunning = false;
+                Activ.IsRunning = false;
+                f.IsEnabled = true;
+            }
+            else
+            {
+                ModelFrame.IsVisible = true;
+                ModelActive.IsRunning = true;
+                var CarTypes = CarsType.Where(o => o.name == cartypenamestring).ToList();
+                foreach (var item in CarTypes)
+                {
+                    var CarModelList = item.carmodals;
+                    Modellist.ItemsSource = CarModelList;
+                }
+                ModelActive.IsRunning = false;
+                Activ.IsRunning = false;
+                f.IsEnabled = true;
+            }
+
 
         }
         private void CloseFrame(object sender, EventArgs e)
@@ -131,27 +137,28 @@ namespace WasselApp.Views.CarsPages
         }
         private async void AllStack_Tapped(object sender, EventArgs e)
         {
-            MainMap.Pins = null;
-            Activ.IsRunning = true;
             if (ModelFrame.IsVisible == true)
             {
                 ModelFrame.IsVisible = false;
                 ModelActive.IsRunning = false;
             }
-                CarsViewModel cars = new CarsViewModel();
-               await cars.ShippingCarGetter();
-                Cars = cars.ShippingCars.ToList();
-                if (Cars.Count() != 0)
-                {
-                    Pinslbl.IsVisible = false;
-                    MainMap.Pins = Cars;
-                }
-                else
-                {
-                    Pinslbl.IsVisible = true;
-                }
-                Activ.IsRunning = false;           
+            CarsViewModel cars = new CarsViewModel();
+            await cars.ShippingCarGetter();
+            Cars = cars.ShippingCars.ToList();
+            MainMap.Pins = Cars;
+            if (Cars.Count() != 0)
+            {
+                Pinslbl.IsVisible = false;
+                MainMap.Pins = Cars;
+            }
+            else
+            {
+                Pinslbl.IsVisible = true;
+            }
+            Activ.IsRunning = false;
+
         }
+
         private async void MainMap_PinSelected(object sender, TKGenericEventArgs<TKCustomMapPin> e)
         {
             var _Carorder = MainMap.SelectedPin as Car;

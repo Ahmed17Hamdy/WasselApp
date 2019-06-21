@@ -31,7 +31,7 @@ namespace WasselApp.Views.HomeMaster
             }
           else
             {
-                await Navigation.PushAsync(new NavigationPage(new FrieghtUnRegister()), true);
+                await Navigation.PushModalAsync(new FrieghtUnRegister(), true);
             }
         }
 
@@ -44,7 +44,7 @@ namespace WasselApp.Views.HomeMaster
             }
             else
             {
-                await Navigation.PushAsync(new NavigationPage(new PrivateUnRegister()), true);
+                await Navigation.PushModalAsync(new PrivateUnRegister(), true);
             }           
             //  await Navigation.PushAsync( new PrivateCars());
         }

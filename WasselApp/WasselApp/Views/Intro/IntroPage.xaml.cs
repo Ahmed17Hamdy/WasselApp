@@ -16,6 +16,7 @@ namespace WasselApp.Views.Intro
 			InitializeComponent ();
             FlowDirection = (Settings.LastUserGravity == "Arabic") ? FlowDirection.RightToLeft
                     : FlowDirection.LeftToRight;
+            AppResources.Culture = CrossMultilingual.Current.CurrentCultureInfo;
         }
         private async void UserButton_Cilcked(object sender, EventArgs e)
         {

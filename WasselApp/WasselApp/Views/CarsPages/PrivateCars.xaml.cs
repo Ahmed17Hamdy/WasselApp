@@ -23,13 +23,16 @@ namespace WasselApp.Views.CarsPages
 			InitializeComponent ();
             FlowDirection = (Settings.LastUserGravity == "Arabic") ? FlowDirection.RightToLeft
                   : FlowDirection.LeftToRight;
+            GetCars();
         }
-        protected override bool OnBackButtonPressed()
+        private async void GetCars()
         {
-
-            return base.OnBackButtonPressed();
-            _ = PopupNavigation.Instance.PopAsync();
+            CarsViewModel cars = new CarsViewModel();
+            await cars.BrickCarGetter();
+            Cars = cars.BrickCars.ToList();
+            CarsTypeBrick = cars.CarTypesBrick.ToList();
         }
+      
       
         private List<Car> _cars;
 
@@ -53,17 +56,17 @@ namespace WasselApp.Views.CarsPages
                     new Position(location.Longitude, location.Longitude), Distance.FromKilometers(50));
         }
 
-     
-        private async void StackTapped(object sender, EventArgs e)
+
+        private  void StackTapped(object sender, EventArgs e)
         {
-            MainMap.Pins = null;
-            Activ.IsRunning = true;
-            if (ModelFrame.IsVisible != true)
+            if (ModelFrame.IsVisible == true)
             {
-                ModelFrame.IsVisible = true;
-                ModelActive.IsRunning = true;
+                ModelFrame.IsVisible = false;
+                ModelActive.IsRunning = false;
             }
+
             StackLayout f = (StackLayout)sender;
+            f.IsEnabled = false;
             string cartypenamestring = string.Empty;
             var fcontent = f.Children;
             var reqLabel = fcontent[0];
@@ -71,30 +74,44 @@ namespace WasselApp.Views.CarsPages
             if (theLabel == typeof(Label))
             {
                 Label emailLabel = (Label)reqLabel;
-                cartypenamestring = emailLabel.Text;
-                CarsViewModel cars = new CarsViewModel();
-                await cars.BrickCarGetter();
-                Cars = cars.BrickCars.Where(o => o.cartypename == cartypenamestring).ToList();
-                if (Cars.Count() != 0)
-                {
-                    Pinslbl.IsVisible = false;
-                    MainMap.Pins = Cars;
-                }
-                else
-                {
-                    Pinslbl.IsVisible = true;
-                }
-                CarsTypeBrick = cars.CarTypesBrick.Where(o => o.name == cartypenamestring).ToList();
-                foreach (var item in CarsTypeBrick)
-                {
-                    var CarModelList = item.brickcarmodals;                   
-                    Modellist.ItemsSource = CarModelList;
-                    ModelActive.IsRunning = false;
-                }
 
+                cartypenamestring = emailLabel.Text;
+            }
+            Activ.IsRunning = true;
+            if (ModelFrame.IsVisible != true)
+            {
+                ModelFrame.IsVisible = true;
+                ModelActive.IsRunning = true;
+
+                var CarTypesBrick = CarsTypeBrick.Where(o => o.name == cartypenamestring).ToList();
+
+                foreach (var item in CarTypesBrick)
+                {
+                    var CarModelList = item.brickcarmodals;
+                    Modellist.ItemsSource = CarModelList;
+                }
+                ModelActive.IsRunning = false;
+                Activ.IsRunning = false;
+                f.IsEnabled = true;
+            }
+            else
+            {
+                ModelFrame.IsVisible = true;
+                ModelActive.IsRunning = true;
+                var CarTypesBrick = CarsTypeBrick.Where(o => o.name == cartypenamestring).ToList();
+                foreach (var item in CarTypesBrick)
+                {
+                    var CarModelList = item.brickcarmodals;
+                    Modellist.ItemsSource = CarModelList;
+                }
+                ModelActive.IsRunning = false;
+                Activ.IsRunning = false;
+                f.IsEnabled = true;
             }
 
+
         }
+
         private void CloseFrame(object sender, EventArgs e)
         {
             ModelFrame.IsVisible = false;
@@ -120,22 +137,27 @@ namespace WasselApp.Views.CarsPages
         }
 
         private async void AllStack_Tapped(object sender, EventArgs e)
-        {  
-                CarsViewModel cars = new CarsViewModel();
-                await cars.BrickCarGetter();
-                Cars = cars.BrickCars.ToList();
+        {
+            if (ModelFrame.IsVisible == true)
+            {
+                ModelFrame.IsVisible = false;
+                ModelActive.IsRunning = false;
+            }
+            CarsViewModel cars = new CarsViewModel();
+            await cars.BrickCarGetter();
+            Cars = cars.BrickCars.ToList();
+            MainMap.Pins = Cars;
+            if (Cars.Count() != 0)
+            {
+                Pinslbl.IsVisible = false;
                 MainMap.Pins = Cars;
-                if (Cars.Count() != 0)
-                {
-                    Pinslbl.IsVisible = false;
-                    MainMap.Pins = Cars;
-                }
-                else
-                {
-                    Pinslbl.IsVisible = true;
-                }
-                Activ.IsRunning = false;
-           
+            }
+            else
+            {
+                Pinslbl.IsVisible = true;
+            }
+            Activ.IsRunning = false;
+
         }
 
         private async void MainMap_PinSelected(object sender, TKGenericEventArgs<TKCustomMapPin> e)

@@ -25,12 +25,15 @@ namespace WasselApp.Views.Intro
             InitializeComponent();
             FlowDirection = (Settings.LastUserGravity == "Arabic") ? FlowDirection.RightToLeft
                 : FlowDirection.LeftToRight;
+            GetCars();
         }
-        protected override bool OnBackButtonPressed()
-        {
 
-            return base.OnBackButtonPressed();
-            _ = PopupNavigation.Instance.PopAsync();
+        private async void GetCars()
+        {
+            CarsViewModel cars = new CarsViewModel();
+            await cars.BrickCarGetter();
+            Cars = cars.BrickCars.ToList();
+                CarTypeBrick = cars.CarTypesBrick.ToList();
         }
 
         private List<Car> _cars;
@@ -40,12 +43,12 @@ namespace WasselApp.Views.Intro
             get { return _cars; }
             set { _cars = value; OnPropertyChanged(); }
         }
-        private List<Cartype> _carstypebrick;
+        private List<Cartype> _cartypebrick;
 
-        public List<Cartype> CarsTypeBrick
+        public List<Cartype> CarTypeBrick
         {
-            get { return _carstypebrick; }
-            set { _carstypebrick = value; OnPropertyChanged(); }
+            get { return _cartypebrick; }
+            set { _cartypebrick = value; OnPropertyChanged(); }
         }
         private async void GetLocation()
         {
@@ -55,46 +58,59 @@ namespace WasselApp.Views.Intro
                     new Position(location.Longitude, location.Longitude), Distance.FromKilometers(50));
         }
 
-
+        private bool _usertabbed;
         private async void StackTapped(object sender, EventArgs e)
-        {
-            MainMap.Pins = null;
+        { 
+            if(ModelFrame.IsVisible == true)
+            {
+                ModelFrame.IsVisible = false;
+                ModelActive.IsRunning = false;
+            }
+            
+            StackLayout f = (StackLayout)sender;
+            f.IsEnabled = false;
+            string cartypenamestring = string.Empty;
+            var fcontent = f.Children;
+             var reqLabel = fcontent[0];
+            var theLabel = reqLabel.GetType();
+            if (theLabel == typeof(Label))
+            {
+                Label emailLabel = (Label)reqLabel;
+
+                cartypenamestring = emailLabel.Text;
+            }
             Activ.IsRunning = true;
             if (ModelFrame.IsVisible != true)
             {
                 ModelFrame.IsVisible = true;
                 ModelActive.IsRunning = true;
-            }
-            StackLayout f = (StackLayout)sender;
-            string cartypenamestring = string.Empty;
-            var fcontent = f.Children;
-            var reqLabel = fcontent[0];
-            var theLabel = reqLabel.GetType();
-            if (theLabel == typeof(Label))
-            {
-                Label emailLabel = (Label)reqLabel;
-                cartypenamestring = emailLabel.Text;
-                CarsViewModel cars = new CarsViewModel();
-                await cars.BrickCarGetter();
-                Cars = cars.BrickCars.Where(o => o.cartypename == cartypenamestring).ToList();
-                if (Cars.Count() != 0)
-                {
-                    Pinslbl.IsVisible = false;
-                    MainMap.Pins = Cars;
-                }
-                else
-                {
-                    Pinslbl.IsVisible = true;
-                }
-                CarsTypeBrick = cars.CarTypesBrick.Where(o => o.name == cartypenamestring).ToList();
-                foreach (var item in CarsTypeBrick)
+               
+            var    CarTypesBrick = CarTypeBrick.Where(o => o.name == cartypenamestring).ToList();
+              
+                foreach (var item in CarTypesBrick)
                 {
                     var CarModelList = item.brickcarmodals;
                     Modellist.ItemsSource = CarModelList;
-                    ModelActive.IsRunning = false;
                 }
-
+                ModelActive.IsRunning = false;
+                Activ.IsRunning = false;
+                f.IsEnabled = true;
             }
+            else
+            {
+                ModelFrame.IsVisible = true;
+                ModelActive.IsRunning = true;               
+             var CarTypesBrick = CarTypeBrick.Where(o => o.name == cartypenamestring).ToList();
+                foreach (var item in CarTypesBrick)
+                {
+                    var CarModelList = item.brickcarmodals;
+                    Modellist.ItemsSource = CarModelList;
+                }
+                ModelActive.IsRunning = false;
+                Activ.IsRunning = false;
+                f.IsEnabled = true;
+            }
+           
 
         }
         private void CloseFrame(object sender, EventArgs e)
@@ -123,6 +139,11 @@ namespace WasselApp.Views.Intro
 
         private async void AllStack_Tapped(object sender, EventArgs e)
         {
+            if (ModelFrame.IsVisible == true)
+            {
+                ModelFrame.IsVisible = false;
+                ModelActive.IsRunning = false;
+            }
             CarsViewModel cars = new CarsViewModel();
             await cars.BrickCarGetter();
             Cars = cars.BrickCars.ToList();
@@ -160,5 +181,7 @@ namespace WasselApp.Views.Intro
             await Navigation.PushModalAsync(new UserPlacePage(), true);
 
         }
+
+      
     }
 }
