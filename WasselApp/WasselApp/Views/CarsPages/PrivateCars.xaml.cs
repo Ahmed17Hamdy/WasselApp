@@ -15,6 +15,7 @@ using Xamarin.Forms.Xaml;
 using Plugin.Permissions.Abstractions;
 using Plugin.Permissions;
 using Plugin.Multilingual;
+using Plugin.Connectivity;
 
 namespace WasselApp.Views.CarsPages
 {
@@ -32,10 +33,19 @@ namespace WasselApp.Views.CarsPages
         }
         private async void GetCars()
         {
-            CarsViewModel cars = new CarsViewModel();
-            await cars.BrickCarGetter();
-            Cars = cars.BrickCars.ToList();
-            CarsTypeBrick = cars.CarTypesBrick.ToList();
+            if (CrossConnectivity.Current.IsConnected)
+            {
+                CarsViewModel cars = new CarsViewModel();
+                await cars.BrickCarGetter();
+                Cars = cars.BrickCars.ToList();
+                CarsTypeBrick = cars.CarTypesBrick.ToList();
+            }
+            else
+            {
+                Errorlbl.IsVisible = true;
+                Errorlbl.Text = AppResources.ErrorMessage;
+            }
+            
         }
       
       

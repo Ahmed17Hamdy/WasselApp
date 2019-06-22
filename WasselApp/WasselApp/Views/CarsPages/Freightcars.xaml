@@ -59,7 +59,8 @@
                     <Label  HorizontalOptions="Center" HorizontalTextAlignment="Center"
                        Text="{tr:Translate NoCars}" TextColor="Red" FontSize="Large" />
                 </Frame>
-                
+                <Label IsVisible="False" TextColor="Red"
+                    AbsoluteLayout.LayoutBounds="0.5,0.5,300,150" AbsoluteLayout.LayoutFlags="PositionProportional" x:Name="Errorlbl" />
                 <Frame Padding="5" x:Name="ModelFrame" IsVisible="False" BackgroundColor="White" CornerRadius="20"
                        AbsoluteLayout.LayoutBounds="0.5,0.5,300,300" AbsoluteLayout.LayoutFlags="PositionProportional">
                     <AbsoluteLayout>

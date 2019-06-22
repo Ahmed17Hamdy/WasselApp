@@ -1,4 +1,5 @@
-﻿using Plugin.Multilingual;
+﻿using Plugin.Connectivity;
+using Plugin.Multilingual;
 using Plugin.Permissions;
 using Plugin.Permissions.Abstractions;
 using Rg.Plugins.Popup.Services;
@@ -37,10 +38,18 @@ namespace WasselApp.Views.CarsPages
       
         private async void GetCars()
         {
-            CarsViewModel carsViewModel = new CarsViewModel();
-            await carsViewModel.ShippingCarGetter();
-          Cars= carsViewModel.ShippingCars.ToList();
-            CarsType = carsViewModel.CarTypes.ToList();
+            if (CrossConnectivity.Current.IsConnected)
+            {
+                CarsViewModel carsViewModel = new CarsViewModel();
+                await carsViewModel.ShippingCarGetter();
+                Cars = carsViewModel.ShippingCars.ToList();
+                CarsType = carsViewModel.CarTypes.ToList();
+            }
+            else
+            {
+                Errorlbl.IsVisible = true;
+                Errorlbl.Text = AppResources.ErrorMessage;
+            }
         }
         private List<Car> _cars;
         public List<Car> Cars

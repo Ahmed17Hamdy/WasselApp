@@ -1,4 +1,5 @@
-﻿using Plugin.Multilingual;
+﻿using Plugin.Connectivity;
+using Plugin.Multilingual;
 using Plugin.Permissions;
 using Plugin.Permissions.Abstractions;
 using Rg.Plugins.Popup.Services;
@@ -35,10 +36,18 @@ namespace WasselApp.Views.Intro
 
         private async void GetCars()
         {
-            CarsViewModel cars = new CarsViewModel();
-            await cars.BrickCarGetter();
-            Cars = cars.BrickCars.ToList();
+            if (CrossConnectivity.Current.IsConnected)
+            {
+                CarsViewModel cars = new CarsViewModel();
+                await cars.BrickCarGetter();
+                Cars = cars.BrickCars.ToList();
                 CarTypeBrick = cars.CarTypesBrick.ToList();
+            }
+            else
+            {
+                Errorlbl.IsVisible = true;
+                Errorlbl.Text = AppResources.ErrorMessage;
+            }
         }
 
         private List<Car> _cars;
