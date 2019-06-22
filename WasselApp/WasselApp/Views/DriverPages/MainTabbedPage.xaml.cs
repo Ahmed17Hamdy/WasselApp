@@ -9,6 +9,7 @@ using WasselApp.Views.DriverPages.DriverOrders;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Com.OneSignal;
+using Plugin.Multilingual;
 
 namespace WasselApp.Views.CarsPages
 {
@@ -20,6 +21,8 @@ namespace WasselApp.Views.CarsPages
             InitializeComponent();
             FlowDirection = (Settings.LastUserGravity == "Arabic") ? FlowDirection.RightToLeft
                   : FlowDirection.LeftToRight;
+            AppResources.Culture = CrossMultilingual.Current.CurrentCultureInfo;
+
             OneSignal.Current.StartInit("f5f4f650-3453-456c-8024-010ea68e738b")
              .InFocusDisplaying(OSInFocusDisplayOption.None)
              .HandleNotificationReceived(OnNotificationRecevied)

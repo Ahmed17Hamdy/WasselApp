@@ -30,6 +30,7 @@ namespace WasselApp.Views.CarsPages
             ser = new UserService();
             FlowDirection = (Settings.LastUserGravity == "Arabic") ? FlowDirection.RightToLeft :
                 FlowDirection.LeftToRight;
+            AppResources.Culture = CrossMultilingual.Current.CurrentCultureInfo;
             Namelbl.Text = Settings.ProfileName;
         }
         private void EnglishSelected(object sender, EventArgs e)

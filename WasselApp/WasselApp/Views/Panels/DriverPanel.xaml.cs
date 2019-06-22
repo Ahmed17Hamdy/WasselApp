@@ -20,6 +20,7 @@ using WasselApp.Views.Popups;
 using Plugin.Permissions;
 using Plugin.Permissions.Abstractions;
 using Com.OneSignal;
+using Plugin.Multilingual;
 
 namespace WasselApp.Views.Panels
 {
@@ -51,7 +52,8 @@ namespace WasselApp.Views.Panels
         {
             InitializeComponent();
             FlowDirection = (Settings.LastUserGravity == "Arabic") ? FlowDirection.RightToLeft
-                   : FlowDirection.LeftToRight;
+                : FlowDirection.LeftToRight;
+            AppResources.Culture = CrossMultilingual.Current.CurrentCultureInfo;
             // CarsTypedata();
         }
         protected override void OnAppearing()

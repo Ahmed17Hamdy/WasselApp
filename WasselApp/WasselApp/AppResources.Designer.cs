@@ -511,6 +511,15 @@ namespace WasselApp {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Location Service Is not Enabled On You Device , Please Turn it On ..
+        /// </summary>
+        internal static string LocationEnabled {
+            get {
+                return ResourceManager.GetString("LocationEnabled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Start Location :.
         /// </summary>
         internal static string LocationFrom {

@@ -19,8 +19,8 @@
                     <RowDefinition Height="Auto"/>
                 <RowDefinition Height="25"/>
             </Grid.RowDefinitions>
-                <Image Grid.Row="0"
-                       WidthRequest="250" Aspect="Fill" Source="WasselLogo.PNG" />
+                <Image Grid.Row="0" HorizontalOptions="Center"
+                        Aspect="AspectFit" Source="WasselLogo.PNG" />
                 <StackLayout Padding="5" Orientation="Horizontal" Grid.Row="1" HorizontalOptions="CenterAndExpand"
                              VerticalOptions="CenterAndExpand">
                     <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
@@ -28,8 +28,8 @@
                             <TapGestureRecognizer Tapped="Register_Tapped"/>
                             <ClickGestureRecognizer Clicked="Register_Tapped"/>
                         </StackLayout.GestureRecognizers>
-                        <Label x:Name="rgslbl" TextColor="Blue" Text="{i81:Translate NewAccount}" />
-                    <Image WidthRequest="40" HeightRequest="20" x:Name="rgstimg" Source="Arch.png" IsVisible="True" />
+                        <Label x:Name="rgslbl" TextColor="Gray" Text="{i81:Translate NewAccount}" />
+                    <Image WidthRequest="40" HeightRequest="20" x:Name="rgstimg" Source="Arch.png" IsVisible="False" />
                     </StackLayout>
                     <StackLayout Padding="10,0,10,0"  Orientation="Horizontal" VerticalOptions="Center" HorizontalOptions="Center">
                         <BoxView  Color="Gray" WidthRequest="1" />
@@ -39,11 +39,11 @@
                             <TapGestureRecognizer Tapped="Login_Tapped"/>
                             <ClickGestureRecognizer Clicked="Login_Tapped"/>
                         </StackLayout.GestureRecognizers>
-                        <Label x:Name="lgnlbl" Text="{i81:Translate LogIn}"/>
-                    <Image WidthRequest="40" HeightRequest="20" x:Name="lgnimg" Source="Arch.png" IsVisible="False" />
+                        <Label x:Name="lgnlbl" TextColor="Blue" Text="{i81:Translate LogIn}"/>
+                    <Image WidthRequest="40" HeightRequest="20" x:Name="lgnimg" Source="Arch.png"  />
                     </StackLayout>
                 </StackLayout>
-                <ScrollView x:Name="RegisterPanel" IsVisible="True"  Grid.Row="2">
+                <ScrollView x:Name="RegisterPanel" IsVisible="false"  Grid.Row="2">
                     <StackLayout>
                     <StackLayout.Behaviors>
                         <Validators:ValidationGroupBehavior x:Name="form"/>
@@ -112,7 +112,7 @@
                         </StackLayout>
 
                 </ScrollView>
-            <StackLayout x:Name="loginlbl" Grid.Row="3" Orientation="Horizontal">
+            <StackLayout x:Name="loginlbl" IsVisible="False" Grid.Row="3" Orientation="Horizontal">
                 <Label  TextColor="Blue" Text="{i81:Translate HaveAccount }"/>
                 <Label TextColor="DarkBlue" Text="{i81:Translate LogIn}">
                     <Label.GestureRecognizers>
@@ -120,7 +120,7 @@
                     </Label.GestureRecognizers>
                 </Label>
             </StackLayout>
-            <ScrollView x:Name="LoginPanel" IsVisible="False"  Grid.Row="2">
+            <ScrollView x:Name="LoginPanel" IsVisible="True"  Grid.Row="2">
                     <StackLayout  Grid.Row="2" >
                     <StackLayout.Behaviors>
                         <Validators:ValidationGroupBehavior x:Name="Loginform"/>
@@ -160,13 +160,22 @@
                         BorderRadius="20"/>
                     </StackLayout>
                 </ScrollView>
-            <StackLayout IsVisible="False" x:Name="Registerlbl" Grid.Row="3" Orientation="Horizontal">
+            <StackLayout  x:Name="Registerlbl" Grid.Row="3" >
                 <Label TextColor="DarkBlue" Text="{i81:Translate ForgetPasswrd}">
                     <Label.GestureRecognizers>
                         <TapGestureRecognizer Tapped="Recovery_Tapped"/>
                     </Label.GestureRecognizers>
                 </Label>
-
+                <StackLayout Orientation="Horizontal">
+                    <Label TextColor="Red" Text="{i81:Translate NoAccount}"/>
+                  
+                    <Label TextColor="DarkGoldenrod" Text="{i81:Translate Register}">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Register_Tapped"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                </StackLayout>
+                
             </StackLayout>
             <ActivityIndicator Grid.Row="0" Grid.RowSpan="3" VerticalOptions="Center" HorizontalOptions="Center"
                                IsRunning="{Binding IsRunning}" Color="Blue" WidthRequest="100" HeightRequest="100" />

@@ -471,4 +471,7 @@
   <data name="Search" xml:space="preserve">
     <value>Search</value>
   </data>
+  <data name="LocationEnabled" xml:space="preserve">
+    <value>Location Service Is not Enabled On You Device , Please Turn it On .</value>
+  </data>
 </root>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Plugin.Multilingual;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,6 +18,8 @@ namespace WasselApp.Views.HomeMaster
             InitializeComponent();
             FlowDirection = (Settings.LastUserGravity == "Arabic") ? FlowDirection.RightToLeft
                   : FlowDirection.LeftToRight;
+            AppResources.Culture = CrossMultilingual.Current.CurrentCultureInfo;
+
         }
     }
 }

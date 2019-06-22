@@ -1,4 +1,5 @@
-﻿using Rg.Plugins.Popup.Pages;
+﻿using Plugin.Multilingual;
+using Rg.Plugins.Popup.Pages;
 using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
@@ -19,8 +20,9 @@ namespace WasselApp.Views.Popups
         public LogoutPopup()
         {
             InitializeComponent();
-            FlowDirection = (Settings.LastUserGravity == "Arabic") ? FlowDirection.RightToLeft : FlowDirection.LeftToRight;
-
+            FlowDirection = (Settings.LastUserGravity == "Arabic") ? FlowDirection.RightToLeft
+                            : FlowDirection.LeftToRight;
+            AppResources.Culture = CrossMultilingual.Current.CurrentCultureInfo;
         }
         private void Button_Clicked(object sender, EventArgs e)
         {

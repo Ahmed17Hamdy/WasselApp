@@ -15,6 +15,7 @@ using Plugin.Permissions;
 using Plugin.Permissions.Abstractions;
 using Newtonsoft.Json;
 using Com.OneSignal;
+using Plugin.Multilingual;
 
 namespace WasselApp.Views.OrdersPage
 {
@@ -28,7 +29,8 @@ namespace WasselApp.Views.OrdersPage
            
             InitializeComponent();
             FlowDirection = (Settings.LastUserGravity == "Arabic") ? FlowDirection.RightToLeft
-                  : FlowDirection.LeftToRight;
+                 : FlowDirection.LeftToRight;
+            AppResources.Culture = CrossMultilingual.Current.CurrentCultureInfo;
             _carorder = carOrder;
             OneSignal.Current.StartInit("f5f4f650-3453-456c-8024-010ea68e738b")
            .InFocusDisplaying(OSInFocusDisplayOption.None)

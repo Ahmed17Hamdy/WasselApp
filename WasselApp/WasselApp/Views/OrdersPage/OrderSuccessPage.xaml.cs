@@ -15,6 +15,7 @@ using TK.CustomMap.Overlays;
 using Newtonsoft.Json;
 using WasselApp.Models;
 using System.Net.Http;
+using Plugin.Multilingual;
 
 namespace WasselApp.Views.OrdersPage
 {
@@ -28,7 +29,8 @@ namespace WasselApp.Views.OrdersPage
         {
             InitializeComponent();
             FlowDirection = (Settings.LastUserGravity == "Arabic") ? FlowDirection.RightToLeft
-                  : FlowDirection.LeftToRight;
+                 : FlowDirection.LeftToRight;
+            AppResources.Culture = CrossMultilingual.Current.CurrentCultureInfo;
             OneSignal.Current.StartInit("f5f4f650-3453-456c-8024-010ea68e738b")
           .InFocusDisplaying(OSInFocusDisplayOption.None)
           .HandleNotificationReceived(OnNotificationRecevied)

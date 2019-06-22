@@ -19,7 +19,8 @@ namespace WasselApp.Views.HomeMaster
 		{
 			InitializeComponent ();
             FlowDirection = (Settings.LastUserGravity == "Arabic") ? FlowDirection.RightToLeft
-                   : FlowDirection.LeftToRight;         
+                  : FlowDirection.LeftToRight;
+            AppResources.Culture = CrossMultilingual.Current.CurrentCultureInfo;
         }
 
         private async void Shippingstk_Tapped(object sender, EventArgs e)

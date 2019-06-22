@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Plugin.Connectivity;
+using Plugin.Multilingual;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using WasselApp.Models;
 using Xamarin.Forms;
+using WasselApp.Helpers;
 using Xamarin.Forms.Xaml;
 
 namespace WasselApp.Views.HomeMaster
@@ -18,6 +20,10 @@ namespace WasselApp.Views.HomeMaster
         public CallUsPage()
         {
             InitializeComponent();
+            FlowDirection = (Settings.LastUserGravity == "Arabic") ? FlowDirection.RightToLeft
+                  : FlowDirection.LeftToRight;
+            AppResources.Culture = CrossMultilingual.Current.CurrentCultureInfo;
+
         }
 
         private async void Button_Clicked(object sender, EventArgs e)

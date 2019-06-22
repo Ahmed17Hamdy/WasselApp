@@ -465,4 +465,7 @@
   <data name="Search" xml:space="preserve">
     <value>بحث</value>
   </data>
+  <data name="LocationEnabled" xml:space="preserve">
+    <value>خدمة الموقع غير مفعلة على جهازك , من فضلك فعلها .</value>
+  </data>
 </root>

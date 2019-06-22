@@ -8,6 +8,7 @@ using WasselApp.Views.HomeMaster;
 using Xamarin.Forms;
 using WasselApp.Helpers;
 using Xamarin.Forms.Xaml;
+using Plugin.Multilingual;
 
 namespace WasselApp
 {
@@ -20,6 +21,7 @@ namespace WasselApp
             InitializeComponent();
             FlowDirection = (Settings.LastUserGravity == "Arabic") ? FlowDirection.RightToLeft
                   : FlowDirection.LeftToRight;
+            AppResources.Culture = CrossMultilingual.Current.CurrentCultureInfo;
             masterPage.listView.ItemSelected += OnItemSelected;
         }
 

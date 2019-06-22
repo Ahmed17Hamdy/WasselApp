@@ -11,6 +11,7 @@ using Xamarin.Forms.Xaml;
 using WasselApp.Helpers;
 using Rg.Plugins.Popup.Services;
 using WasselApp.Views.Intro;
+using Plugin.Multilingual;
 
 namespace WasselApp.Views.Popups
 {
@@ -22,7 +23,8 @@ namespace WasselApp.Views.Popups
         {
             InitializeComponent();
             FlowDirection = (Settings.LastUserGravity == "Arabic") ? FlowDirection.RightToLeft
-                  : FlowDirection.LeftToRight;
+                : FlowDirection.LeftToRight;
+            AppResources.Culture = CrossMultilingual.Current.CurrentCultureInfo;
             CarOrder = _Carorder;
             Settings.CarLat = Convert.ToDouble(CarOrder.Member.lat);
             Settings.CarLng = Convert.ToDouble(CarOrder.Member.lng);

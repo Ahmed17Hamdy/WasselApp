@@ -1,4 +1,5 @@
-﻿using Plugin.Permissions;
+﻿using Plugin.Multilingual;
+using Plugin.Permissions;
 using Plugin.Permissions.Abstractions;
 using System;
 using System.Collections.Generic;
@@ -21,7 +22,8 @@ namespace WasselApp.Views.OrdersPage
         {
             InitializeComponent();
             FlowDirection = (Settings.LastUserGravity == "Arabic") ? FlowDirection.RightToLeft
-                  : FlowDirection.LeftToRight;
+                 : FlowDirection.LeftToRight;
+            AppResources.Culture = CrossMultilingual.Current.CurrentCultureInfo;
             _ = GetUserLocationAsync();
         }
         private async Task GetUserLocationAsync()
@@ -29,29 +31,37 @@ namespace WasselApp.Views.OrdersPage
             var locationStatus = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Location);
             if (locationStatus != PermissionStatus.Granted)
             {
-                var request = new GeolocationRequest(GeolocationAccuracy.High, TimeSpan.FromMilliseconds(5000));
-                var location = await Geolocation.GetLocationAsync(request);
-                var addresses = await Geocoding.GetPlacemarksAsync(location);
-                var placemark = addresses?.FirstOrDefault();
-                if (placemark != null)
+                try
                 {
-                    if (addresses.FirstOrDefault().Thoroughfare != null)
+                    var request = new GeolocationRequest(GeolocationAccuracy.High, TimeSpan.FromMilliseconds(5000));
+                    var location = await Geolocation.GetLocationAsync(request);
+                    var addresses = await Geocoding.GetPlacemarksAsync(location);
+                    var placemark = addresses?.FirstOrDefault();
+                    if (placemark != null)
                     {
-                        addlbl.Text = placemark.Thoroughfare + " , " + placemark.AdminArea + " , " + placemark.CountryName;
-                        Settings.PlaceFrom = addlbl.Text;
+                        if (addresses.FirstOrDefault().Thoroughfare != null)
+                        {
+                            addlbl.Text = placemark.Thoroughfare + " , " + placemark.AdminArea + " , " + placemark.CountryName;
+                            Settings.PlaceFrom = addlbl.Text;
+                        }
+                        else
+                        {
+                            addlbl.Text = AppResources.LocationNotFound;
+
+                        }
                     }
                     else
                     {
                         addlbl.Text = AppResources.LocationNotFound;
-
                     }
+                    Settings.LastLat = Settings.Latfrom = location.Latitude.ToString();
+                    Settings.LastLng = Settings.Lngfrom = location.Longitude.ToString();
                 }
-                else
+                catch (FeatureNotEnabledException)
                 {
-                    addlbl.Text = AppResources.LocationNotFound;
+                    await DisplayAlert(AppResources.Alert, AppResources.LocationEnabled, AppResources.Ok);
                 }
-                Settings.LastLat = Settings.Latfrom = location.Latitude.ToString();
-                Settings.LastLng = Settings.Lngfrom = location.Longitude.ToString();
+
             }
             else
             {

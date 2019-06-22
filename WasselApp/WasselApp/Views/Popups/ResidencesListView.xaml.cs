@@ -9,6 +9,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using WasselApp.Helpers;
 using Rg.Plugins.Popup.Services;
+using Plugin.Multilingual;
 
 namespace WasselApp.Views.Popups
 {
@@ -19,8 +20,9 @@ namespace WasselApp.Views.Popups
         {
             InitializeComponent();
             FlowDirection = (Settings.LastUserGravity == "Arabic") ? FlowDirection.RightToLeft
-                  : FlowDirection.LeftToRight;
-            //  Residencelst.ItemsSource= new[] { "a", "b", "c" };
+                 : FlowDirection.LeftToRight;
+            AppResources.Culture = CrossMultilingual.Current.CurrentCultureInfo;
+           
         }
 
         private async void Residencelst_ItemSelected(object sender, SelectedItemChangedEventArgs e)

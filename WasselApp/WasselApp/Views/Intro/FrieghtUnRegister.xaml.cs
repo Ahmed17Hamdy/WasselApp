@@ -1,4 +1,7 @@
-﻿using Rg.Plugins.Popup.Services;
+﻿using Plugin.Multilingual;
+using Plugin.Permissions;
+using Plugin.Permissions.Abstractions;
+using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,9 +27,11 @@ namespace WasselApp.Views.Intro
         {
             InitializeComponent();
             FlowDirection = (Settings.LastUserGravity == "Arabic") ? FlowDirection.RightToLeft
-                 : FlowDirection.LeftToRight;
-            GetLocation();
+                : FlowDirection.LeftToRight;
+            AppResources.Culture = CrossMultilingual.Current.CurrentCultureInfo;
             GetCars();
+            GetLocation();
+           
         }
         
         private async void GetCars()
@@ -53,10 +58,33 @@ namespace WasselApp.Views.Intro
         }
         private async void GetLocation()
         {
-            var request = new GeolocationRequest(GeolocationAccuracy.High, TimeSpan.FromMilliseconds(5000));
-            var location = await Geolocation.GetLocationAsync(request);
-            MainMap.MapRegion = MapSpan.FromCenterAndRadius(
-                    new Position(location.Longitude, location.Longitude), Distance.FromKilometers(50));
+            var locationStatus = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Location);
+            if (locationStatus != PermissionStatus.Granted)
+            {
+                var results = await CrossPermissions.Current.RequestPermissionsAsync(new[] { Permission.Location });
+                locationStatus = results[Permission.Location];
+            }
+            if (locationStatus == PermissionStatus.Granted)
+            {
+                try
+                {
+                    var request = new GeolocationRequest(GeolocationAccuracy.High, TimeSpan.FromMilliseconds(5000));
+                    var location = await Geolocation.GetLocationAsync(request);
+                    MainMap.MapRegion = MapSpan.FromCenterAndRadius(
+                            new Position(location.Longitude, location.Longitude), Distance.FromKilometers(50));
+                }
+                catch (FeatureNotEnabledException)
+                {
+                    await DisplayAlert(AppResources.Alert, AppResources.LocationEnabled, AppResources.Ok);
+                }
+            }
+            else
+            {
+                await DisplayAlert(AppResources.PermissionsDenied, AppResources.PermissionLocationDetails,
+                    AppResources.Ok);
+                //On iOS you may want to send your user to the settings screen.
+                CrossPermissions.Current.OpenAppSettings();
+            }      
         }
 
 

@@ -15,6 +15,7 @@ using TK.CustomMap.Api;
 using Xamarin.Essentials;
 using Plugin.Permissions;
 using Plugin.Permissions.Abstractions;
+using Plugin.Multilingual;
 
 namespace WasselApp.Views.OrdersPage
 {
@@ -30,7 +31,8 @@ namespace WasselApp.Views.OrdersPage
 
             InitializeComponent();
             FlowDirection = (Settings.LastUserGravity == "Arabic") ? FlowDirection.RightToLeft
-                  : FlowDirection.LeftToRight;
+                : FlowDirection.LeftToRight;
+            AppResources.Culture = CrossMultilingual.Current.CurrentCultureInfo;
             Fromplacecc._autoCompleteListView.ItemSelected += ItemSelected; 
             GmsPlace.Init("AIzaSyB7rB6s8fc317zCPz8HS_yqwi7HjMsAqks");
             _ = GetUserLocationAsync();
@@ -45,13 +47,19 @@ namespace WasselApp.Views.OrdersPage
             }
             if (locationStatus == PermissionStatus.Granted)
             {
-                var location = await Geolocation.GetLastKnownLocationAsync();
-                if (location != null)
+                try
                 {
-                    ToMap.MoveToMapRegion(MapSpan.FromCenterAndRadius(
-                   new Position(location.Longitude, location.Longitude), Distance.FromKilometers(50)), true);
+                    var location = await Geolocation.GetLastKnownLocationAsync();
+                    if (location != null)
+                    {
+                        ToMap.MoveToMapRegion(MapSpan.FromCenterAndRadius(
+                       new Position(location.Longitude, location.Longitude), Distance.FromKilometers(50)), true);
+                    }
                 }
-                
+                catch (FeatureNotEnabledException)
+                {
+                    await DisplayAlert(AppResources.Alert, AppResources.LocationEnabled, AppResources.Ok);
+                }
             }
             else
             {

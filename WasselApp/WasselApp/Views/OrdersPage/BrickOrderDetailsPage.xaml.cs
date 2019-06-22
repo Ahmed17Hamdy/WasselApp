@@ -14,6 +14,7 @@ using WasselApp.Views.HomeMaster;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Plugin.Multilingual;
 
 namespace WasselApp.Views.OrdersPage
 {
@@ -24,7 +25,8 @@ namespace WasselApp.Views.OrdersPage
         {
             InitializeComponent();
             FlowDirection = (Settings.LastUserGravity == "Arabic") ? FlowDirection.RightToLeft
-                  : FlowDirection.LeftToRight;
+                : FlowDirection.LeftToRight;
+            AppResources.Culture = CrossMultilingual.Current.CurrentCultureInfo;
             Settings.LastUsedDriverID = carOrder.Member.id;
             if (AddressTo.Text != null || AddressFrom.Text != null)
             {

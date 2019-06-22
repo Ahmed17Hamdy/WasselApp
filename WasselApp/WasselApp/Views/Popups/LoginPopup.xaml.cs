@@ -10,6 +10,8 @@ using WasselApp.Helpers;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using WasselApp.Models;
+using Plugin.Multilingual;
+
 namespace WasselApp.Views.Popups
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
@@ -20,7 +22,8 @@ namespace WasselApp.Views.Popups
 		{
 			InitializeComponent ();
             FlowDirection = (Settings.LastUserGravity == "Arabic") ? FlowDirection.RightToLeft
-                  : FlowDirection.LeftToRight;
+                 : FlowDirection.LeftToRight;
+            AppResources.Culture = CrossMultilingual.Current.CurrentCultureInfo;
             if (data == "success")
             {
                 Loginframe.BorderColor = Color.Blue;

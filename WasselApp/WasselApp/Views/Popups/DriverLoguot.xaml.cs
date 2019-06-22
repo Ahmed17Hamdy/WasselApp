@@ -9,6 +9,7 @@ using WasselApp.Helpers;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Rg.Plugins.Popup.Services;
+using Plugin.Multilingual;
 
 namespace WasselApp.Views.Popups
 {
@@ -18,8 +19,9 @@ namespace WasselApp.Views.Popups
         public DriverLoguot()
         {
             InitializeComponent();
-            FlowDirection = (Settings.LastUserGravity == "Arabic") ? FlowDirection.RightToLeft : FlowDirection.LeftToRight;
-
+            FlowDirection = (Settings.LastUserGravity == "Arabic") ? FlowDirection.RightToLeft
+                            : FlowDirection.LeftToRight;
+            AppResources.Culture = CrossMultilingual.Current.CurrentCultureInfo;
         }
         private void Button_Clicked(object sender, EventArgs e)
         {

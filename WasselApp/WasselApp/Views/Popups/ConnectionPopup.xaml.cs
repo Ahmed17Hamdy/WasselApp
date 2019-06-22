@@ -10,6 +10,7 @@ using Xamarin.Essentials;
 using Xamarin.Forms;
 using WasselApp.Helpers;
 using Xamarin.Forms.Xaml;
+using Plugin.Multilingual;
 
 namespace WasselApp.Views.Popups
 {
@@ -22,7 +23,8 @@ namespace WasselApp.Views.Popups
 		{
 			InitializeComponent ();
             FlowDirection = (Settings.LastUserGravity == "Arabic") ? FlowDirection.RightToLeft
-                  : FlowDirection.LeftToRight;
+                 : FlowDirection.LeftToRight;
+            AppResources.Culture = CrossMultilingual.Current.CurrentCultureInfo;
             Connectionlbl.IsVisible = true;
             FieldsRequiredlbl.IsVisible = false;
 		}

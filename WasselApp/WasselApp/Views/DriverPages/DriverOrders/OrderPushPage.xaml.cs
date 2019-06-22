@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Plugin.Multilingual;
 using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
@@ -30,6 +31,7 @@ namespace WasselApp.Views.DriverPages.DriverOrders
             InitializeComponent();
             FlowDirection = (Settings.LastUserGravity == "Arabic") ? FlowDirection.RightToLeft
                   : FlowDirection.LeftToRight;
+            AppResources.Culture = CrossMultilingual.Current.CurrentCultureInfo;
             ChechNotification();
             GmsDirection.Init("AIzaSyB7rB6s8fc317zCPz8HS_yqwi7HjMsAqks");
             SetMyLocation();

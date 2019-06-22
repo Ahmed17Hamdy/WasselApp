@@ -10,6 +10,7 @@ using WasselApp.Helpers;
 using WasselApp.Views.Panels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Plugin.Multilingual;
 
 namespace WasselApp.Views.Popups
 {
@@ -22,7 +23,8 @@ namespace WasselApp.Views.Popups
 		{
 			InitializeComponent ();
             FlowDirection = (Settings.LastUserGravity == "Arabic") ? FlowDirection.RightToLeft
-                  : FlowDirection.LeftToRight;
+                : FlowDirection.LeftToRight;
+            AppResources.Culture = CrossMultilingual.Current.CurrentCultureInfo;
             Registerframe.BorderColor = Color.Red;            
             if (data.email.ElementAt(0) == "The email has already been taken.")
             {

@@ -9,6 +9,7 @@ using WasselApp.Helpers;
 using WasselApp.Services;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Plugin.Multilingual;
 
 namespace WasselApp.Views.Panels
 {
@@ -19,7 +20,8 @@ namespace WasselApp.Views.Panels
         {
             InitializeComponent();
             FlowDirection = (Settings.LastUserGravity == "Arabic") ? FlowDirection.RightToLeft
-                  : FlowDirection.LeftToRight;
+                 : FlowDirection.LeftToRight;
+            AppResources.Culture = CrossMultilingual.Current.CurrentCultureInfo;
         }
         private async void Button_Clicked_1(object sender, EventArgs e)
         {

@@ -109,6 +109,12 @@
       <SubType>Designer</SubType>
     </None>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <BundleResource Include="Resources\Cairo-SemiBold.ttf" />
+    <BundleResource Include="Resources\Cairo-Black.ttf" />
+    <BundleResource Include="Resources\Cairo-Bold.ttf" />
+    <BundleResource Include="Resources\Cairo-ExtraLight.ttf" />
+    <BundleResource Include="Resources\Cairo-Light.ttf" />
+    <BundleResource Include="Resources\Cairo-Regular.ttf" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
@@ -238,5 +244,203 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\ToPlace.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\age.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\aLanguage.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\audigreen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\audired.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\brickcar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\calendar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\callus.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\callus32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\checked.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\city.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\country.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\deliverytruck.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\dinablue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\dinagreen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\dinared.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\dinaredcar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\distance.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\driverlicense.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Elanguage.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\flag.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Forgot.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\goals.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\goals32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\hyundaiblue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\hyundaigreen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\hyundaired.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\idcard.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ImageSplash.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\lancerblue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\lancergreen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\lancerred.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\load.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\logout.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Main.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\n.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\nissanblue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\nissangreen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\nissanred.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\phone.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\PlaceFrom.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\placeholder.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\placetoHome.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\sathablue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\sathagreen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\sathared.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\satharedcar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\smallblue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\smallgreen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\smallredcar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\splash.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\taxidriver.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\toyotablue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\toyotagreen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\toyotared.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\trilabluecar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\trilagreen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\trilared.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\truck.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\twoarch.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\wasselsplash.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\way.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\weight.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\aboutus32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\abouus.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\addbutton.png" />
   </ItemGroup>
 </Project>
