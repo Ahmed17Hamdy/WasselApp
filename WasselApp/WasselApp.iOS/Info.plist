@@ -36,6 +36,12 @@
 	<string>Assets.xcassets/AppIcon.appiconset</string>
 	<key>NSCameraUsageDescription</key>
 	<string>This app needs access to the camera to take photos.</string>
+  <key>NSLocationWhenInUseUsageDescription</key>
+	<string>This app needs access location when open.</string>
+	<key>NSLocationAlwaysAndWhenInUsageDescription</key>
+	<string>This app needs access location when open or in background.</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>This app needs access location when open.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>This app needs access to photos.</string>
 	<key>NSMicrophoneUsageDescription</key>
