@@ -24,9 +24,38 @@ namespace WasselApp.iOS
         {
             global::Xamarin.Forms.Forms.Init();
             Rg.Plugins.Popup.Popup.Init();
+            OneSignal.Current.StartInit("f5f4f650-3453-456c-8024-010ea68e738b")
+                .EndInit();
             LoadApplication(new App());
 
             return base.FinishedLaunching(app, options);
+        }
+        [Export("oneSignalApplicationDidBecomeActive:")]
+        public void OneSignalApplicationDidBecomeActive(UIApplication application)
+        {
+            // Remove line if you don't have a OnActivated method.
+            //   OnActivated(application);
+        }
+
+        [Export("oneSignalApplicationWillResignActive:")]
+        public void OneSignalApplicationWillResignActive(UIApplication application)
+        {
+            // Remove line if you don't have a OnResignActivation method.
+            //    OnResignActivation(application);
+        }
+
+        [Export("oneSignalApplicationDidEnterBackground:")]
+        public void OneSignalApplicationDidEnterBackground(UIApplication application)
+        {
+            // Remove line if you don't have a DidEnterBackground method.
+            //   DidEnterBackground(application);
+        }
+
+        [Export("oneSignalApplicationWillTerminate:")]
+        public void OneSignalApplicationWillTerminate(UIApplication application)
+        {
+            // Remove line if you don't have a WillTerminate method.
+            //  WillTerminate(application);
         }
     }
 }
