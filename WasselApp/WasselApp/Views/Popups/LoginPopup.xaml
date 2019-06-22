@@ -2,7 +2,7 @@
 <pages:PopupPage
     xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
     xmlns="http://xamarin.com/schemas/2014/forms"    
-    xmlns:tr="clr-namespace:WasselApp.Helpers"
+    xmlns:tr="clr-namespace:WasselApp.Helpers" HeightRequest="150" WidthRequest="350"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="WasselApp.Views.Popups.LoginPopup">
     <pages:PopupPage.Content>

@@ -28,11 +28,13 @@
     <MtouchArch>x86_64</MtouchArch>
     <MtouchLink>None</MtouchLink>
     <MtouchDebug>true</MtouchDebug>
-    <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
+    <MtouchHttpClientHandler>CFNetworkHandler</MtouchHttpClientHandler>
     <MtouchFastDev>true</MtouchFastDev>
     <DeviceSpecificBuild>true</DeviceSpecificBuild>
     <OptimizePNGs>true</OptimizePNGs>
-    <MtouchExtraArgs>--register:static</MtouchExtraArgs>
+    <MtouchExtraArgs>
+    </MtouchExtraArgs>
+    <MtouchEnableSGenConc>true</MtouchEnableSGenConc>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>none</DebugType>
@@ -252,12 +254,6 @@
     <BundleResource Include="Resources\aLanguage.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\audigreen.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\audired.png" />
-  </ItemGroup>
-  <ItemGroup>
     <BundleResource Include="Resources\brickcar.png" />
   </ItemGroup>
   <ItemGroup>
@@ -315,25 +311,10 @@
     <BundleResource Include="Resources\goals32.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\hyundaiblue.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\hyundaigreen.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\hyundaired.png" />
-  </ItemGroup>
-  <ItemGroup>
     <BundleResource Include="Resources\idcard.png" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\ImageSplash.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\lancerblue.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\lancergreen.png" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\lancerred.png" />
@@ -349,15 +330,6 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\n.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\nissanblue.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\nissangreen.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\nissanred.png" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\phone.png" />
@@ -399,15 +371,6 @@
     <BundleResource Include="Resources\taxidriver.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\toyotablue.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\toyotagreen.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\toyotared.png" />
-  </ItemGroup>
-  <ItemGroup>
     <BundleResource Include="Resources\trilabluecar.png" />
   </ItemGroup>
   <ItemGroup>
@@ -442,5 +405,11 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\addbutton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\privatecarred.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\privatecargreen.png" />
   </ItemGroup>
 </Project>

@@ -12,7 +12,7 @@ namespace WasselApp.CustomControls
 {
     public class PlacesAutoComplete : RelativeLayout
     {
-       
+        [Obsolete]
         public static readonly BindableProperty BoundsProperty =
             BindableProperty.Create<PlacesAutoComplete, MapSpan>(
             p => p.Bounds,
@@ -71,6 +71,8 @@ namespace WasselApp.CustomControls
                     _entry.Text = value;
             }
         }
+
+        [Obsolete]
         public MapSpan Bounds
         {
             get { return (MapSpan)GetValue(BoundsProperty); }

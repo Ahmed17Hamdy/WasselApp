@@ -19,7 +19,7 @@
                 <RowDefinition Height="150"/>
                 <RowDefinition Height="60"/>
                 <RowDefinition Height="Auto"/>
-                <RowDefinition Height="25"/>
+                <RowDefinition Height="50"/>
             </Grid.RowDefinitions>
             <Image Grid.Row="0" HorizontalOptions="Center"
                   Aspect="AspectFit" Source="WasselLogo.PNG" />

@@ -270,49 +270,14 @@ namespace WasselApp.ViewModels
                 }
                 item.Title = item.Member.name;
                 item.ShowCallout = true;
+              
                 if (item.Order != null)
                 {
-                    switch (item.cartypename)
-                    {
-                        case "لانسر":
-                            item.Image = "lancerred.png";
-                            break;
-                        case "تيوتا":
-
-                            item.Image = "toyotared.png";
-                            break;
-                        case "نيسان":
-                            item.Image = "nissanred.png";
-                            break;
-                        case "هيونداي":
-                            item.Image = "hyundaired.png";
-                            break;
-                        case "أودي":
-                            item.Image = "audired.png";
-                            break;
-                    }
+                    item.Image = "privatecarred.png";
                 }
                 else
                 {
-                    switch (item.cartypename)
-                    {
-                        case "لانسر":
-                            item.Image = "lancergreen.png";
-                            break;
-                        case "تيوتا":
-
-                            item.Image = "toyotagreen.png";
-                            break;
-                        case "نيسان":
-                            item.Image = "nissangreen.png";
-                            break;
-                        case "هيونداي":
-                            item.Image = "hyundaigreen.png";
-                            break;
-                        case "أودي":
-                             item.Image = "audigreen.png";
-                            break;
-                    }
+                    item.Image = "privatecargreen.png";
                 }
             }
             

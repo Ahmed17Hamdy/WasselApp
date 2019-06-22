@@ -17,7 +17,7 @@
                 <RowDefinition Height="150"/>
                     <RowDefinition Height="60"/>
                     <RowDefinition Height="Auto"/>
-                <RowDefinition Height="25"/>
+                <RowDefinition Height="50"/>
             </Grid.RowDefinitions>
                 <Image Grid.Row="0" HorizontalOptions="Center"
                         Aspect="AspectFit" Source="WasselLogo.PNG" />
@@ -160,22 +160,21 @@
                         BorderRadius="20"/>
                     </StackLayout>
                 </ScrollView>
-            <StackLayout  x:Name="Registerlbl" Grid.Row="3" >
+            <StackLayout   x:Name="Registerlbl" Grid.Row="3" >
                 <Label TextColor="DarkBlue" Text="{i81:Translate ForgetPasswrd}">
                     <Label.GestureRecognizers>
                         <TapGestureRecognizer Tapped="Recovery_Tapped"/>
                     </Label.GestureRecognizers>
                 </Label>
-                <StackLayout Orientation="Horizontal">
+                <StackLayout Orientation="Horizontal" >
                     <Label TextColor="Red" Text="{i81:Translate NoAccount}"/>
-                  
+
                     <Label TextColor="DarkGoldenrod" Text="{i81:Translate Register}">
                         <Label.GestureRecognizers>
                             <TapGestureRecognizer Tapped="Register_Tapped"/>
                         </Label.GestureRecognizers>
                     </Label>
                 </StackLayout>
-                
             </StackLayout>
             <ActivityIndicator Grid.Row="0" Grid.RowSpan="3" VerticalOptions="Center" HorizontalOptions="Center"
                                IsRunning="{Binding IsRunning}" Color="Blue" WidthRequest="100" HeightRequest="100" />

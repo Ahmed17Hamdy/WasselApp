@@ -3,10 +3,24 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="WasselApp.Views.HomeMaster.AboutUsPage">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                
+            </Grid.RowDefinitions>
+            <Frame Padding="5" BorderColor="Gold" BackgroundColor="White" Grid.Row="0" 
+                           VerticalOptions="CenterAndExpand"
+                                 HorizontalOptions="CenterAndExpand">
+                <StackLayout Orientation="Horizontal">
+                    <Button TextColor="White" BackgroundColor="LightGreen" Text="English" Clicked="English_Clicked"/>
+                    <StackLayout  Orientation="Horizontal" VerticalOptions="Center"
+                                 HorizontalOptions="Center">
+                        <BoxView  Color="Blue" WidthRequest="1" />
+                    </StackLayout >
+                    <Button Text="عربي" Clicked="Arabic_Clicked" TextColor="White" BackgroundColor="Blue"/>
+                </StackLayout>
+            </Frame>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

@@ -36,7 +36,9 @@ namespace WasselApp.Views.Panels
             }
             else
             {
+#pragma warning disable CS0219 // Variable is assigned but its value is never used
                 bool checker = false;
+#pragma warning restore CS0219 // Variable is assigned but its value is never used
                 try
                 {
                     Activ.IsRunning = false;

@@ -64,7 +64,7 @@
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
                                         <ViewCell>
-                                            <StackLayout FlowDirection="RightToLeft"  Orientation="Horizontal">
+                                            <StackLayout Orientation="Horizontal">
                                                 <Image Source="{Binding icon,StringFormat='http://waselksa.alsalil.net/users/images/{0}'}"  HeightRequest="20" WidthRequest="20" />
                                                 <Label Text="{Binding name}" HorizontalTextAlignment="Center" />
                                             </StackLayout>
