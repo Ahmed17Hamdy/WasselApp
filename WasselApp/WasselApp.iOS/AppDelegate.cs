@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Com.OneSignal;
 using Foundation;
+using TK.CustomMap.iOSUnified;
 using UIKit;
 
 namespace WasselApp.iOS
@@ -23,6 +24,7 @@ namespace WasselApp.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.Init();
+            var renderer = new TKCustomMapRenderer();
             Rg.Plugins.Popup.Popup.Init();
             OneSignal.Current.StartInit("f5f4f650-3453-456c-8024-010ea68e738b")
                 .EndInit();
