@@ -58,6 +58,8 @@ namespace WasselApp.Views.CarsPages
             set { _cars = value; OnPropertyChanged(); }
         }
         private List<Cartype> _carstype;
+        private object x;
+
         public List<Cartype> CarsType
         {
             get { return _carstype; }
@@ -82,15 +84,18 @@ namespace WasselApp.Views.CarsPages
                 }
                 catch (FeatureNotEnabledException)
                 {
-                    await DisplayAlert(AppResources.Alert, AppResources.LocationEnabled, AppResources.Ok);
+                    await PopupNavigation.Instance.PushAsync(new LocationErrorPage());
+                  //  await DisplayAlert(AppResources.Alert, AppResources.LocationEnabled, AppResources.Ok);
                 }
             }
             else
             {
-                await DisplayAlert(AppResources.PermissionsDenied, AppResources.PermissionLocationDetails,
-                    AppResources.Ok);
+                await PopupNavigation.Instance.PushAsync(new LocationErrorPage(x));
+
+                //await DisplayAlert(AppResources.PermissionsDenied, AppResources.PermissionLocationDetails,
+                //    AppResources.Ok);
                 //On iOS you may want to send your user to the settings screen.
-                CrossPermissions.Current.OpenAppSettings();
+              //  CrossPermissions.Current.OpenAppSettings();
             }
         }
         private void StackTapped(object sender, EventArgs e)

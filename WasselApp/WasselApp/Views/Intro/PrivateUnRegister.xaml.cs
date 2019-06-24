@@ -83,19 +83,21 @@ namespace WasselApp.Views.Intro
                 }
                 catch (FeatureNotEnabledException)
                 {
-                    await DisplayAlert(AppResources.Alert, AppResources.LocationEnabled, AppResources.Ok);
+                    await PopupNavigation.Instance.PushAsync(new LocationErrorPage());
                 }
             }
             else
             {
-                await DisplayAlert(AppResources.PermissionsDenied, AppResources.PermissionLocationDetails,
-                    AppResources.Ok);
+                await PopupNavigation.Instance.PushAsync(new LocationErrorPage(x));
+
                 //On iOS you may want to send your user to the settings screen.
-                CrossPermissions.Current.OpenAppSettings();
+             //   CrossPermissions.Current.OpenAppSettings();
             }
         }
 
         private bool _usertabbed;
+        private object x;
+
         private  void StackTapped(object sender, EventArgs e)
         { 
             if(ModelFrame.IsVisible == true)

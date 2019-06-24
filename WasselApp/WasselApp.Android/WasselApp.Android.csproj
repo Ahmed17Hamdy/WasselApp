@@ -56,7 +56,7 @@
     </MandroidI18n>
     <AndroidLinkTool>proguard</AndroidLinkTool>
     <AndroidDexTool>dx</AndroidDexTool>
-    <AndroidLinkMode>SdkOnly</AndroidLinkMode>
+    <AndroidLinkMode>None</AndroidLinkMode>
     <AndroidSupportedAbis>armeabi-v7a;x86;x86_64</AndroidSupportedAbis>
     <JavaMaximumHeapSize>1G</JavaMaximumHeapSize>
     <AndroidEnableSGenConcurrent>false</AndroidEnableSGenConcurrent>
