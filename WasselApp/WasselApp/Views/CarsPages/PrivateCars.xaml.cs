@@ -160,7 +160,7 @@ namespace WasselApp.Views.CarsPages
         {
             MainMap.Pins = null;
             var ModelSelected = Modellist.SelectedItem as Carmodal;
-            var SelectedCars = Cars.Where(o => o.Member.carmodal == ModelSelected.id.ToString()).ToList();
+            var SelectedCars = Cars.Where(o => o.Member.carmodal == ModelSelected.parent.ToString()).ToList();
             if (SelectedCars.Count() != 0)
             {              
                 Pinslbl.IsVisible = false;
