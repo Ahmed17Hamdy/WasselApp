@@ -8,5 +8,9 @@
 	<array>
 		<string>group.alsalilweb.WasselApp.onesignal</string>
 	</array>
+	<key>keychain-access-groups</key>
+	<array>
+		<string>$(AppIdentifierPrefix)com.alsalilweb.WasselApp</string>
+	</array>
 </dict>
 </plist>

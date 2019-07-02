@@ -28,6 +28,7 @@ namespace WasselApp.iOS
             Rg.Plugins.Popup.Popup.Init();
             OneSignal.Current.StartInit("f5f4f650-3453-456c-8024-010ea68e738b")
                 .EndInit();
+          
             LoadApplication(new App());
 
             return base.FinishedLaunching(app, options);

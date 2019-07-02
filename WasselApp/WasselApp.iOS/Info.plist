@@ -32,6 +32,8 @@
 	<string>LaunchScreen</string>
 	<key>CFBundleName</key>
 	<string>WasselApp</string>
+  <key>NSCalendarsUsageDescription</key>
+  <string>Calendars</string>
 	<key>NSCameraUsageDescription</key>
 	<string>This app needs access to the camera to take photos.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
