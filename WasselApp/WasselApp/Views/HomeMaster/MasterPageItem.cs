@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace WasselApp.Views.HomeMaster
 {
-  public  class MasterPageItem
+    public  class MasterPageItem
     {
         public string Title { get; set; }
 

@@ -1,14 +1,10 @@
-﻿using Com.OneSignal;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using TK.CustomMap.Api.Google;
 using Xamarin.Forms;
 using WasselApp.Helpers;
 using Xamarin.Forms.Xaml;
-using Com.OneSignal.Abstractions;
 using TK.CustomMap;
 using Xamarin.Essentials;
 using TK.CustomMap.Overlays;
@@ -31,11 +27,11 @@ namespace WasselApp.Views.OrdersPage
             FlowDirection = (Settings.LastUserGravity == "Arabic") ? FlowDirection.RightToLeft
                  : FlowDirection.LeftToRight;
             AppResources.Culture = CrossMultilingual.Current.CurrentCultureInfo;
-            OneSignal.Current.StartInit("f5f4f650-3453-456c-8024-010ea68e738b")
-          .InFocusDisplaying(OSInFocusDisplayOption.None)
-          .HandleNotificationReceived(OnNotificationRecevied)
-          .HandleNotificationOpened(OnNotificationOpened)
-          .EndInit();
+          //  OneSignal.Current.StartInit("f5f4f650-3453-456c-8024-010ea68e738b")
+          //.InFocusDisplaying(OSInFocusDisplayOption.None)
+          //.HandleNotificationReceived(OnNotificationRecevied)
+          //.HandleNotificationOpened(OnNotificationOpened)
+          //.EndInit();
           GmsDirection.Init("AIzaSyB7rB6s8fc317zCPz8HS_yqwi7HjMsAqks");
             SetMyLocation();
         }
@@ -54,56 +50,56 @@ namespace WasselApp.Views.OrdersPage
             OrderMap.MapRegion = e.Value.Bounds;
         }
 
-        private async void OnNotificationOpened(OSNotificationOpenedResult result)
-        {
-            if (result.notification?.payload?.additionalData == null)
-            {
-                return;
-            }
+        //private async void OnNotificationOpened(OSNotificationOpenedResult result)
+        //{
+        //    if (result.notification?.payload?.additionalData == null)
+        //    {
+        //        return;
+        //    }
 
-            if (result.notification.payload.additionalData.ContainsKey("body"))
-            {
-                var labelText = result.notification.payload.additionalData["body"].ToString();
-                Settings.LastNotify = labelText;
-                await DisplayAlert(AppResources.Error, Settings.LastNotify, AppResources.Ok);
-            }
+        //    if (result.notification.payload.additionalData.ContainsKey("body"))
+        //    {
+        //        var labelText = result.notification.payload.additionalData["body"].ToString();
+        //        Settings.LastNotify = labelText;
+        //        await DisplayAlert(AppResources.Error, Settings.LastNotify, AppResources.Ok);
+        //    }
 
-        }
+        //}
 
-        private void OnNotificationRecevied(OSNotification notification)
-        {
+        //private void OnNotificationRecevied(OSNotification notification)
+        //{
 
-            if (notification.payload?.additionalData == null)
-            {
-                return;
-            }
+        //    if (notification.payload?.additionalData == null)
+        //    {
+        //        return;
+        //    }
 
-            if (notification.payload.additionalData.ContainsKey("body"))
-            {
-                var title = notification.payload.additionalData["title"].ToString();
-                if (title != "The trip is completed")
-                {
-                    var labelText = notification.payload.additionalData["body"].ToString();
-                    var Req = JsonConvert.DeserializeObject<DelivaryObject>(labelText);
-                    Settings.CarLat = Req.Position.Latitude;
-                    Settings.CarLng = Req.Position.Longitude;
+        //    if (notification.payload.additionalData.ContainsKey("body"))
+        //    {
+        //        var title = notification.payload.additionalData["title"].ToString();
+        //        if (title != "The trip is completed")
+        //        {
+        //            var labelText = notification.payload.additionalData["body"].ToString();
+        //            var Req = JsonConvert.DeserializeObject<DelivaryObject>(labelText);
+        //            Settings.CarLat = Req.Position.Latitude;
+        //            Settings.CarLng = Req.Position.Longitude;
                     
-                    SetMyLocation();
-                }
-                else
-                {
-                   App.Current.MainPage = new HomePage();
-                    DisplayAlert(AppResources.Alert, AppResources.TripCompleted, AppResources.Ok);
+        //            SetMyLocation();
+        //        }
+        //        else
+        //        {
+        //           App.Current.MainPage = new HomePage();
+        //            DisplayAlert(AppResources.Alert, AppResources.TripCompleted, AppResources.Ok);
 
-                    //Device.BeginInvokeOnMainThread(() =>
-                    //{
-                    //    Navigation.PushModalAsync(new HomePage());
-                    //});
+        //            //Device.BeginInvokeOnMainThread(() =>
+        //            //{
+        //            //    Navigation.PushModalAsync(new HomePage());
+        //            //});
 
-                }
+        //        }
 
-            }
-        }
+        //    }
+        //}
         private void SetMyLocation()
         {
             //    MoveMapToMyLocation();

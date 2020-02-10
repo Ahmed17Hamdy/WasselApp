@@ -1,20 +1,16 @@
-﻿using Com.OneSignal.Abstractions;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
-using System.Threading.Tasks;
 using WasselApp.Models;
 using WasselApp.Helpers;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Xamarin.Essentials;
-using WasselApp.Views.HomeMaster;
 using Plugin.Permissions;
 using Plugin.Permissions.Abstractions;
 using Newtonsoft.Json;
-using Com.OneSignal;
 using Plugin.Multilingual;
 
 namespace WasselApp.Views.OrdersPage
@@ -32,11 +28,11 @@ namespace WasselApp.Views.OrdersPage
                  : FlowDirection.LeftToRight;
             AppResources.Culture = CrossMultilingual.Current.CurrentCultureInfo;
             _carorder = carOrder;
-            OneSignal.Current.StartInit("f5f4f650-3453-456c-8024-010ea68e738b")
-           .InFocusDisplaying(OSInFocusDisplayOption.None)
-           .HandleNotificationReceived(OnNotificationRecevied)
-           .HandleNotificationOpened(OnNotificationOpened)
-           .EndInit();
+           // OneSignal.Current.StartInit("f5f4f650-3453-456c-8024-010ea68e738b")
+           //.InFocusDisplaying(OSInFocusDisplayOption.None)
+           //.HandleNotificationReceived(OnNotificationRecevied)
+           //.HandleNotificationOpened(OnNotificationOpened)
+           //.EndInit();
             Settings.LastUsedDriverID = carOrder.Member.id;
             if (AddressTo.Text!= null || AddressFrom.Text!=null)
             {
@@ -106,37 +102,37 @@ namespace WasselApp.Views.OrdersPage
             CalculatDistance();
             base.OnAppearing();
         }
-        private void OnNotificationOpened(OSNotificationOpenedResult result)
-        {
-            if (result.notification?.payload?.additionalData == null)
-            {
-                return;
-            }
+        //private void OnNotificationOpened(OSNotificationOpenedResult result)
+        //{
+        //    if (result.notification?.payload?.additionalData == null)
+        //    {
+        //        return;
+        //    }
 
-            if (result.notification.payload.additionalData.ContainsKey("body"))
-            {
-                var labelText = result.notification.payload.additionalData["body"].ToString();
-                Settings.LastNotify = labelText;
-                CheckNotification();
-            }
+        //    if (result.notification.payload.additionalData.ContainsKey("body"))
+        //    {
+        //        var labelText = result.notification.payload.additionalData["body"].ToString();
+        //        Settings.LastNotify = labelText;
+        //        CheckNotification();
+        //    }
 
-        }
+        //}
 
-        private void OnNotificationRecevied(OSNotification notification)
-        {
+        //private void OnNotificationRecevied(OSNotification notification)
+        //{
 
-            if (notification.payload?.additionalData == null)
-            {
-                return;
-            }
+        //    if (notification.payload?.additionalData == null)
+        //    {
+        //        return;
+        //    }
 
-            if (notification.payload.additionalData.ContainsKey("body"))
-            {
-                var labelText = notification.payload.additionalData["body"].ToString();
-                Settings.LastNotify = labelText;
-                CheckNotification();
-            }
-        }
+        //    if (notification.payload.additionalData.ContainsKey("body"))
+        //    {
+        //        var labelText = notification.payload.additionalData["body"].ToString();
+        //        Settings.LastNotify = labelText;
+        //        CheckNotification();
+        //    }
+        //}
 
         private async void CheckNotification()
         {

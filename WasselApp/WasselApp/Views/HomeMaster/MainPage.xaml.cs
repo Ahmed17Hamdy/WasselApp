@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using WasselApp.Views.CarsPages;
 using WasselApp.Helpers;
 using Xamarin.Forms;
@@ -12,7 +8,7 @@ using WasselApp.Views.Intro;
 
 namespace WasselApp.Views.HomeMaster
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
+    [XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class MainPage : ContentPage
 	{
 		public MainPage ()

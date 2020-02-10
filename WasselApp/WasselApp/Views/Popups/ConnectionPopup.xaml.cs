@@ -1,11 +1,6 @@
 ﻿using Plugin.Permissions;
 using Plugin.Permissions.Abstractions;
 using Rg.Plugins.Popup.Pages;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using WasselApp.Helpers;
@@ -14,7 +9,7 @@ using Plugin.Multilingual;
 
 namespace WasselApp.Views.Popups
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
+    [XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class ConnectionPopup : PopupPage
 	{
         private object x;

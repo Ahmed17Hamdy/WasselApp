@@ -4,10 +4,7 @@ using Plugin.Media.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
 using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
 using WasselApp.Models;
 using WasselApp.Services;
 using WasselApp.Views.CarsPages;
@@ -19,8 +16,8 @@ using Rg.Plugins.Popup.Services;
 using WasselApp.Views.Popups;
 using Plugin.Permissions;
 using Plugin.Permissions.Abstractions;
-using Com.OneSignal;
 using Plugin.Multilingual;
+using Plugin.FirebasePushNotification;
 
 namespace WasselApp.Views.Panels
 {
@@ -137,15 +134,16 @@ namespace WasselApp.Views.Panels
         //{
 
         //}
-        private void IdsAvailable(string userID, string pushToken)
-        {
-            Settings.LastSignalID = pushToken;
-            Settings.UserFirebaseToken = userID;
+        //private void IdsAvailable(string userID, string pushToken)
+        //{
+          
+        //    Settings.UserFirebaseToken = userID;
 
-        }
+        //}
         private void GetFirbasetoken()
         {
-            OneSignal.Current.IdsAvailable(IdsAvailable);
+            Settings.LastSignalID= CrossFirebasePushNotification.Current.Token;
+         //   Settings.UserFirebaseToken = CrossFirebasePushNotification.Current.;
         }
         private async void DriverRegisterCommand(object sender, EventArgs e)
         {

@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace WasselApp.Models
+﻿namespace WasselApp.Models
 {
- public   class DriverUser : User
+    public   class DriverUser : User
     {
         public string carnumber { get; set; }
         public string cartype { get; set; }

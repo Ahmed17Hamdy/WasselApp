@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Text;
 using System.Windows.Input;
 using WasselApp.Models;
 using WasselApp.Services;
@@ -14,9 +13,9 @@ using WasselApp.Views.Popups;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using WasselApp.Helpers;
-using Com.OneSignal;
 using Plugin.Permissions;
 using Plugin.Permissions.Abstractions;
+using Plugin.FirebasePushNotification;
 
 namespace WasselApp.ViewModels
 {
@@ -103,16 +102,18 @@ namespace WasselApp.ViewModels
         public StreamImageSource Img { get; set; }
         public string lng { get; set; }
 
-        private void IdsAvailable(string userID, string pushToken)
-        {
-            Settings.LastSignalID = pushToken;
-            Settings.UserFirebaseToken = userID;
+        //private void IdsAvailable(string userID, string pushToken)
+        //{
+        //    Settings.LastSignalID = pushToken;
+        //    Settings.UserFirebaseToken = userID;
 
-        }
+        //}
         private void GetFirbasetoken()
         {
-            OneSignal.Current.IdsAvailable(IdsAvailable);
+            Settings.LastSignalID = CrossFirebasePushNotification.Current.Token;
+            //   Settings.UserFirebaseToken = CrossFirebasePushNotification.Current.;
         }
+       
         private async void GetLocation()
         {
             var locationStatus = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Location);

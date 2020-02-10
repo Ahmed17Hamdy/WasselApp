@@ -1,14 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using TK.CustomMap;
 using TK.CustomMap.Api.Google;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using WasselApp.Helpers;
-using WasselApp.ViewModels;
 using System.Collections.ObjectModel;
 using TK.CustomMap.Overlays;
 using TK.CustomMap.Api;

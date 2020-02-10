@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace WasselApp.Models.BModel
+﻿namespace WasselApp.Models.BModel
 {
     public interface IValidator
     {

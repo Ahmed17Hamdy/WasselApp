@@ -15,13 +15,15 @@
 	<uses-permission android:name="android.permission.INTERNET" />
 	<permission android:name="com.alsalilweb.WasselAp.permission.C2D_MESSAGE" android:protectionLevel="signature" />
 	<uses-permission android:name="com.alsalilweb.WasselApp.permission.C2D_MESSAGE" />
-	<application android:label="WasselApp.Android" android:supportsRtl="true">
-		<receiver android:name="com.onesignal.GcmBroadcastReceiver" android:permission="com.google.android.c2dm.permission.SEND">
-			<intent-filter>
-				<action android:name="com.google.android.c2dm.intent.RECEIVE" />
-				<category android:name="com.alsalilweb.WasselAp" />
-			</intent-filter>
-		</receiver>
+	<application android:label="WasselApp.Android" android:supportsRtl="true">	
+    <receiver android:name="com.google.firebase.iid.FirebaseInstanceIdInternalReceiver" android:exported="false" />
+    <receiver android:name="com.google.firebase.iid.FirebaseInstanceIdReceiver" android:exported="true" android:permission="com.google.android.c2dm.permission.SEND">
+      <intent-filter>
+        <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+        <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
+        <category android:name="com.alsalilweb.WasselAp" />
+      </intent-filter>
+    </receiver>
 		<provider android:name="android.support.v4.content.FileProvider" android:authorities="${applicationId}.fileprovider" android:exported="false" android:grantUriPermissions="true">
 			<meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/file_paths"></meta-data>
 		</provider>

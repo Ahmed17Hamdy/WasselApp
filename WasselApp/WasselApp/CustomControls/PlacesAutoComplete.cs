@@ -5,9 +5,7 @@ using TK.CustomMap;
 using TK.CustomMap.Api;
 using TK.CustomMap.Api.Google;
 using TK.CustomMap.Api.OSM;
-using Xamarin.Essentials;
 using Xamarin.Forms;
-using WasselApp.Helpers;
 namespace WasselApp.CustomControls
 {
     public class PlacesAutoComplete : RelativeLayout

@@ -1,16 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using WasselApp.Services;   
+using WasselApp.Services;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using WasselApp.Helpers;
 using Plugin.Multilingual;
 using Plugin.Connectivity;
-using WasselApp.Views.Panels;
-using WasselApp.Views.Intro;
 using Newtonsoft.Json;
 using WasselApp.Models;
 using Rg.Plugins.Popup.Services;
@@ -18,7 +13,7 @@ using WasselApp.Views.Popups;
 
 namespace WasselApp.Views.CarsPages
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
+    [XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class ProfilePage : ContentPage
 	{
         bool LangVis = false, vis = false;

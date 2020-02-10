@@ -1,5 +1,4 @@
-﻿using Com.OneSignal.Abstractions;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Plugin.Permissions;
 using Plugin.Permissions.Abstractions;
 using System;
@@ -7,7 +6,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
-using System.Threading.Tasks;
 using WasselApp.Models;
 using WasselApp.Helpers;
 using WasselApp.Views.HomeMaster;
@@ -93,37 +91,37 @@ namespace WasselApp.Views.OrdersPage
             CalculatDistance();
             base.OnAppearing();
         }
-        private async void OnNotificationOpened(OSNotificationOpenedResult result)
-        {
-            if (result.notification?.payload?.additionalData == null)
-            {
-                return;
-            }
+        //private async void OnNotificationOpened(OSNotificationOpenedResult result)
+        //{
+        //    if (result.notification?.payload?.additionalData == null)
+        //    {
+        //        return;
+        //    }
 
-            if (result.notification.payload.additionalData.ContainsKey("body"))
-            {
-                var labelText = result.notification.payload.additionalData["body"].ToString();
-                Settings.LastNotify = labelText;
-                CheckNotification();
-            }
+        //    if (result.notification.payload.additionalData.ContainsKey("body"))
+        //    {
+        //        var labelText = result.notification.payload.additionalData["body"].ToString();
+        //        Settings.LastNotify = labelText;
+        //        CheckNotification();
+        //    }
 
-        }
+        //}
 
-        private async void OnNotificationRecevied(OSNotification notification)
-        {
+        //private async void OnNotificationRecevied(OSNotification notification)
+        //{
 
-            if (notification.payload?.additionalData == null)
-            {
-                return;
-            }
+        //    if (notification.payload?.additionalData == null)
+        //    {
+        //        return;
+        //    }
 
-            if (notification.payload.additionalData.ContainsKey("body"))
-            {
-                var labelText = notification.payload.additionalData["body"].ToString();
-                Settings.LastNotify = labelText;
-                CheckNotification();
-            }
-        }
+        //    if (notification.payload.additionalData.ContainsKey("body"))
+        //    {
+        //        var labelText = notification.payload.additionalData["body"].ToString();
+        //        Settings.LastNotify = labelText;
+        //        CheckNotification();
+        //    }
+        //}
 
         private async void CheckNotification()
         {

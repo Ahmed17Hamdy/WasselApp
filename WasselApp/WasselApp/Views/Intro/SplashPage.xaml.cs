@@ -1,7 +1,6 @@
 ﻿using WasselApp.Helpers;
 using WasselApp.Views.CarsPages;
 using WasselApp.Views.HomeMaster;
-using WasselApp.Views.Panels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 

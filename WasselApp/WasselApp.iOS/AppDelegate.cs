@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Com.OneSignal;
+﻿
 using Foundation;
+using Plugin.FirebasePushNotification;
+using System;
 using TK.CustomMap.iOSUnified;
 using UIKit;
 
@@ -26,39 +25,38 @@ namespace WasselApp.iOS
             global::Xamarin.Forms.Forms.Init();
             var renderer = new TKCustomMapRenderer();
             Rg.Plugins.Popup.Popup.Init();
-            OneSignal.Current.StartInit("f5f4f650-3453-456c-8024-010ea68e738b")
-                .EndInit();
-          
+            FirebasePushNotificationManager.Initialize(options, true);
+
             LoadApplication(new App());
 
             return base.FinishedLaunching(app, options);
         }
-        [Export("oneSignalApplicationDidBecomeActive:")]
-        public void OneSignalApplicationDidBecomeActive(UIApplication application)
+        public override void RegisteredForRemoteNotifications(UIApplication application, NSData deviceToken)
         {
-            // Remove line if you don't have a OnActivated method.
-            //   OnActivated(application);
+            FirebasePushNotificationManager.DidRegisterRemoteNotifications(deviceToken);
         }
 
-        [Export("oneSignalApplicationWillResignActive:")]
-        public void OneSignalApplicationWillResignActive(UIApplication application)
+        public override void FailedToRegisterForRemoteNotifications(UIApplication application, NSError error)
         {
-            // Remove line if you don't have a OnResignActivation method.
-            //    OnResignActivation(application);
+            FirebasePushNotificationManager.RemoteNotificationRegistrationFailed(error);
+
+        }
+        // To receive notifications in foregroung on iOS 9 and below.
+        // To receive notifications in background in any iOS version
+        public override void DidReceiveRemoteNotification(UIApplication application, NSDictionary userInfo, Action<UIBackgroundFetchResult> completionHandler)
+        {
+            // If you are receiving a notification message while your app is in the background,
+            // this callback will not be fired 'till the user taps on the notification launching the application.
+
+            // If you disable method swizzling, you'll need to call this method. 
+            // This lets FCM track message delivery and analytics, which is performed
+            // automatically with method swizzling enabled.
+            FirebasePushNotificationManager.DidReceiveMessage(userInfo);
+            // Do your magic to handle the notification data
+            System.Console.WriteLine(userInfo);
+
+            completionHandler(UIBackgroundFetchResult.NewData);
         }
 
-        [Export("oneSignalApplicationDidEnterBackground:")]
-        public void OneSignalApplicationDidEnterBackground(UIApplication application)
-        {
-            // Remove line if you don't have a DidEnterBackground method.
-            //   DidEnterBackground(application);
-        }
-
-        [Export("oneSignalApplicationWillTerminate:")]
-        public void OneSignalApplicationWillTerminate(UIApplication application)
-        {
-            // Remove line if you don't have a WillTerminate method.
-            //  WillTerminate(application);
-        }
     }
 }

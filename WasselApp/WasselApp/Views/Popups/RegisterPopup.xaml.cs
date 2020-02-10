@@ -1,10 +1,7 @@
 ﻿using Rg.Plugins.Popup.Pages;
 using Rg.Plugins.Popup.Services;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using WasselApp.Models;
 using WasselApp.Helpers;
 using WasselApp.Views.Panels;
@@ -14,7 +11,7 @@ using Plugin.Multilingual;
 
 namespace WasselApp.Views.Popups
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
+    [XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class RegisterPopup : PopupPage
 	{
         private object x;

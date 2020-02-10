@@ -1,14 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 using WasselApp.Helpers;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Plugin.Permissions.Abstractions;
-using WasselApp.Models;
 using Plugin.Permissions;
 using TK.CustomMap;
 using Plugin.Multilingual;

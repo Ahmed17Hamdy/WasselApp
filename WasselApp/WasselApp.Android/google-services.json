@@ -1,34 +1,34 @@
 {
   "project_info": {
-    "project_number": "114399975373",
-    "firebase_url": "https://wasselapp-5a6ea.firebaseio.com",
-    "project_id": "wasselapp-5a6ea",
-    "storage_bucket": "wasselapp-5a6ea.appspot.com"
+    "project_number": "421016415055",
+    "firebase_url": "https://wasselapp-aa319.firebaseio.com",
+    "project_id": "wasselapp-aa319",
+    "storage_bucket": "wasselapp-aa319.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:114399975373:android:18c586738ec8368a",
+        "mobilesdk_app_id": "1:421016415055:android:a4fa3ff9ce1b66efb1f33a",
         "android_client_info": {
           "package_name": "com.alsalilweb.WasselApp"
         }
       },
       "oauth_client": [
         {
-          "client_id": "114399975373-36sqmgtjmbiiik1152b7bn31ke721iu0.apps.googleusercontent.com",
+          "client_id": "421016415055-jt69t4f0q4e6co74sbk20ebo6obh6vu9.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDqGx_9IhkyzthYxOIJ8dzgD0fnkDeyUdc"
+          "current_key": "AIzaSyD4NMOJL3S0BXMQlEVVoWachhbFs-tW6nk"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "114399975373-36sqmgtjmbiiik1152b7bn31ke721iu0.apps.googleusercontent.com",
+              "client_id": "421016415055-jt69t4f0q4e6co74sbk20ebo6obh6vu9.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

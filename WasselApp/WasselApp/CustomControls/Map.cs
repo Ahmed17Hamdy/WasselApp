@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using TK.CustomMap;
+﻿using TK.CustomMap;
 
 namespace WasselApp.CustomControls
 {
- public   class Map : TKCustomMap
+    public   class Map : TKCustomMap
     {
     }
 }

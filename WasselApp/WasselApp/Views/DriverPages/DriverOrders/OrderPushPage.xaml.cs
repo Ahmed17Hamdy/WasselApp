@@ -1,12 +1,10 @@
 ﻿using Newtonsoft.Json;
 using Plugin.Multilingual;
-using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
-using System.Threading.Tasks;
 using TK.CustomMap;
 using TK.CustomMap.Api.Google;
 using TK.CustomMap.Overlays;

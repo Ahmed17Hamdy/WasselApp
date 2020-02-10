@@ -1,10 +1,7 @@
 ﻿using Rg.Plugins.Popup.Pages;
 using Rg.Plugins.Popup.Services;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using WasselApp.Views.Panels;
 using WasselApp.Helpers;
 using Xamarin.Forms;
@@ -14,7 +11,7 @@ using Plugin.Multilingual;
 
 namespace WasselApp.Views.Popups
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
+    [XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class LoginPopup : PopupPage
 	{
         private object x;

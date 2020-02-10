@@ -5,10 +5,7 @@ using Plugin.Permissions.Abstractions;
 using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TK.CustomMap;
 using WasselApp.Helpers;
 using WasselApp.Models;
@@ -23,7 +20,7 @@ using Xamarin.Forms.Xaml;
 
 namespace WasselApp.Views.CarsPages
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
+    [XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class Freightcars : ContentPage
 	{        
         public Freightcars ()

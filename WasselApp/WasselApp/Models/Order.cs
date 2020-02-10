@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace WasselApp.Models
+﻿namespace WasselApp.Models
 {
-  public  class Order
+    public  class Order
     {
        
     }

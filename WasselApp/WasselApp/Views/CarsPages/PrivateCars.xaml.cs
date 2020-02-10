@@ -2,8 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TK.CustomMap;
 using WasselApp.Models;
 using WasselApp.ViewModels;
@@ -19,7 +17,7 @@ using Plugin.Connectivity;
 
 namespace WasselApp.Views.CarsPages
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
+    [XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class PrivateCars : ContentPage
 	{
 		public PrivateCars ()

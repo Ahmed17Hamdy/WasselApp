@@ -1,9 +1,7 @@
 ﻿using Plugin.Multilingual;
 using System;
-using System.Collections.Generic;
 using System.Reflection;
 using System.Resources;
-using System.Text;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 

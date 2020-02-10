@@ -1,14 +1,9 @@
-﻿
-using Com.OneSignal;
-using WasselApp.Views.CarsPages;
-using WasselApp.Views.HomeMaster;
-using WasselApp.Views.Intro;
-using WasselApp.Views.OrdersPage;
-using WasselApp.Views.Panels;
+﻿using WasselApp.Views.Intro;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using WasselApp.Helpers;
 using WasselApp.Models;
+using Plugin.FirebasePushNotification;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace WasselApp
@@ -20,9 +15,9 @@ namespace WasselApp
         public App()
         {
             InitializeComponent();
-            OneSignal.Current.StartInit("f5f4f650-3453-456c-8024-010ea68e738b")
-                  .EndInit();
-            OneSignal.Current.IdsAvailable(IdsAvailable);
+            //OneSignal.Current.StartInit("f5f4f650-3453-456c-8024-010ea68e738b")
+            //      .EndInit();
+            //OneSignal.Current.IdsAvailable(IdsAvailable);
            
               MainPage = new NavigationPage( new SplashPage());;
          //   MainPage = new NavigationPage( new OrderDetailsPage( car));
@@ -33,7 +28,24 @@ namespace WasselApp
             Settings.UserFirebaseToken = userID;
         }
         protected override void OnStart()
+
         {
+            CrossFirebasePushNotification.Current.OnNotificationReceived += (s, p) =>
+            {
+
+                System.Diagnostics.Debug.WriteLine("Received");
+
+            };
+            CrossFirebasePushNotification.Current.OnNotificationOpened += (s, p) =>
+            {
+                System.Diagnostics.Debug.WriteLine("Opened");
+                foreach (var data in p.Data)
+                {
+                    System.Diagnostics.Debug.WriteLine($"{data.Key} : {data.Value}");
+                }
+
+
+            };
             // Handle when your app starts
         }
 

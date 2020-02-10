@@ -1,14 +1,10 @@
-﻿using System;
-
+﻿
 using Android.App;
 using Android.Content.PM;
 using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using Android.OS;
 using TK.CustomMap.Droid;
-using Plugin.CurrentActivity;
-using TK.CustomMap.Api;
+using Plugin.FirebasePushNotification;
 
 namespace WasselApp.Droid
 {
@@ -39,6 +35,7 @@ namespace WasselApp.Droid
             base.OnCreate(savedInstanceState);
             ChechSdk();
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
+            FirebasePushNotificationManager.ProcessIntent(this, Intent);
             TKGoogleMaps.Init(this, savedInstanceState);
           
             // CrossCurrentActivity.Current.Activity(this, savedInstanceState);

@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 
 namespace WasselApp.CustomControls
 {
-  public  class DatePickerCtrl : DatePicker
+    public  class DatePickerCtrl : DatePicker
     {
         public static readonly BindableProperty EnterTextProperty = BindableProperty.Create(propertyName: "Placeholder", returnType: typeof(string), declaringType: typeof(DatePickerCtrl), defaultValue: default(string));
         public string Placeholder

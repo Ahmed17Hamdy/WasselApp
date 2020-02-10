@@ -1,9 +1,7 @@
 ﻿using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using TK.CustomMap;
 using WasselApp.Models;
 using WasselApp.Helpers;
